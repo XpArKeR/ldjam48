@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2912823098387361411}
-  - component: {fileID: 1668901072884957812}
   - component: {fileID: 2655280777828146997}
   m_Layer: 0
   m_Name: GameStateInformation
@@ -38,19 +37,6 @@ RectTransform:
   m_AnchoredPosition: {x: 361.5, y: -202}
   m_SizeDelta: {x: 723, y: -329}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1668901072884957812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3589506351682515501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c64382e9782d5dd49b18926228c6ad66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
 --- !u!223 &2655280777828146997
 Canvas:
   m_ObjectHideFlags: 0
