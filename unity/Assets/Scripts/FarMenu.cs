@@ -3,11 +3,11 @@ using Assets.Scripts.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FarMenu : MonoBehaviour
 {
-    public List<Image> planetImages;
     public List<PlanetPreview> previews;
 
     void Start()
@@ -15,7 +15,7 @@ public class FarMenu : MonoBehaviour
         RefreshPlanetViews();
     }
 
-    public void generatePlanets()
+     public void GeneratePlanets()
     {
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
@@ -40,12 +40,8 @@ public class FarMenu : MonoBehaviour
 
             Image planetImage = planetPreview.planet;
             planetImage.color = planet.BaseColor;
+            Debug.Log(planetImage.color.ToString());
         }
 
-        for (int i = 0; i < planetImages.Count; i++)
-        {            
-            Text type = planetImages[i].GetChildComponentByName<Text>("TypeOutput");
-            type.text = Core.GameState.Planets[i].type;
-        }
     }
 }
