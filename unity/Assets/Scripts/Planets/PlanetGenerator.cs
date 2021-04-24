@@ -32,7 +32,7 @@ public static class PlanetGenerator
     {
         PlanetType planetType = GetRandomPlanetType();
 
-        return GeneratePlanet();
+        return GeneratePlanet(planetType);
     }
 
     private static PlanetType GetRandomPlanetType()
@@ -69,8 +69,6 @@ public static class PlanetGenerator
             LandSprite = ChooseRandomSprite(planetType.LandSprites),
             CloudColor = ChooseRandomColor(planetType.CloudColors),
             CloudSprite = ChooseRandomSprite(planetType.CloudSprites)
-
-
         };
 
         return planet;

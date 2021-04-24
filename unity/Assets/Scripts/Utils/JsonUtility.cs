@@ -14,7 +14,6 @@ public class JsonUtility
     {
         string json = File.ReadAllText(path);
         json = "{\"objects\":" + json + "}";
-        Debug.Log(json);
         var planetTypeList = UnityEngine.JsonUtility.FromJson<JsonList<T>>(json);
         return planetTypeList.objects;
     }

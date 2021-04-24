@@ -13,7 +13,7 @@
         "clouds_01.png",
         "clouds_02.png"
     ],
-    "Colors": [
+    "BaseColors": [
 		{
             "r": 1.0,
             "g": 0.0,
@@ -31,6 +31,43 @@
         {
             "r": 1.0,
             "g": 0.0,
+            "b": 1.0,
+            "a": 1.0
+        }
+    ]
+},
+{
+    "Name": "Forest",
+    "LandSprites": [
+        "planet_01_lm.png",
+        "planet_02_lm.png",
+		"planet_03_lm.png",
+		"planet_04_lm.png",
+		"planet_05_lm.png"
+    ],
+	
+    "CloudSprites": [
+        "clouds_01.png",
+        "clouds_02.png"
+    ],
+    "BaseColors": [
+		{
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+        }],
+    "LandColors": [
+		{
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+        }],
+    "CloudColors": [
+        {
+            "r": 1.0,
+            "g": 1.0,
             "b": 1.0,
             "a": 1.0
         }

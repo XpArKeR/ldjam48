@@ -18,6 +18,12 @@ public class PlanetMenu : MonoBehaviour
         LoadPlanet(Core.GameState.CurrentTarget);
     }
 
+
+    public void TestPlanet()
+    {
+        Planet planet = PlanetGenerator.GeneratePlanet();
+        LoadPlanet(planet);
+    }
     public void LoadPlanet(Planet planet)
     {
         planetBase.color = planet.BaseColor;
