@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnText: {fileID: 4648977496542827500}
+  shipTypeText: {fileID: 6916768382719667794}
 --- !u!1 &6075214928844365533
 GameObject:
   m_ObjectHideFlags: 0

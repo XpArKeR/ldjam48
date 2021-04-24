@@ -8,6 +8,7 @@ namespace Assets.Scripts.Ships
         {
 
         }
+        public String TypeName { get; set; }
 
         public float FuelConsumtion { get; set; }
         public float FuelLevel { get; set; }

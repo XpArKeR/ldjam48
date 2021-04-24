@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+
 using Assets.Scripts;
 using Assets.Scripts.Constants;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class PlanetPreview : MonoBehaviour
             Core.GameState.Planets.Remove(planet);
             DeleteRandomPlanet(Core.GameState.Planets);
             Core.GameState.Planets.Add(planet);
+
             SceneManager.LoadScene(SceneNames.Approach);
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Approach)
@@ -29,12 +31,16 @@ public class PlanetPreview : MonoBehaviour
             if (Core.GameState.CurrentTarget == planet)
             {
                 SceneManager.LoadScene(SceneNames.Planet);
-            } else
+            }
+            else
             {
                 Core.GameState.CurrentTarget = planet;
             }
-
         }
+
+        Core.GameState.Ship.OxygenLevel -= Core.GameState.Ship.OxygenConsumption;
+        Core.GameState.Ship.FoodLevel -= Core.GameState.Ship.FoodConsumption;
+        Core.GameState.Ship.FuelLevel -= Core.GameState.Ship.FuelConsumtion;
     }
     private void DeleteRandomPlanet(List<Planet> planets)
     {

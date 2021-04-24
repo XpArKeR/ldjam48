@@ -11,20 +11,9 @@ namespace Assets.Scripts
         public Planet CurrentTarget { get; set; }
 
         public List<Planet> Planets { get; } = new List<Planet>();
-      
 
-        private SpaceShip ship = new SpaceShip()
-        {
-            MaxOxygenLevel = 1000f,
-            OxygenLevel = 1000f,
-            OxygenConsumption = 100f,
-            MaxFoodLevel = 100f,
-            FoodLevel = 100f,
-            FoodConsumption = 10f,
-            MaxFuelLevel = 1000f,
-            FuelLevel = 500f,
-            FuelConsumtion = 100f,
-        };
+
+        private SpaceShip ship;
         public SpaceShip Ship
         {
             get
