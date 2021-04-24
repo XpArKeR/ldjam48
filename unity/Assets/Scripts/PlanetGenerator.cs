@@ -18,19 +18,30 @@ public class PlanetGenerator : MonoBehaviour
 
     public void GeneratePlanet()
     {
+        Planet planet = new Planet() {
+            BaseColor = ChooseRandomColor(planetColors),
+            LandColor = ChooseRandomColor(planetLandColors),
+            LandSprite = ChooseRandomSprite(planetLands),
+            CloudColor = ChooseRandomColor(planetCloudColors),
+            CloudSprite = ChooseRandomSprite(clouds)
+        };
 
-        planetBase.color = ChooseRandomColor(planetColors);
-
-
-        planetLand.color = ChooseRandomColor(planetLandColors);
-        planetLand.sprite = ChooseRandomSprite(planetLands);
-
-
-        planetClouds.color = ChooseRandomColor(planetCloudColors);
-        planetClouds.sprite = ChooseRandomSprite(clouds);
-
+        LoadPlanet(planet);
     }
 
+
+    public void LoadPlanet(Planet planet)
+    {
+        planetBase.color = planet.BaseColor;
+
+
+        planetLand.color = planet.LandColor;
+        planetLand.sprite = planet.LandSprite;
+
+
+        planetClouds.color = planet.CloudColor;
+        planetClouds.sprite = planet.CloudSprite;
+    }
 
     private Color ChooseRandomColor(Color[] colors)
     {
