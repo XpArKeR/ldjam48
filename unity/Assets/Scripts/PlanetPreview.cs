@@ -35,6 +35,7 @@ public class PlanetPreview : MonoBehaviour
             else
             {
                 Core.GameState.CurrentTarget = planet;
+                SceneManager.LoadScene(SceneNames.Planet);
             }
         }
 

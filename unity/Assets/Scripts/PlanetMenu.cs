@@ -1,6 +1,7 @@
 using Assets.Scripts;
-
+using Assets.Scripts.Constants;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
@@ -14,6 +15,15 @@ public class PlanetMenu : MonoBehaviour
     private void Start()
     {
         LoadTargetPlanet();
+    }
+
+
+    public void FlyAway()
+    {
+        Core.GameState.Planets.Clear();
+        Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
+
+        SceneManager.LoadScene(SceneNames.Far);
     }
 
     public void LoadTargetPlanet()
