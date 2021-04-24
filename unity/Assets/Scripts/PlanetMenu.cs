@@ -1,34 +1,22 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlanetGenerator : MonoBehaviour
+public class PlanetMenu : MonoBehaviour
 {
-    public Sprite[] planetLands;
-    public Sprite[] clouds;
+ 
 
     public Image planetBase;
     public Image planetLand;
     public Image planetClouds;
 
-    public Color[] planetColors;
-    public Color[] planetLandColors;
-    public Color[] planetCloudColors;
 
-    public void GeneratePlanet()
+    public void LoadTargetPlanet()
     {
-        Planet planet = new Planet() {
-            BaseColor = ChooseRandomColor(planetColors),
-            LandColor = ChooseRandomColor(planetLandColors),
-            LandSprite = ChooseRandomSprite(planetLands),
-            CloudColor = ChooseRandomColor(planetCloudColors),
-            CloudSprite = ChooseRandomSprite(clouds)
-        };
-
-        LoadPlanet(planet);
+        LoadPlanet(Core.GameState.CurrentTarget);
     }
-
 
     public void LoadPlanet(Planet planet)
     {

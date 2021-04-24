@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Planet
 {
+
+
+    public string type { get; set; }
+
+
     public Color BaseColor { get; set; }
     public Color LandColor { get; set; }
     public Color CloudColor { get; set; }
