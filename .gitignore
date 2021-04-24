@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/code/ldjam48/Library
+/unity/Library
+/unity/Logs
+/unity/Temp
+*.vsconfig
