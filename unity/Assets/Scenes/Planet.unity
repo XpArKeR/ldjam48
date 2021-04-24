@@ -314,12 +314,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0dd248159fbd0479caf888ff8b7978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planets:
+  planetLands:
   - {fileID: 21300000, guid: 7566f279f437c074a837a6a16ed900ee, type: 3}
   - {fileID: 21300000, guid: 3df79bb0068c13149ad964097aead06f, type: 3}
+  - {fileID: 21300000, guid: 726e0fff080f45d4bbb9d78369cf13a0, type: 3}
+  - {fileID: 21300000, guid: 59d37a5e9db785041a6afb7f26a788f6, type: 3}
+  - {fileID: 21300000, guid: 3524546405e86fc47bfa9489ae305cff, type: 3}
+  clouds:
+  - {fileID: 21300000, guid: 3e77d5813a4f0f84dbf237796d5a7dd9, type: 3}
+  - {fileID: 21300000, guid: b26bc0bc1b9681047b6cfd4b962e1c83, type: 3}
   planetBase: {fileID: 154257765}
   planetLand: {fileID: 905280070}
   planetClouds: {fileID: 1523588744}
+  planetColors:
+  - {r: 1, g: 0.20415227, b: 0, a: 0}
+  - {r: 0.6037736, g: 0.19869651, b: 0.094932914, a: 0}
+  - {r: 0.764151, g: 0.2629531, b: 0.13456741, a: 0}
+  - {r: 1, g: 0.20415227, b: 0, a: 0}
+  planetLandColors:
+  - {r: 0.5754717, g: 0.33058655, b: 0.12305678, a: 0}
+  - {r: 0.41568628, g: 0.41568628, b: 0.12305678, a: 0}
+  - {r: 0.7830189, g: 0.5289325, b: 0.31517735, a: 0}
+  - {r: 0.24705882, g: 0.33058655, b: 0.12305678, a: 0}
+  planetCloudColors:
+  - {r: 1, g: 0.9779874, b: 0.9779874, a: 0}
+  - {r: 0.65882355, g: 0.9779874, b: 0.9779874, a: 0}
+  - {r: 1, g: 0.75686276, b: 0.9779874, a: 0}
+  - {r: 0.9056604, g: 0.65503734, b: 0.65503734, a: 0.7137255}
 --- !u!1 &905280068
 GameObject:
   m_ObjectHideFlags: 0
