@@ -10,6 +10,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        
+    }
+
     public void StartGame()
     {
         Core.GameState.Ship = new SpaceShip()

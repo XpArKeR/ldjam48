@@ -25,12 +25,10 @@ namespace Assets.Scripts
             }
         }
 
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitGame()
         {
             PlanetGenerator.LoadPlanetTypes();
         }
-
     }
 }
