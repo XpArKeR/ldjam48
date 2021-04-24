@@ -1,5 +1,5 @@
 using Assets.Scripts;
-using Assets.Scripts.Constants;
+using Assets.Scripts.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +29,6 @@ public class FarMenu : MonoBehaviour
             Core.GameState.Planets.Clear();
             Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
         }
-
 
         for (int i = 0; i < previews.Count; i++)
         {
