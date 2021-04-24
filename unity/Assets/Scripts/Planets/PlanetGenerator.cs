@@ -14,7 +14,36 @@ public static class PlanetGenerator
     public static void LoadPlanetTypes()
     {
         planetTypes = JsonUtility.ListFromJson<PlanetType>("Assets/Resources/Planets/PlanetTypes.json");
+
+        NormalizeColors();
         Debug.Log("PlanetTypes loaded: " + planetTypes.Count);
+    }
+
+    private static void NormalizeColors()
+    {
+        foreach (PlanetType planetType in planetTypes)
+        {
+            planetType.BaseColors = NormColors(planetType.BaseColors);
+            planetType.LandColors = NormColors(planetType.LandColors);
+            planetType.CloudColors = NormColors(planetType.CloudColors);
+        }
+    }
+
+    private static List<Color> NormColors(List<Color> colors)
+    {
+        List<Color> normedColors = new List<Color>();
+        foreach (Color color in colors)
+        {
+            Color newColor = new Color()
+            {
+                r = color.r / 255,
+                g = color.g / 255,
+                b = color.b / 255,
+                a = 1
+            };
+            normedColors.Add(newColor);
+        }
+        return normedColors;
     }
 
     public static List<Planet> GeneratePlanets(int amount)
