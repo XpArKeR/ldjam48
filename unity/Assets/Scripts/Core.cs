@@ -1,19 +1,33 @@
 using System;
 
-public class Core
+using Assets.Scripts.Ships;
+
+namespace Assets.Scripts
 {
-    private static ShipBase ship;
-    public static ShipBase Ship
+    public class Core
     {
-        get
+        private static SpaceShip ship;
+        public static SpaceShip Ship
         {
-            return ship;
-        }
-        set
-        {
-            if (ship != value)
+            get
             {
-                ship = value;
+                return ship;
+            }
+            set
+            {
+                if (ship != value)
+                {
+                    ship = value;
+                }
+            }
+        }
+
+        private static GameState gameState = new GameState();
+        public static GameState GameState
+        {
+            get
+            {
+                return gameState;
             }
         }
     }
