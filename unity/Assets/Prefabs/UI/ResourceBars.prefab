@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 4622133245170108843}
   - component: {fileID: 4675185046529022168}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: FoodSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 976558087458010265}
   - component: {fileID: 5962153201688666664}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: OxygenSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 6633570176308428842}
   - component: {fileID: 1824689609588453944}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: FuelSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,6 +1033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3110473953201223858}
   - component: {fileID: 3662781588130077369}
+  - component: {fileID: 4893408595527475574}
   m_Layer: 0
   m_Name: ResourceBars
   m_TagString: Untagged
@@ -1083,6 +1084,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &4893408595527475574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803870071016880321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d336642fcedb04ea8acd06e213113a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9022063919136927561
 GameObject:
   m_ObjectHideFlags: 0

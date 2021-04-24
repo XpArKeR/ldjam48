@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Assets.Scripts.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,6 @@ public class FarMenu : MonoBehaviour
             Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
         }
 
-
         for (int i = 0; i < previews.Count; i++)
         {
             PlanetPreview planetPreview = previews[i];
@@ -43,22 +43,9 @@ public class FarMenu : MonoBehaviour
         }
 
         for (int i = 0; i < planetImages.Count; i++)
-        {
-            Text type = GetChildComponentByName<Text>(planetImages[i], "TypeOutput");
+        {            
+            Text type = planetImages[i].GetChildComponentByName<Text>("TypeOutput");
             type.text = Core.GameState.Planets[i].type;
         }
     }
-
-    private T GetChildComponentByName<T>(Image planet, string name) where T : Component
-    {
-        foreach (T component in planet.GetComponentsInChildren<T>(true))
-        {
-            if (component.gameObject.name == name)
-            {
-                return component;
-            }
-        }
-        return null;
-    }
-
 }
