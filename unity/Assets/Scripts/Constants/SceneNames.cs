@@ -11,6 +11,6 @@ namespace Assets.Scripts.Constants
         public const String Approach = "Approach";
         public const String MainMenu = "MainMenu";
         public const String Planet = "Planet";
-        public const String Universe = "Universe";
+        public const String Far = "Far";
     }
 }
