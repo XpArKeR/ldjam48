@@ -2,15 +2,15 @@
   {
     "Name": "Water",
     "LandSprites": [
-      "planet_01_lm.png",
-      "planet_02_lm.png",
-      "planet_03_lm.png",
-      "planet_04_lm.png",
-      "planet_05_lm.png"
+      "planet_01_lm",
+      "planet_02_lm",
+      "planet_03_lm",
+      "planet_04_lm",
+      "planet_05_lm"
     ],
     "CloudSprites": [
-      "clouds_01.png",
-      "clouds_02.png"
+      "clouds_01",
+      "clouds_02"
     ],
     "BaseColors": [
       {
@@ -70,15 +70,15 @@
   {
     "Name": "Forest",
     "LandSprites": [
-      "planet_01_lm.png",
-      "planet_02_lm.png",
-      "planet_03_lm.png",
-      "planet_04_lm.png",
-      "planet_05_lm.png"
+      "planet_01_lm",
+      "planet_02_lm",
+      "planet_03_lm",
+      "planet_04_lm",
+      "planet_05_lm"
     ],
     "CloudSprites": [
-      "clouds_01.png",
-      "clouds_02.png"
+      "clouds_01",
+      "clouds_02"
     ],
     "BaseColors": [
       {
