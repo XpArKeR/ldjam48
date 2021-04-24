@@ -13,6 +13,7 @@ public class PlanetMenu : MonoBehaviour
 
     private void Start()
     {
+        LoadTargetPlanet();
     }
 
     public void LoadTargetPlanet()

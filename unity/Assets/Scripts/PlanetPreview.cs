@@ -8,17 +8,33 @@ using UnityEngine.UI;
 
 public class PlanetPreview : MonoBehaviour
 {
-    public Image planet;
+    public Image planetBase;
+    public Image planetLand;
+    public Image planetCloud;
     public Text type;
-    public Planet thisPlanet;
+    public Planet planet;
 
     public void SelectThisPlanet()
     {
-        Core.GameState.CurrentTarget = thisPlanet;
-        Core.GameState.Planets.Remove(thisPlanet);
-        DeleteRandomPlanet(Core.GameState.Planets);
-        Core.GameState.Planets.Add(thisPlanet);
-        SceneManager.LoadScene(SceneNames.Approach);
+        if (SceneManager.GetActiveScene().name == SceneNames.Far)
+        {
+            Core.GameState.CurrentTarget = planet;
+            Core.GameState.Planets.Remove(planet);
+            DeleteRandomPlanet(Core.GameState.Planets);
+            Core.GameState.Planets.Add(planet);
+            SceneManager.LoadScene(SceneNames.Approach);
+        }
+        else if (SceneManager.GetActiveScene().name == SceneNames.Approach)
+        {
+            if (Core.GameState.CurrentTarget == planet)
+            {
+                SceneManager.LoadScene(SceneNames.Planet);
+            } else
+            {
+                Core.GameState.CurrentTarget = planet;
+            }
+
+        }
     }
     private void DeleteRandomPlanet(List<Planet> planets)
     {

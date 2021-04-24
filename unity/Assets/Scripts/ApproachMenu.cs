@@ -24,17 +24,21 @@ public class ApproachMenu : MonoBehaviour
         {
             PlanetPreview planetPreview = previews[i];
             Planet planet = Core.GameState.Planets[i];
-            planetPreview.thisPlanet = planet;
+            planetPreview.planet = planet;
 
             Text type = planetPreview.type;
             type.text = planet.type;
 
-            Image planetImage = planetPreview.planet;
-            planetImage.color = planet.BaseColor;
+            Image planetBase = planetPreview.planetBase;
+            planetBase.color = planet.BaseColor;
 
             if (planet == Core.GameState.CurrentTarget)
             {
-                planetImage.sprite = planet.LandSprite;
+                planetPreview.planetLand.sprite = planet.LandSprite;
+                planetPreview.planetLand.color = planet.LandColor;
+                planetPreview.planetCloud.sprite = planet.CloudSprite;
+                planetPreview.planetCloud.color = planet.CloudColor;
+
             }
         }
 
