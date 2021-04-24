@@ -40,16 +40,4 @@ public class PlanetMenu : MonoBehaviour
         planetClouds.sprite = planet.CloudSprite;
     }
 
-    private Color ChooseRandomColor(Color[] colors)
-    {
-        int baseLandIndex = Random.Range(0, colors.Length);
-        return colors[baseLandIndex];
-    }
-
-    private Sprite ChooseRandomSprite(Sprite[] sprites)
-    {
-        int baseLandIndex = Random.Range(0, sprites.Length);
-        return sprites[baseLandIndex];
-    }
-
 }

@@ -33,10 +33,12 @@ public class FarMenu : MonoBehaviour
         for (int i = 0; i < previews.Count; i++)
         {
             PlanetPreview planetPreview = previews[i];
+            Planet planet = Core.GameState.Planets[i];
+            planetPreview.thisPlanet = planet;
 
             Text type = planetPreview.type;
-            Planet planet = Core.GameState.Planets[i];
             type.text = planet.type;
+            
 
             Image planetImage = planetPreview.planet;
             planetImage.color = planet.BaseColor;
