@@ -1096,6 +1096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d336642fcedb04ea8acd06e213113a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OxygenSlider: {fileID: 5962153201688666664}
+  FoodSlider: {fileID: 4675185046529022168}
+  FuelSlider: {fileID: 1824689609588453944}
 --- !u!1 &9022063919136927561
 GameObject:
   m_ObjectHideFlags: 0

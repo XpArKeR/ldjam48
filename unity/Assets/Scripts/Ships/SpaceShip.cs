@@ -4,16 +4,21 @@ namespace Assets.Scripts.Ships
 {
     public class SpaceShip
     {
-        public Double FuelConsumtion { get; set; }
-        public Double FuelLevel { get; set; }
-        public Double MaxFuelLevel { get; set; }
+        public SpaceShip()
+        {
 
-        public Double OxygenConsumption { get; set; }
-        public Double OxygenLevel { get; set; }
-        public Double MaxOxygenLevel { get; set; }
+        }
 
-        public Double FoodConsumption { get; set; }
-        public Double FoodLevel { get; set; }
-        public Double MaxFoodLevel { get; set; }
+        public float FuelConsumtion { get; set; }
+        public float FuelLevel { get; set; }
+        public float MaxFuelLevel { get; set; }
+
+        public float OxygenConsumption { get; set; }
+        public float OxygenLevel { get; set; }
+        public float MaxOxygenLevel { get; set; }
+
+        public float FoodConsumption { get; set; }
+        public float FoodLevel { get; set; }
+        public float MaxFoodLevel { get; set; }
     }
 }
