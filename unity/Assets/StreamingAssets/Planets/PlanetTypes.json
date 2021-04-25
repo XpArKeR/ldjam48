@@ -3,19 +3,19 @@
     "Name": "Water",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "70",
-			"RangeMax" : "130",
-			"Dispersion" : "20"
+			"RangeMin" : "80",
+			"RangeMax" : "150",
+			"Dispersion" : "50"
 		},
 		"Food" : {
-			"RangeMin" : "5",
-			"RangeMax" : "10",
-			"Dispersion" : "10"
+			"RangeMin" : "25",
+			"RangeMax" : "75",
+			"Dispersion" : "50"
 		},
 		"Fuel" : {
-			"RangeMin" : "45",
-			"RangeMax" : "70",
-			"Dispersion" : "30"
+			"RangeMin" : "15",
+			"RangeMax" : "50",
+			"Dispersion" : "20"
 		}
 	},
     "LandSprites": [
@@ -88,17 +88,17 @@
     "Name": "Forest",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "50",
-			"RangeMax" : "90",
-			"Dispersion" : "45"
+			"RangeMin" : "120",
+			"RangeMax" : "240",
+			"Dispersion" : "100"
 		},
 		"Food" : {
-			"RangeMin" : "30",
-			"RangeMax" : "40",
-			"Dispersion" : "5"
+			"RangeMin" : "60",
+			"RangeMax" : "120",
+			"Dispersion" : "35"
 		},
 		"Fuel" : {
-			"RangeMin" : "110",
+			"RangeMin" : "80",
 			"RangeMax" : "150",
 			"Dispersion" : "80"
 		}
@@ -173,19 +173,19 @@
     "Name": "Rock",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "15",
-			"RangeMax" : "23",
-			"Dispersion" : "67"
+			"RangeMin" : "25",
+			"RangeMax" : "40",
+			"Dispersion" : "40"
 		},
 		"Food" : {
-			"RangeMin" : "0",
-			"RangeMax" : "0",
-			"Dispersion" : "0"
+			"RangeMin" : "5",
+			"RangeMax" : "25",
+			"Dispersion" : "10"
 		},
 		"Fuel" : {
-			"RangeMin" : "15",
-			"RangeMax" : "23",
-			"Dispersion" : "342"
+			"RangeMin" : "60",
+			"RangeMax" : "175",
+			"Dispersion" : "120"
 		}
 	},
     "LandSprites": [
@@ -258,9 +258,9 @@
     "Name": "Lava",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "0",
-			"RangeMax" : "0",
-			"Dispersion" : "0"
+			"RangeMin" : "15",
+			"RangeMax" : "25",
+			"Dispersion" : "10"
 		},
 		"Food" : {
 			"RangeMin" : "0",
@@ -268,9 +268,9 @@
 			"Dispersion" : "0"
 		},
 		"Fuel" : {
-			"RangeMin" : "50",
-			"RangeMax" : "70",
-			"Dispersion" : "90"
+			"RangeMin" : "80",
+			"RangeMax" : "140",
+			"Dispersion" : "75"
 		}
 	},
     "LandSprites": [
