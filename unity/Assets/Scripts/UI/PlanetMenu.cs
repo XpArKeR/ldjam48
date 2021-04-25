@@ -1,16 +1,15 @@
 
+using System.IO;
+
 using Assets.Scripts;
 using Assets.Scripts.Constants;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
 {
-    private float consumptionFactor = 0.1f;
-
-    public AudioSource FlyOffAudioSource;
+    public AudioSource AudioSource;
     public Image planetBase;
     public Image planetLand;
     public Image planetClouds;
@@ -39,9 +38,12 @@ public class PlanetMenu : MonoBehaviour
 
         Core.MusicManager.Mute();
 
-        FlyOffAudioSource.Play();
+        var clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "FlyOff"));
+        AudioSource.clip = clip;
 
-        StartCoroutine(FlyOffAudioSource.WaitForSound(() =>
+        AudioSource.Play();
+
+        StartCoroutine(AudioSource.WaitForSound(() =>
         {
             Core.ChangeScene(SceneNames.Far);
             Core.MusicManager.Unmute();
@@ -52,7 +54,6 @@ public class PlanetMenu : MonoBehaviour
     {
         LoadPlanet(Core.GameState.CurrentTarget);
     }
-
 
     public void LoadPlanet(Planet planet)
     {
@@ -76,37 +77,76 @@ public class PlanetMenu : MonoBehaviour
 
     public void TakeOxygen()
     {
-        var leftoverValue = Core.GameState.Ship.AddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value);
-        Core.GameState.CurrentTarget.Resources.Oxygen.Value = leftoverValue;
-        planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString("N0");
-
-        if (!Core.GameState.Ship.Consume(consumptionFactor))
+        if (!Core.GameState.Ship.Consume(Core.GameState.ConsumptionRates.GatherOxygen))
         {
             Core.ChangeScene(SceneNames.GameOver);
+        }
+        else if (Core.GameState.CurrentTarget.Resources.Oxygen.Value > 0)
+        {
+            var leftoverValue = Core.GameState.Ship.AddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value);
+            Core.GameState.CurrentTarget.Resources.Oxygen.Value = leftoverValue;
+            planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString("N0");
+
+            var audioNumber = 1;
+
+            var midRange = (Core.GameState.CurrentTarget.Resources.Oxygen.DispersionRangeMax + Core.GameState.CurrentTarget.Resources.Oxygen.DispersionRangeMin) / 2;
+
+            if (Core.GameState.CurrentTarget.Resources.Oxygen.Value > midRange)
+            {
+                audioNumber = 2;
+            }
+
+            AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", string.Format("Gathering_Oxygen_{0}", audioNumber)));
+            AudioSource.Play();
+        }
+        else
+        {
+            AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Failed"));
+            AudioSource.Play();
         }
     }
 
     public void TakeFood()
     {
-        var leftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
-        Core.GameState.CurrentTarget.Resources.Food.Value = leftoverValue;
-        planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString("N0");
-
-        if (!Core.GameState.Ship.Consume(consumptionFactor))
+        if (!Core.GameState.Ship.Consume(Core.GameState.ConsumptionRates.GatherFood))
         {
             Core.ChangeScene(SceneNames.GameOver);
+        }
+        else if (Core.GameState.CurrentTarget.Resources.Food.Value > 0)
+        {
+            var leftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
+            Core.GameState.CurrentTarget.Resources.Food.Value = leftoverValue;
+            planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString("N0");
+
+            AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Food"));
+            AudioSource.Play();
+        }
+        else
+        {
+            AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Failed"));
+            AudioSource.Play();
         }
     }
 
     public void TakeFuel()
-    {        
-        if (!Core.GameState.Ship.Consume(consumptionFactor))
+    {
+        if (!Core.GameState.Ship.Consume(Core.GameState.ConsumptionRates.GatherFuel))
         {
             Core.ChangeScene(SceneNames.GameOver);
         }
+        else if (Core.GameState.CurrentTarget.Resources.Fuel.Value > 0)
+        {
+            var leftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
+            Core.GameState.CurrentTarget.Resources.Fuel.Value = leftoverValue;
+            planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString("N0");
 
-        var leftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
-        Core.GameState.CurrentTarget.Resources.Fuel.Value = leftoverValue;
-        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString("N0");
+            AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Fuel"));
+            AudioSource.Play();
+        }
+        else
+        {
+            AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Failed"));
+            AudioSource.Play();
+        }
     }
 }

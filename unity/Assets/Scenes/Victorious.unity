@@ -539,7 +539,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Contunue playing
+  m_Text: Continue playing
 --- !u!222 &690952680
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1048,7 +1048,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Back to MainMenu
+  m_Text: Back to main menu
 --- !u!222 &1619006628
 CanvasRenderer:
   m_ObjectHideFlags: 0

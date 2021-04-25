@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 using Assets.Scripts.Ships;
 using UnityEngine;
@@ -31,8 +32,17 @@ namespace Assets.Scripts
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitGame()
         {
+            LoadConsumptionRates();
+
             PlanetGenerator.LoadPlanetTypes();
             ShipGenerator.LoadShipTypes();
+        }
+
+        private static void LoadConsumptionRates()
+        {
+            var consumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
+
+            GameState.ConsumptionRates = consumptionRates;
         }
 
         public static void ChangeScene(String sceneName)

@@ -28,6 +28,8 @@ public class PlanetPreview : MonoBehaviour
     public Vector2 hotSpot = Vector2.zero;
     public void SelectThisPlanet()
     {
+        var consumptionRate = Core.GameState.ConsumptionRates.Movement;
+
         if (SceneManager.GetActiveScene().name == SceneNames.Far)
         {
             Core.GameState.CurrentTarget = planet;
@@ -48,6 +50,8 @@ public class PlanetPreview : MonoBehaviour
                 Scan();
                 DeleteRandomNotScannedPlanet(Core.GameState.Planets);
                 Core.ChangeScene(SceneNames.Close);
+
+                consumptionRate = Core.GameState.ConsumptionRates.Scan;
             }
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Close)
@@ -62,14 +66,17 @@ public class PlanetPreview : MonoBehaviour
                 Core.GameState.CurrentTarget = planet;
                 Scan();
                 Core.ChangeScene(SceneNames.Close);
+
+                consumptionRate = Core.GameState.ConsumptionRates.Scan;
             }
         }
 
-        if (!Core.GameState.Ship.Consume(1f))
+        if (!Core.GameState.Ship.Consume(consumptionRate))
         {
             Core.ChangeScene(SceneNames.GameOver);
         }        
     }
+
     private void DeleteRandomNotScannedPlanet(List<Planet> planets)
     {
         List<Planet> notScanned = planets.Where(p => !p.Scanned).ToList();
@@ -113,7 +120,5 @@ public class PlanetPreview : MonoBehaviour
         fuelRangeDisplayer.rangeMin = PlanetGenerator.FuelMin;
         fuelRangeDisplayer.rangeMax = PlanetGenerator.FuelMax;
         fuelRangeDisplayer.Redraw();
-
-
     }
 }

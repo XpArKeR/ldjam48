@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 
 public class JsonUtility
 {
@@ -16,5 +15,18 @@ public class JsonUtility
         json = "{\"objects\":" + json + "}";
         var planetTypeList = UnityEngine.JsonUtility.FromJson<JsonList<T>>(json);
         return planetTypeList.objects;
+    }
+
+    public static T FromJson<T>(string path)
+    {
+        var deserialiizedObject = default(T);
+
+        if (!String.IsNullOrEmpty(path))
+        {
+            var jsonString = File.ReadAllText(path);
+            deserialiizedObject = UnityEngine.JsonUtility.FromJson<T>(jsonString);
+        }
+
+        return deserialiizedObject;
     }
 }

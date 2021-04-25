@@ -10,9 +10,9 @@ namespace Assets.Scripts
     public class GameState
     {
         public Boolean IsVictorious { get; set; }
-
         public Planet CurrentTarget { get; set; }
         public string CurrentScene { get; set; }
+        public ConsumptionRates ConsumptionRates { get; set; }
 
         public List<Planet> Planets { get; } = new List<Planet>();
 
