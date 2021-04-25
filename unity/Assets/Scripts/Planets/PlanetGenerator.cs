@@ -71,6 +71,7 @@ public static class PlanetGenerator
     private static Color ChooseRandomColor(List<Color> colors)
     {
         int index = UnityEngine.Random.Range(0, colors.Count);
+
         return colors[index];
     }
 
@@ -85,6 +86,7 @@ public static class PlanetGenerator
     {
         return Core.ResourceCache.GetSprite("Planets/Sprites/" + spriteName);
     }
+
     public static Planet GeneratePlanet(PlanetType planetType)
     {
         Planet planet = new Planet()
