@@ -118,9 +118,17 @@ public static class PlanetGenerator
         generatedResource.RangeMax = origResource.RangeMax;
 
         float value = UnityEngine.Random.Range(generatedResource.RangeMin, generatedResource.RangeMax);
+        if (value < 0)
+        {
+            value = 0;
+        }
         generatedResource.Value = value;
 
         generatedResource.DispersionRangeMin = value - origResource.Dispersion;
+        if (generatedResource.DispersionRangeMin < 0)
+        {
+            generatedResource.DispersionRangeMin = 0;
+        }
         generatedResource.DispersionRangeMax = value + origResource.Dispersion;
 
         return generatedResource;

@@ -616,28 +616,6 @@ MonoBehaviour:
   - {fileID: 1197092838}
   - {fileID: 41549304}
   - {fileID: 2120231013}
---- !u!1 &1191547360 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1619200671933797538, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
-  m_PrefabInstance: {fileID: 1818911296}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1191547362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191547360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26a23dbbb4fb8fe4e8b9bb1a2d9d088b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillArea: {fileID: 0}
-  min: 0
-  max: 0
-  rangeMin: 0
-  rangeMax: 0
 --- !u!1001 &1197092836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -708,6 +686,10 @@ PrefabInstance:
     - target: {fileID: 5787618578487446649, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_Name
       value: PlanetPreview 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_AnchorMax.y
@@ -890,6 +872,10 @@ PrefabInstance:
     - target: {fileID: 5787618578487446649, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_Name
       value: PlanetPreview 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172294993045788693, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_Pivot.x

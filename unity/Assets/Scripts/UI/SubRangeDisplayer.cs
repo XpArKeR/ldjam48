@@ -7,11 +7,11 @@ public class SubRangeDisplayer : MonoBehaviour
 {
     public Image fillArea;
 
-    public float min = 2;
-    public float max = 4;
+    public float min = -1;
+    public float max = -1;
 
-    public float rangeMin = 1;
-    public float rangeMax = 5;
+    public float rangeMin = -1;
+    public float rangeMax = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,25 @@ public class SubRangeDisplayer : MonoBehaviour
 
     public void Redraw()
     {
+        if (min < 0 || max < 0 || rangeMin < 0 || rangeMax < 0)
+        {
+
+            fillArea.rectTransform.anchorMin = new Vector2(0, 0);
+            fillArea.rectTransform.anchorMax = new Vector2(0, 1);
+            return;
+        }
+
         float diff = (rangeMax - rangeMin);
-        float minX = (min - rangeMin) / diff;
-        float maxX = (max - rangeMin) / diff;
+
+        float minX = (min - rangeMin);
+        float maxX = (max - rangeMin);
+        Debug.Log("minx: " + minX);
+        Debug.Log("maxX: " + maxX);
+        if (diff != 0)
+        {
+            minX /= diff;
+            maxX /= diff;
+        } 
         fillArea.rectTransform.anchorMin = new Vector2(minX, 0);
         fillArea.rectTransform.anchorMax = new Vector2(maxX, 1);
     }

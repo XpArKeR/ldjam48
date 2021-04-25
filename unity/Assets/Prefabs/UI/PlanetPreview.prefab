@@ -162,10 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillArea: {fileID: 120124243404450888}
-  min: 2
-  max: 4
-  rangeMin: 1
-  rangeMax: 5
+  min: -1
+  max: -1
+  rangeMin: -1
+  rangeMax: -1
 --- !u!1 &2464086307722774587
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.75, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
@@ -1232,8 +1232,7 @@ MonoBehaviour:
   planetLand: {fileID: 3110192201580901769}
   planetCloud: {fileID: 5179607137732107740}
   type: {fileID: 5787618577412405289}
-  foodSlider: {fileID: 0}
-  subRangeDisplayer: {fileID: 2710018956030370312}
+  oxygenRangeDisplayer: {fileID: 2710018956030370312}
 --- !u!1 &5787618578593095030
 GameObject:
   m_ObjectHideFlags: 0

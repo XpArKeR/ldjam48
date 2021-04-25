@@ -1,6 +1,23 @@
 [
   {
     "Name": "Water",
+	"Resources" : {
+		"Oxygen" : {
+			"RangeMin" : "10",
+			"RangeMax" : "30",
+			"Dispersion" : "10"
+		},
+		"Food" : {
+			"RangeMin" : "10",
+			"RangeMax" : "30",
+			"Dispersion" : "10"
+		},
+		"Fuel" : {
+			"RangeMin" : "10",
+			"RangeMax" : "30",
+			"Dispersion" : "10"
+		}
+	},
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",
@@ -69,6 +86,23 @@
   },
   {
     "Name": "Forest",
+	"Resources" : {
+		"Oxygen" : {
+			"RangeMin" : "30",
+			"RangeMax" : "50",
+			"Dispersion" : "5"
+		},
+		"Food" : {
+			"RangeMin" : "30",
+			"RangeMax" : "40",
+			"Dispersion" : "5"
+		},
+		"Fuel" : {
+			"RangeMin" : "5",
+			"RangeMax" : "10",
+			"Dispersion" : "10"
+		}
+	},
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",
@@ -137,6 +171,23 @@
   },
   {
     "Name": "Rock",
+	"Resources" : {
+		"Oxygen" : {
+			"RangeMin" : "0",
+			"RangeMax" : "2",
+			"Dispersion" : "3"
+		},
+		"Food" : {
+			"RangeMin" : "0",
+			"RangeMax" : "0",
+			"Dispersion" : "0"
+		},
+		"Fuel" : {
+			"RangeMin" : "0",
+			"RangeMax" : "5",
+			"Dispersion" : "3"
+		}
+	},
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",
@@ -205,6 +256,23 @@
   },
   {
     "Name": "Lava",
+	"Resources" : {
+		"Oxygen" : {
+			"RangeMin" : "0",
+			"RangeMax" : "0",
+			"Dispersion" : "0"
+		},
+		"Food" : {
+			"RangeMin" : "0",
+			"RangeMax" : "0",
+			"Dispersion" : "0"
+		},
+		"Fuel" : {
+			"RangeMin" : "3",
+			"RangeMax" : "3",
+			"Dispersion" : "0"
+		}
+	},
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",

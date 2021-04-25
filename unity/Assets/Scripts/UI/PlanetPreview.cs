@@ -48,6 +48,7 @@ public class PlanetPreview : MonoBehaviour
         {
             if (this.scanned)
             {
+                Core.GameState.CurrentTarget = planet;
                 SceneManager.LoadScene(SceneNames.Planet);
             }
             else
@@ -82,5 +83,8 @@ public class PlanetPreview : MonoBehaviour
         oxygenRangeDisplayer.max = planet.Resources.Oxygen.DispersionRangeMax;
         oxygenRangeDisplayer.rangeMin = planet.Resources.Oxygen.RangeMin;
         oxygenRangeDisplayer.rangeMax = planet.Resources.Oxygen.RangeMax;
+
+
+        oxygenRangeDisplayer.Redraw();
     }
 }
