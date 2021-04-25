@@ -69,16 +69,16 @@ public class PlanetMenu : MonoBehaviour
 
     public void RefreshResources()
     {
-        planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString();
-        planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString();
-        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString();
+        planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString("N0");
+        planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString("N0");
+        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString("N0");
     }
 
     public void TakeOxygen()
     {
         var leftoverValue = Core.GameState.Ship.AddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value);
         Core.GameState.CurrentTarget.Resources.Oxygen.Value = leftoverValue;
-        planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString();
+        planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString("N0");
 
         if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
@@ -90,7 +90,7 @@ public class PlanetMenu : MonoBehaviour
     {
         var leftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
         Core.GameState.CurrentTarget.Resources.Food.Value = leftoverValue;
-        planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString();
+        planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString("N0");
 
         if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
@@ -107,6 +107,6 @@ public class PlanetMenu : MonoBehaviour
 
         var leftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
         Core.GameState.CurrentTarget.Resources.Fuel.Value = leftoverValue;
-        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString();
+        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString("N0");
     }
 }
