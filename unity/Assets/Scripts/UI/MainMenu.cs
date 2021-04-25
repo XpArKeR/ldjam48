@@ -4,7 +4,6 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.Ships;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
