@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+
 using Assets.Scripts;
 using Assets.Scripts.Constants;
 
@@ -7,6 +10,7 @@ using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
 {
+    public AudioSource FlyOffAudioSource;
     public Image planetBase;
     public Image planetLand;
     public Image planetClouds;
@@ -15,21 +19,39 @@ public class PlanetMenu : MonoBehaviour
     {
         LoadTargetPlanet();
     }
-
-
+    
     public void FlyAway()
     {
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
 
-        SceneManager.LoadScene(SceneNames.Far);
+        Core.BackgroundAudioSource.Pause();
+
+        FlyOffAudioSource.Play();
+
+        StartCoroutine(waitForSound(() =>
+        {
+            SceneManager.LoadScene(SceneNames.Far);
+            Core.BackgroundAudioSource.Play();
+        }));
+    }
+
+    IEnumerator waitForSound(Action action)
+    {
+        //Wait Until Sound has finished playing
+        while (FlyOffAudioSource.isPlaying)
+        {
+            yield return default;
+        }
+
+        //Auidio has finished playing, disable GameObject
+        action();
     }
 
     public void LoadTargetPlanet()
     {
         LoadPlanet(Core.GameState.CurrentTarget);
     }
-
 
     public void TestPlanet()
     {
@@ -49,5 +71,4 @@ public class PlanetMenu : MonoBehaviour
         planetClouds.color = planet.CloudColor;
         planetClouds.sprite = planet.CloudSprite;
     }
-
 }

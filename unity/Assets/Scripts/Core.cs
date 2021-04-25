@@ -25,6 +25,8 @@ namespace Assets.Scripts
             }
         }
 
+        public static AudioSource BackgroundAudioSource { get; set; }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitGame()
         {

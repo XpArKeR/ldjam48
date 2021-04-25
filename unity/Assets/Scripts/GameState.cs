@@ -29,7 +29,7 @@ namespace Assets.Scripts
             }
         }
 
-        public Int32 CurrentTurn { get; set; }
+        public Int32 PlanetsVisited { get; set; }
         public Scene ActiveScene
         {
             get
