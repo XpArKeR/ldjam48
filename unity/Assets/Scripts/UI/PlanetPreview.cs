@@ -27,7 +27,7 @@ public class PlanetPreview : MonoBehaviour
         if (SceneManager.GetActiveScene().name == SceneNames.Far)
         {
             Core.GameState.CurrentTarget = planet;
-
+            Scan();
             DeleteRandomNotScannedPlanet(Core.GameState.Planets);
 
             SceneManager.LoadScene(SceneNames.Approach);
