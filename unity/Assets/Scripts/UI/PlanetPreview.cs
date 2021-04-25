@@ -18,7 +18,7 @@ public class PlanetPreview : MonoBehaviour
     public Text type;
     public Planet planet;
 
-    public Slider foodSlider;
+    public SubRangeDisplayer oxygenRangeDisplayer;
 
     public void SelectThisPlanet()
     {
@@ -79,6 +79,9 @@ public class PlanetPreview : MonoBehaviour
         planetCloud.color = planet.CloudColor;
         scanned = true;
         planet.Scanned = true;
-        //foodSlider.
+        oxygenRangeDisplayer.min = planet.Resources.Oxygen.DispersionRangeMin;
+        oxygenRangeDisplayer.max = planet.Resources.Oxygen.DispersionRangeMax;
+        oxygenRangeDisplayer.rangeMin = planet.Resources.Oxygen.RangeMin;
+        oxygenRangeDisplayer.rangeMax = planet.Resources.Oxygen.RangeMax;
     }
 }
