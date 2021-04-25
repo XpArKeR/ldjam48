@@ -10,7 +10,7 @@ public class VictoriousMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Core.BackgroundAudioSource.Stop();
+        Core.MusicManager.Stop();
     }
 
     // Update is called once per frame

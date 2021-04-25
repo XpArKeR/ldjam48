@@ -36,14 +36,14 @@ public class PlanetMenu : MonoBehaviour
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
 
-        Core.BackgroundAudioSource.Pause();
+        Core.MusicManager.Mute();
 
         FlyOffAudioSource.Play();
 
         StartCoroutine(FlyOffAudioSource.WaitForSound(() =>
         {
             SceneManager.LoadScene(SceneNames.Far);
-            Core.BackgroundAudioSource.Play();
+            Core.MusicManager.Unmute();
         }));
     }
 

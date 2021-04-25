@@ -13,7 +13,7 @@ public class GameOverMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Core.BackgroundAudioSource.Stop();
+        Core.MusicManager.Stop();
         PlanesVisitedText.text = Core.GameState.PlanetsVisited.ToString();
     }
         

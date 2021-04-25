@@ -16,14 +16,14 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        if (Core.BackgroundAudioSource == default)
+        if (Core.MusicManager == default)
         {
-            Core.BackgroundAudioSource = this.MusicPlayer.GetComponent<AudioSource>();
+            Core.MusicManager = this.MusicPlayer.GetComponent<MusicManager>();
         }
 
-        if (!Core.BackgroundAudioSource.isPlaying)
+        if (!Core.MusicManager.IsPlaying)
         {
-            Core.BackgroundAudioSource.Play();
+            Core.MusicManager.Resume();
         }
     }
 
@@ -35,8 +35,8 @@ public class MainMenu : MonoBehaviour
             MaxOxygenLevel = 1000f,
             OxygenLevel = 1000f,
             OxygenConsumption = 100f,
-            MaxFoodLevel = 100f,
-            FoodLevel = 100f,
+            MaxFoodLevel = 500f,
+            FoodLevel = 300f,
             FoodConsumption = 10f,
             MaxFuelLevel = 1000f,
             FuelLevel = 500f,
@@ -52,7 +52,7 @@ public class MainMenu : MonoBehaviour
 
     public void ShowOptions()
     {
-        this.BackgroundVolumeSlider.value = Core.BackgroundAudioSource.volume;
+        this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
 
         this.MainMenuContainer.SetActive(false);
         this.OptionsContainer.SetActive(true);
@@ -60,7 +60,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnBackgroundSliderChanged()
     {
-        Core.BackgroundAudioSource.volume = BackgroundVolumeSlider.value;
+        Core.MusicManager.Volume = BackgroundVolumeSlider.value;
     }
 
     public void CloseOptions()
