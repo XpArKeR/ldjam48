@@ -9,6 +9,7 @@ namespace Assets.Scripts.Ships
 
         }
         public String TypeName { get; set; }
+        public ShipType ShipType { get; set; }
 
         private float oxygenConsumption;
         public float OxygenConsumption
@@ -154,67 +155,6 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        //public float AddOxygen(float amountToAdd)
-        //{
-        //    var capacity = this.MaxOxygenLevel - this.OxygenLevel;
-
-        //    if (amountToAdd > capacity)
-        //    {
-        //        var leftoverAmount = amountToAdd - capacity;
-
-        //        this.OxygenLevel += capacity;
-
-        //        return leftoverAmount;
-        //    }
-        //    else
-        //    {
-        //        this.OxygenLevel += amountToAdd;
-        //    }
-
-
-        //    return 0;
-        //}
-
-        //public float AddFood(float amountToAdd)
-        //{
-        //    var capacity = this.MaxFoodLevel - this.FoodLevel;
-
-        //    if (amountToAdd > capacity)
-        //    {
-        //        var leftoverAmount = amountToAdd - capacity;
-
-        //        this.FoodLevel += capacity;
-
-        //        return leftoverAmount;
-        //    }
-        //    else
-        //    {
-        //        this.FoodLevel += amountToAdd;
-        //    }
-
-        //    return 0;
-        //}
-
-        //public float AddFuel(float amountToAdd)
-        //{
-        //    var capacity = this.MaxFuelLevel - this.FuelLevel;
-
-        //    if (amountToAdd > capacity)
-        //    {
-        //        var leftoverAmount = amountToAdd - capacity;
-
-        //        this.FuelLevel += capacity;
-
-        //        return leftoverAmount;
-        //    }
-        //    else
-        //    {
-        //        this.FuelLevel += amountToAdd;
-        //    }
-
-        //    return 0;
-        //}
-
         public float AddOxygen(float amountToAdd)
         {
             return this.AddResource(ref this.oxygenLevel, this.MaxOxygenLevel, amountToAdd);
@@ -228,6 +168,23 @@ namespace Assets.Scripts.Ships
         public float AddFuel(float amountToAdd)
         {
             return this.AddResource(ref this.fuelLevel, this.MaxFuelLevel, amountToAdd);
+        }
+
+        public Boolean Consume(float consumptionFactor)
+        {
+            var canMove = this.ConsumeResource(ref this.oxygenLevel, this.OxygenConsumption, consumptionFactor); ;
+
+            if (canMove)
+            {
+                canMove = this.ConsumeResource(ref this.foodLevel, this.FoodConsumption, consumptionFactor);
+            }
+
+            if (canMove)
+            {
+                canMove = this.ConsumeResource(ref this.fuelLevel, this.FuelConsumption, consumptionFactor);
+            }
+
+            return canMove;
         }
 
         private float AddResource(ref float level, float maxValue, float amountToAdd)
@@ -249,51 +206,24 @@ namespace Assets.Scripts.Ships
 
             return 0;
         }
-
-        public Boolean Consume(float consumptionFactor)
+                
+        private Boolean ConsumeResource(ref float level, float consumption, float consumptionFactor)
         {
-            var canMove = true;
+            var hasEnoughtResource = true;
 
-            var ogygenComsumption = this.OxygenConsumption * consumptionFactor;
+            var consumedAmount = consumption * consumptionFactor;
 
-            if (ogygenComsumption > this.OxygenLevel)
+            if (consumedAmount > level)
             {
-                canMove = false;
+                level = 0;
+                hasEnoughtResource = false;
             }
             else
             {
-                this.OxygenLevel -= ogygenComsumption;
+                level -= consumedAmount;
             }
 
-            if (canMove)
-            {
-                var foodConsuption = this.FoodConsumption * consumptionFactor;
-
-                if (foodConsuption > this.FoodLevel)
-                {
-                    canMove = false;
-                }
-                else
-                {
-                    this.FoodLevel -= foodConsuption;
-                }
-            }
-
-            if (canMove)
-            {
-                var fuelConsumption = this.FuelConsumption * consumptionFactor;
-
-                if (fuelConsumption > this.FuelLevel)
-                {
-                    canMove = false;
-                }
-                else
-                {
-                    this.FuelLevel -= fuelConsumption;
-                }
-            }
-
-            return canMove;
+            return hasEnoughtResource;
         }
     }
 }

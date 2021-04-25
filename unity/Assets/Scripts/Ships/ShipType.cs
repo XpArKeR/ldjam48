@@ -11,7 +11,7 @@ namespace Assets.Scripts.Ships
         public float OxygenConsumption;
         public float MaxFoodLevel;
         public float FoodLevel;
-        public float FoodConsumptiom;
+        public float FoodConsumption;
         public float MaxFuelLevel;
         public float FuelLevel;
         public float FuelConsumption;

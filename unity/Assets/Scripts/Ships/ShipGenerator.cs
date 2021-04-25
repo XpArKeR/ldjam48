@@ -24,12 +24,13 @@ namespace Assets.Scripts.Ships
                 spaceShip = new SpaceShip()
                 {
                     TypeName = shipType.Name,
+                    ShipType = shipType,
                     MaxOxygenLevel = shipType.MaxOxygenLevel,
                     OxygenLevel = shipType.OxygenLevel,
                     OxygenConsumption = shipType.OxygenConsumption,
                     MaxFoodLevel = shipType.MaxFoodLevel,
                     FoodLevel = shipType.FoodLevel,
-                    FoodConsumption = shipType.FoodConsumptiom,
+                    FoodConsumption = shipType.FoodConsumption,
                     MaxFuelLevel = shipType.MaxFuelLevel,
                     FuelLevel = shipType.FuelLevel,
                     FuelConsumption = shipType.FuelConsumption
