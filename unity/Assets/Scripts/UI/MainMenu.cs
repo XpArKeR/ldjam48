@@ -4,7 +4,6 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.Ships;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -35,8 +34,7 @@ public class MainMenu : MonoBehaviour
 
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
-        //Core.ChangeScene(SceneNames.Far);
-        Core.ChangeScene("NewGameScene");
+        Core.ChangeScene(SceneNames.Far);
     }
 
     public void ShowOptions()
