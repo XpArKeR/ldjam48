@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victorious.unity
     guid: 105db223a037c2d4d8b7a80e08b68632
+  - enabled: 1
+    path: Assets/Scenes/NewGameScene.unity
+    guid: 20033da26332a2549a88ad945e3da103
   m_configObjects: {}
