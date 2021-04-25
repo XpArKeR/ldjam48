@@ -10,6 +10,9 @@ EditorBuildSettings:
     guid: b457662dc7138b148a3963ecc680b36d
   - enabled: 1
     path: Assets/Scenes/Far.unity
+    guid: 33918ced8790c99408fcf42048e81efc
+  - enabled: 0
+    path: Assets/Scenes/Farold.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Approach.unity
