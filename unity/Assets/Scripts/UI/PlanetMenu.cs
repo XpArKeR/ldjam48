@@ -29,22 +29,20 @@ public class PlanetMenu : MonoBehaviour
 
         FlyOffAudioSource.Play();
 
-        StartCoroutine(waitForSound(() =>
+        StartCoroutine(WaitForSound(() =>
         {
             SceneManager.LoadScene(SceneNames.Far);
             Core.BackgroundAudioSource.Play();
         }));
     }
 
-    IEnumerator waitForSound(Action action)
+    IEnumerator WaitForSound(Action action)
     {
-        //Wait Until Sound has finished playing
         while (FlyOffAudioSource.isPlaying)
         {
             yield return default;
         }
 
-        //Auidio has finished playing, disable GameObject
         action();
     }
 
