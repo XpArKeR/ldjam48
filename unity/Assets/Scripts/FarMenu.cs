@@ -37,7 +37,7 @@ public class FarMenu : MonoBehaviour
             planetPreview.planet = planet;
 
             Text type = planetPreview.type;
-            type.text = planet.type;
+            type.text = planet.Type;
             
 
             Image planetImage = planetPreview.planetBase;

@@ -6,7 +6,12 @@ public class Planet
 {
 
 
-    public string type { get; set; }
+    public string Type { get; set; }
+
+    public bool Scanned { get; set; }
+
+
+    public PlanetResources Resources { get; set; }
 
 
     public Color BaseColor { get; set; }

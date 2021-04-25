@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ApproachMenu : MonoBehaviour
+public class CloseMenu : MonoBehaviour
 {
     public List<PlanetPreview> previews;
 
@@ -35,10 +35,12 @@ public class ApproachMenu : MonoBehaviour
             if (planet == Core.GameState.CurrentTarget)
             {
                 planetPreview.Scan();
-            } else if (Core.GameState.Planets[i].Scanned)
+            }
+            if (Core.GameState.Planets[i].Scanned)
             {
                 planetPreview.Scan();
             }
+
         }
 
     }
