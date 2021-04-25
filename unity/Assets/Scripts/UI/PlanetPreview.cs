@@ -22,6 +22,10 @@ public class PlanetPreview : MonoBehaviour
     public SubRangeDisplayer foodRangeDisplayer;
     public SubRangeDisplayer fuelRangeDisplayer;
 
+
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
     public void SelectThisPlanet()
     {
         if (SceneManager.GetActiveScene().name == SceneNames.Far)
@@ -73,6 +77,16 @@ public class PlanetPreview : MonoBehaviour
         planets.Remove(notScanned[index]);
     }
 
+
+    public void ChangeCursor()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+    }
+
+    public void RevertCursor()
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
 
     public void Scan()
     {

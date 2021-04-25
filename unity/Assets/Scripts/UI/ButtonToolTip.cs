@@ -19,24 +19,12 @@ public class ButtonToolTip : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log("Enter");
         ToolTip.gameObject.SetActive(true);
-    }
-
-    void OnMouseExit()
-    {
-        Hide();
     }
 
     public void Hide()
     {
         ToolTip.gameObject.SetActive(false);
-        Debug.Log("Exiting");
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        Debug.Log("Enter");
-        ToolTip.gameObject.SetActive(true);
     }
 }
+
