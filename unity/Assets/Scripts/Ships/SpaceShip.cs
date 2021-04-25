@@ -10,17 +10,180 @@ namespace Assets.Scripts.Ships
         }
         public String TypeName { get; set; }
 
-        public float FuelConsumtion { get; set; }
-        public float FuelLevel { get; set; }
-        public float MaxFuelLevel { get; set; }
+        private float oxygenConsumption;
+        public float OxygenConsumption
+        {
+            get
+            {
+                return this.oxygenConsumption;
+            }
+            set
+            {
+                if (this.oxygenConsumption != value)
+                {
+                    this.oxygenConsumption = value;
+                }
+            }
+        }
 
-        public float OxygenConsumption { get; set; }
-        public float OxygenLevel { get; set; }
-        public float MaxOxygenLevel { get; set; }
+        private float oxygenLevel;
+        public float OxygenLevel
+        {
+            get
+            {
+                return this.oxygenLevel;
+            }
+            set
+            {
+                if (this.oxygenLevel != value)
+                {
+                    this.oxygenLevel = value;
+                }
+            }
+        }
 
-        public float FoodConsumption { get; set; }
-        public float FoodLevel { get; set; }
-        public float MaxFoodLevel { get; set; }
+        private float maxOxygenLevel;
+        public float MaxOxygenLevel
+        {
+            get
+            {
+                return this.maxOxygenLevel;
+            }
+            set
+            {
+                if (this.maxOxygenLevel != value)
+                {
+                    this.maxOxygenLevel = value;
+                }
+            }
+        }
+
+        private float foodConsumption;
+        public float FoodConsumption
+        {
+            get
+            {
+                return this.foodConsumption;
+            }
+            set
+            {
+                if (this.foodConsumption != value)
+                {
+                    this.foodConsumption = value;
+                }
+            }
+        }
+
+        private float foodLevel;
+        public float FoodLevel
+        {
+            get
+            {
+                return this.foodLevel;
+            }
+            set
+            {
+                if (this.foodLevel != value)
+                {
+                    this.foodLevel = value;
+                }
+            }
+        }
+
+        private float maxFoodLevel;
+        public float MaxFoodLevel
+        {
+            get
+            {
+                return this.maxFoodLevel;
+            }
+            set
+            {
+                if (this.maxFoodLevel != value)
+                {
+                    this.maxFoodLevel = value;
+                }
+            }
+        }
+
+        private float fuelConsumption;
+        public float FuelConsumption
+        {
+            get
+            {
+                return this.fuelConsumption;
+            }
+            set
+            {
+                if (this.fuelConsumption != value)
+                {
+                    this.fuelConsumption = value;
+                }
+            }
+        }
+
+        private float fuelLevel;
+        public float FuelLevel
+        {
+            get
+            {
+                return this.fuelLevel;
+            }
+            set
+            {
+                if (this.fuelLevel != value)
+                {
+                    this.fuelLevel = value;
+                }
+            }
+        }
+
+        private float maxFuelLevel;
+        public float MaxFuelLevel
+        {
+            get
+            {
+                return this.maxFuelLevel;
+            }
+            set
+            {
+                if (this.maxFuelLevel != value)
+                {
+                    this.maxFuelLevel = value;
+                }
+            }
+        }
+
+        public float AddOxygen(float amountToAdd)
+        {
+            return this.AddResource(ref this.oxygenLevel, this.MaxOxygenLevel, amountToAdd);
+        }
+
+        public float AddFood(float amountToAdd)
+        {
+            return this.AddResource(ref this.foodLevel, this.MaxFoodLevel, amountToAdd);
+        }
+
+        public float AddFuel(float amountToAdd)
+        {
+            return this.AddResource(ref this.fuelLevel, this.MaxFuelLevel, amountToAdd);
+        }
+
+        private float AddResource(ref float level, float maxValue, float amountToAdd)
+        {
+            var capacity = maxValue - level;
+
+            if (amountToAdd > capacity)
+            {
+                var leftoverAmount = amountToAdd - capacity;
+
+                level += capacity;
+
+                return leftoverAmount;
+            }
+
+            return 0;
+        }
 
         public Boolean Move(float consumptionFactor)
         {
@@ -53,7 +216,7 @@ namespace Assets.Scripts.Ships
 
             if (canMove)
             {
-                var fuelConsumption = this.FuelConsumtion * consumptionFactor;
+                var fuelConsumption = this.FuelConsumption * consumptionFactor;
 
                 if (fuelConsumption > this.FuelLevel)
                 {

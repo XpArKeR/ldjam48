@@ -22,6 +22,6 @@ public static class AudioSourceExtensions
             onFinishedAction();
         }
 
-        throw new InvalidOperationException("No AudioSource?!");
+        yield return default;
     }
 }
