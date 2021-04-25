@@ -25,6 +25,6 @@ public class GameOverMenu : MonoBehaviour
 
     public void OnBackToMainMenu()
     {
-        SceneManager.LoadScene(SceneNames.MainMenu);
+        Core.ChangeScene(SceneNames.MainMenu);
     }
 }

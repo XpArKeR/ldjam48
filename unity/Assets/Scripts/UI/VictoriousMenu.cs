@@ -27,6 +27,6 @@ public class VictoriousMenu : MonoBehaviour
     
     public void OnBackToMainMenu()
     {
-        SceneManager.LoadScene(SceneNames.MainMenu);
+        Core.ChangeScene(SceneNames.MainMenu);
     }
 }

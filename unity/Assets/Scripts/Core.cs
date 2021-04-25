@@ -2,6 +2,7 @@ using System;
 
 using Assets.Scripts.Ships;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -32,6 +33,12 @@ namespace Assets.Scripts
         {
             PlanetGenerator.LoadPlanetTypes();
             ShipGenerator.LoadShipTypes();
+        }
+
+        public static void ChangeScene(String sceneName)
+        {
+            gameState.CurrentScene = sceneName;
+            SceneManager.LoadScene(sceneName);
         }
     }
 }
