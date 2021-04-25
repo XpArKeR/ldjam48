@@ -1311,7 +1311,7 @@ MonoBehaviour:
   oxygenRangeDisplayer: {fileID: 2710018956030370312}
   foodRangeDisplayer: {fileID: 5436093890559733197}
   fuelRangeDisplayer: {fileID: 6784097528486437072}
-  cursorTexture: {fileID: 2800000, guid: 66e6366f7fa2abd468125e9f437320ef, type: 3}
+  cursorTexture: {fileID: 2800000, guid: e8a202bdb43ae434d8568cdcc7a600d6, type: 3}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!114 &1365741377455696040
