@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using Assets.Scripts.Constants;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,8 +10,6 @@ public class PlanetMenu : MonoBehaviour
     public Image planetBase;
     public Image planetLand;
     public Image planetClouds;
-
-    private Header header;
 
     private void Start()
     {
@@ -28,7 +27,7 @@ public class PlanetMenu : MonoBehaviour
 
     public void LoadTargetPlanet()
     {
-        LoadPlanet(Core.GameState.CurrentTarget);        
+        LoadPlanet(Core.GameState.CurrentTarget);
     }
 
 

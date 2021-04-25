@@ -6,7 +6,7 @@ public class UnitySingleton : MonoBehaviour
     private static UnitySingleton instance;
     void Awake()
     {
-        if (instance != null && instance != this)
+        if ((instance != default) && (instance != this))
         {
             Destroy(this.gameObject);
             return;
@@ -15,18 +15,7 @@ public class UnitySingleton : MonoBehaviour
         {
             instance = this;
         }
+
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -7,9 +7,15 @@ using Assets.Scripts.Ships;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject MusicPlayer;
+    public GameObject MainMenuContainer;
+    public GameObject OptionsContainer;
+    public Slider BackgroundVolumeSlider;
+        
     private void Start()
     {
         
@@ -32,6 +38,25 @@ public class MainMenu : MonoBehaviour
         };
 
         SceneManager.LoadScene(SceneNames.Far);
+    }
+
+    public void ShowOptions()
+    {
+        this.BackgroundVolumeSlider.value = this.MusicPlayer.GetComponent<AudioSource>().volume;
+
+        this.MainMenuContainer.SetActive(false);
+        this.OptionsContainer.SetActive(true);
+    }
+
+    public void OnBackgroundSliderChanged()
+    {
+        this.MusicPlayer.GetComponent<AudioSource>().volume = BackgroundVolumeSlider.value;
+    }
+
+    public void CloseOptions()
+    {
+        this.MainMenuContainer.SetActive(true);
+        this.OptionsContainer.SetActive(false);
     }
 
     public void LoadGame()
