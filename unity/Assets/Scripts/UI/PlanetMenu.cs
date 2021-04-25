@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
 {
+    private float consumptionFactor = 0.1f;
+
     public AudioSource FlyOffAudioSource;
     public Image planetBase;
     public Image planetLand;
@@ -73,35 +75,37 @@ public class PlanetMenu : MonoBehaviour
 
     public void TakeOxygen()
     {
-        var levftoverValue = Core.GameState.Ship.AddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value);
-        Core.GameState.CurrentTarget.Resources.Oxygen.Value = levftoverValue;
+        var leftoverValue = Core.GameState.Ship.AddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value);
+        Core.GameState.CurrentTarget.Resources.Oxygen.Value = leftoverValue;
         planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString();
 
-        if (!Core.GameState.Ship.Consume(.25f))
+        if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
             SceneManager.LoadScene(SceneNames.GameOver);
         }
     }
+
     public void TakeFood()
     {
-        var levftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
-        Core.GameState.CurrentTarget.Resources.Food.Value = levftoverValue;
+        var leftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
+        Core.GameState.CurrentTarget.Resources.Food.Value = leftoverValue;
         planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString();
 
-        if (!Core.GameState.Ship.Consume(.25f))
+        if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
             SceneManager.LoadScene(SceneNames.GameOver);
         }
     }
-    public void TakeFuel()
-    {
-        var levftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
-        Core.GameState.CurrentTarget.Resources.Fuel.Value = levftoverValue;
-        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString();
 
-        if (!Core.GameState.Ship.Consume(.25f))
+    public void TakeFuel()
+    {        
+        if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
             SceneManager.LoadScene(SceneNames.GameOver);
         }
+
+        var leftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
+        Core.GameState.CurrentTarget.Resources.Fuel.Value = leftoverValue;
+        planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString();
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Assets.Scripts.Extensions
 {
     public static class ComponentExtensions
-    {
+    {        
         public static T GetChildComponentByName<T>(this Component component, String name) where T : Component
         {
             if (component != default)

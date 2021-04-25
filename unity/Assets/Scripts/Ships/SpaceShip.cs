@@ -154,6 +154,67 @@ namespace Assets.Scripts.Ships
             }
         }
 
+        //public float AddOxygen(float amountToAdd)
+        //{
+        //    var capacity = this.MaxOxygenLevel - this.OxygenLevel;
+
+        //    if (amountToAdd > capacity)
+        //    {
+        //        var leftoverAmount = amountToAdd - capacity;
+
+        //        this.OxygenLevel += capacity;
+
+        //        return leftoverAmount;
+        //    }
+        //    else
+        //    {
+        //        this.OxygenLevel += amountToAdd;
+        //    }
+
+
+        //    return 0;
+        //}
+
+        //public float AddFood(float amountToAdd)
+        //{
+        //    var capacity = this.MaxFoodLevel - this.FoodLevel;
+
+        //    if (amountToAdd > capacity)
+        //    {
+        //        var leftoverAmount = amountToAdd - capacity;
+
+        //        this.FoodLevel += capacity;
+
+        //        return leftoverAmount;
+        //    }
+        //    else
+        //    {
+        //        this.FoodLevel += amountToAdd;
+        //    }
+
+        //    return 0;
+        //}
+
+        //public float AddFuel(float amountToAdd)
+        //{
+        //    var capacity = this.MaxFuelLevel - this.FuelLevel;
+
+        //    if (amountToAdd > capacity)
+        //    {
+        //        var leftoverAmount = amountToAdd - capacity;
+
+        //        this.FuelLevel += capacity;
+
+        //        return leftoverAmount;
+        //    }
+        //    else
+        //    {
+        //        this.FuelLevel += amountToAdd;
+        //    }
+
+        //    return 0;
+        //}
+
         public float AddOxygen(float amountToAdd)
         {
             return this.AddResource(ref this.oxygenLevel, this.MaxOxygenLevel, amountToAdd);
@@ -180,6 +241,10 @@ namespace Assets.Scripts.Ships
                 level += capacity;
 
                 return leftoverAmount;
+            }
+            else
+            {
+                level += amountToAdd;
             }
 
             return 0;
