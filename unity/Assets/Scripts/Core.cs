@@ -37,6 +37,8 @@ namespace Assets.Scripts
 
         public static void ChangeScene(String sceneName)
         {
+            CursorMode cursorMode = CursorMode.Auto;
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
             gameState.CurrentScene = sceneName;
             SceneManager.LoadScene(sceneName);
         }

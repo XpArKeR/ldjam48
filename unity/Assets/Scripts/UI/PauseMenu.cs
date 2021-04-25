@@ -24,15 +24,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-
-
-
-    public void doNothin()
-    {
-        
-     
-    }
-
     public void Quit()
     {
         Core.ChangeScene(SceneNames.MainMenu);
