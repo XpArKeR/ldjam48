@@ -17,12 +17,14 @@ public class PlanetMenu : MonoBehaviour
     public Text planetOxygen;
     public Text planetFood;
     public Text planetFuel;
+    public Image currentBackground;
 
     private void Start()
     {
         LoadTargetPlanet();
         RefreshResources();
 
+        currentBackground.sprite = Core.currentBackground;
         if ((!Core.GameState.IsVictorious) && Core.GameState.PlanetsVisited > 19)
         {
             Core.GameState.IsVictorious = true;

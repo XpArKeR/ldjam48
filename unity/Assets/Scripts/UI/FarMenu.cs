@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using Assets.Scripts;
@@ -8,10 +9,31 @@ using UnityEngine.UI;
 public class FarMenu : MonoBehaviour
 {
     public List<PlanetPreview> previews;
+    public Image currentBackground;
+    public List<Sprite> backgrounds;
+
+
+    private void Awake()
+    {
+        SelectAndSetBackGround();
+    }
 
     void Start()
     {
         RefreshPlanetViews();
+    }
+
+    private void SelectAndSetBackGround()
+    {
+        Sprite background = SelectRandomBackground();
+        Core.currentBackground = background;
+        currentBackground.sprite = background;
+    }
+
+    private Sprite SelectRandomBackground()
+    {
+        int index = UnityEngine.Random.Range(0, backgrounds.Count);
+        return backgrounds[index];
     }
 
     public void GeneratePlanets()

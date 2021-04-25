@@ -9,6 +9,9 @@ namespace Assets.Scripts
 {
     public class Core
     {
+        internal static Sprite currentBackground;
+
+
         private readonly static ResourceCache resourceCache = new ResourceCache();
         public static ResourceCache ResourceCache
         {
@@ -19,6 +22,7 @@ namespace Assets.Scripts
         }
 
         private static GameState gameState = new GameState();
+
         public static GameState GameState
         {
             get
