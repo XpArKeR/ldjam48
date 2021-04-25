@@ -59,9 +59,10 @@ public class PlanetPreview : MonoBehaviour
             }
         }
 
-        Core.GameState.Ship.OxygenLevel -= Core.GameState.Ship.OxygenConsumption;
-        Core.GameState.Ship.FoodLevel -= Core.GameState.Ship.FoodConsumption;
-        Core.GameState.Ship.FuelLevel -= Core.GameState.Ship.FuelConsumtion;
+        if (!Core.GameState.Ship.Move(1f))
+        {
+            SceneManager.LoadScene(SceneNames.GameOver);
+        }        
     }
     private void DeleteRandomNotScannedPlanet(List<Planet> planets)
     {

@@ -1,4 +1,5 @@
 
+using Assets.Scripts;
 using Assets.Scripts.Constants;
 
 using UnityEngine;
@@ -9,7 +10,7 @@ public class GameOverMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Core.BackgroundAudioSource.Stop();
     }
 
     // Update is called once per frame
