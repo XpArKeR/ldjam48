@@ -43,6 +43,8 @@ public class MainMenu : MonoBehaviour
             FuelConsumption = 100f,
         };
 
+        Core.GameState.PlanetsVisited = 0;
+
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
         SceneManager.LoadScene(SceneNames.Far);

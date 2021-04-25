@@ -68,23 +68,35 @@ public class PlanetMenu : MonoBehaviour
 
     public void TakeOxygen()
     {
-        Core.GameState.Ship.OxygenLevel += Core.GameState.CurrentTarget.Resources.Oxygen.Value;
-        Core.GameState.CurrentTarget.Resources.Oxygen.Value = 0;
+        var levftoverValue = Core.GameState.Ship.AddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value);
+        Core.GameState.CurrentTarget.Resources.Oxygen.Value = levftoverValue;
         planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString();
-        Core.GameState.Ship.Move(.25f);
+
+        if (!Core.GameState.Ship.Consume(.25f))
+        {
+            SceneManager.LoadScene(SceneNames.GameOver);
+        }
     }
     public void TakeFood()
     {
-        Core.GameState.Ship.FoodLevel += Core.GameState.CurrentTarget.Resources.Food.Value;
-        Core.GameState.CurrentTarget.Resources.Food.Value = 0;
+        var levftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
+        Core.GameState.CurrentTarget.Resources.Food.Value = levftoverValue;
         planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString();
-        Core.GameState.Ship.Move(.25f);
+
+        if (!Core.GameState.Ship.Consume(.25f))
+        {
+            SceneManager.LoadScene(SceneNames.GameOver);
+        }
     }
     public void TakeFuel()
     {
-        Core.GameState.Ship.FuelLevel += Core.GameState.CurrentTarget.Resources.Fuel.Value;
-        Core.GameState.CurrentTarget.Resources.Fuel.Value = 0;
+        var levftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
+        Core.GameState.CurrentTarget.Resources.Fuel.Value = levftoverValue;
         planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString();
-        Core.GameState.Ship.Move(.25f);
+
+        if (!Core.GameState.Ship.Consume(.25f))
+        {
+            SceneManager.LoadScene(SceneNames.GameOver);
+        }
     }
 }

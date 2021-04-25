@@ -61,7 +61,7 @@ public class PlanetPreview : MonoBehaviour
             }
         }
 
-        if (!Core.GameState.Ship.Move(1f))
+        if (!Core.GameState.Ship.Consume(1f))
         {
             SceneManager.LoadScene(SceneNames.GameOver);
         }        

@@ -185,7 +185,7 @@ namespace Assets.Scripts.Ships
             return 0;
         }
 
-        public Boolean Move(float consumptionFactor)
+        public Boolean Consume(float consumptionFactor)
         {
             var canMove = true;
 
