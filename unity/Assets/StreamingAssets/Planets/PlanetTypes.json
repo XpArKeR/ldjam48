@@ -27,6 +27,8 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
+      "clouds_01_3",
+      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
@@ -112,6 +114,8 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
+      "clouds_01_3",
+      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
@@ -197,6 +201,8 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
+      "clouds_01_3",
+      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
@@ -282,6 +288,8 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
+      "clouds_01_3",
+      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
