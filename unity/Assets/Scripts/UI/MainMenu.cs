@@ -16,7 +16,15 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        Core.BackgroundAudioSource = this.MusicPlayer.GetComponent<AudioSource>();
+        if (Core.BackgroundAudioSource == default)
+        {
+            Core.BackgroundAudioSource = this.MusicPlayer.GetComponent<AudioSource>();
+        }
+
+        if (!Core.BackgroundAudioSource.isPlaying)
+        {
+            Core.BackgroundAudioSource.Play();
+        }
     }
 
     public void StartGame()

@@ -22,9 +22,50 @@ namespace Assets.Scripts.Ships
         public float FoodLevel { get; set; }
         public float MaxFoodLevel { get; set; }
 
-        public void Move()
+        public Boolean Move(float consumptionFactor)
         {
+            var canMove = true;
 
+            var ogygenComsumption = this.OxygenConsumption * consumptionFactor;
+
+            if (ogygenComsumption > this.OxygenLevel)
+            {
+                canMove = false;
+            }
+            else
+            {
+                this.OxygenLevel -= ogygenComsumption;
+            }
+
+            if (canMove)
+            {
+                var foodConsuption = this.FoodConsumption * consumptionFactor;
+
+                if (foodConsuption > this.FoodLevel)
+                {
+                    canMove = false;
+                }
+                else
+                {
+                    this.FoodLevel -= foodConsuption;
+                }
+            }
+
+            if (canMove)
+            {
+                var fuelConsumption = this.FuelConsumtion * consumptionFactor;
+
+                if (fuelConsumption > this.FuelLevel)
+                {
+                    canMove = false;
+                }
+                else
+                {
+                    this.FuelLevel -= fuelConsumption;
+                }
+            }
+
+            return canMove;
         }
     }
 }
