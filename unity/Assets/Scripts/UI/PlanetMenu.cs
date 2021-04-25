@@ -26,7 +26,7 @@ public class PlanetMenu : MonoBehaviour
 
         if (Core.GameState.PlanetsVisited > 19)
         {
-            SceneManager.LoadScene(SceneNames.Victorious);
+            Core.ChangeScene(SceneNames.Victorious);
         }
     }
 
@@ -42,7 +42,7 @@ public class PlanetMenu : MonoBehaviour
 
         StartCoroutine(FlyOffAudioSource.WaitForSound(() =>
         {
-            SceneManager.LoadScene(SceneNames.Far);
+            Core.ChangeScene(SceneNames.Far);
             Core.MusicManager.Unmute();
         }));
     }
@@ -81,7 +81,7 @@ public class PlanetMenu : MonoBehaviour
 
         if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
-            SceneManager.LoadScene(SceneNames.GameOver);
+            Core.ChangeScene(SceneNames.GameOver);
         }
     }
 
@@ -93,7 +93,7 @@ public class PlanetMenu : MonoBehaviour
 
         if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
-            SceneManager.LoadScene(SceneNames.GameOver);
+            Core.ChangeScene(SceneNames.GameOver);
         }
     }
 
@@ -101,7 +101,7 @@ public class PlanetMenu : MonoBehaviour
     {        
         if (!Core.GameState.Ship.Consume(consumptionFactor))
         {
-            SceneManager.LoadScene(SceneNames.GameOver);
+            Core.ChangeScene(SceneNames.GameOver);
         }
 
         var leftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);

@@ -34,20 +34,20 @@ public class PlanetPreview : MonoBehaviour
             Scan();
             DeleteRandomNotScannedPlanet(Core.GameState.Planets);
 
-            SceneManager.LoadScene(SceneNames.Approach);
+            Core.ChangeScene(SceneNames.Approach);
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Approach)
         {
             if (this.scanned)
             {
-                SceneManager.LoadScene(SceneNames.Planet);
+                Core.ChangeScene(SceneNames.Planet);
             }
             else
             {
                 Core.GameState.CurrentTarget = planet;
                 Scan();
                 DeleteRandomNotScannedPlanet(Core.GameState.Planets);
-                SceneManager.LoadScene(SceneNames.Close);
+                Core.ChangeScene(SceneNames.Close);
             }
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Close)
@@ -55,19 +55,19 @@ public class PlanetPreview : MonoBehaviour
             if (this.scanned)
             {
                 Core.GameState.CurrentTarget = planet;
-                SceneManager.LoadScene(SceneNames.Planet);
+                Core.ChangeScene(SceneNames.Planet);
             }
             else
             {
                 Core.GameState.CurrentTarget = planet;
                 Scan();
-                SceneManager.LoadScene(SceneNames.Close);
+                Core.ChangeScene(SceneNames.Close);
             }
         }
 
         if (!Core.GameState.Ship.Consume(1f))
         {
-            SceneManager.LoadScene(SceneNames.GameOver);
+            Core.ChangeScene(SceneNames.GameOver);
         }        
     }
     private void DeleteRandomNotScannedPlanet(List<Planet> planets)

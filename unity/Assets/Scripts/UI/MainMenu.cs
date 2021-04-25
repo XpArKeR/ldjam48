@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
-        SceneManager.LoadScene(SceneNames.Far);
+        Core.ChangeScene(SceneNames.Far);
     }
 
     public void ShowOptions()

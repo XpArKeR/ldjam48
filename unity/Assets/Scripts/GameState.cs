@@ -9,6 +9,7 @@ namespace Assets.Scripts
     {
 
         public Planet CurrentTarget { get; set; }
+        public string CurrentScene { get; set; }
 
         public List<Planet> Planets { get; } = new List<Planet>();
 
