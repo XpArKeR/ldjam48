@@ -1,0 +1,7 @@
+{
+  "Scan": 0.05,
+  "Movement": 1.0,
+  "GatherOxygen": 0.1,
+  "GatherFood": 0.1,
+  "GatherFuel": 0.1
+}

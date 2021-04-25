@@ -3,13 +3,10 @@ using Assets.Scripts;
 using Assets.Scripts.Constants;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
 {
-    private float consumptionFactor = 0.1f;
-
     public AudioSource FlyOffAudioSource;
     public Image planetBase;
     public Image planetLand;
@@ -80,7 +77,7 @@ public class PlanetMenu : MonoBehaviour
         Core.GameState.CurrentTarget.Resources.Oxygen.Value = leftoverValue;
         planetOxygen.text = Core.GameState.CurrentTarget.Resources.Oxygen.Value.ToString();
 
-        if (!Core.GameState.Ship.Consume(consumptionFactor))
+        if (!Core.GameState.Ship.Consume(Core.GameState.ConsumptionRates.GatherOxygen))
         {
             Core.ChangeScene(SceneNames.GameOver);
         }
@@ -92,21 +89,21 @@ public class PlanetMenu : MonoBehaviour
         Core.GameState.CurrentTarget.Resources.Food.Value = leftoverValue;
         planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString();
 
-        if (!Core.GameState.Ship.Consume(consumptionFactor))
+        if (!Core.GameState.Ship.Consume(Core.GameState.ConsumptionRates.GatherFood))
         {
             Core.ChangeScene(SceneNames.GameOver);
         }
     }
 
     public void TakeFuel()
-    {        
-        if (!Core.GameState.Ship.Consume(consumptionFactor))
-        {
-            Core.ChangeScene(SceneNames.GameOver);
-        }
-
+    {
         var leftoverValue = Core.GameState.Ship.AddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value);
         Core.GameState.CurrentTarget.Resources.Fuel.Value = leftoverValue;
         planetFuel.text = Core.GameState.CurrentTarget.Resources.Fuel.Value.ToString();
+
+        if (!Core.GameState.Ship.Consume(Core.GameState.ConsumptionRates.GatherFuel))
+        {
+            Core.ChangeScene(SceneNames.GameOver);
+        }
     }
 }
