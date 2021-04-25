@@ -96,9 +96,33 @@ public static class PlanetGenerator
             LandColor = ChooseRandomColor(planetType.LandColors),
             LandSprite = ChooseRandomSprite(planetType.LandSprites),
             CloudColor = ChooseRandomColor(planetType.CloudColors),
-            CloudSprite = ChooseRandomSprite(planetType.CloudSprites)
+            CloudSprite = ChooseRandomSprite(planetType.CloudSprites),
+            Resources = GenerateResources(planetType)
         };
 
         return planet;
+    }
+
+    private static PlanetResources GenerateResources(PlanetType planetType)
+    {
+        PlanetResources generatedResources = new PlanetResources();
+        PlanetResources resources = planetType.Resources;
+        generatedResources.Oxygen = GenerateResource(resources.Oxygen);
+        return generatedResources;
+    }
+
+    private static PlanetResource GenerateResource(PlanetResource origResource)
+    {
+        PlanetResource generatedResource = new PlanetResource();
+        generatedResource.RangeMin = origResource.RangeMin;
+        generatedResource.RangeMax = origResource.RangeMax;
+
+        float value = UnityEngine.Random.Range(generatedResource.RangeMin, generatedResource.RangeMax);
+        generatedResource.Value = value;
+
+        generatedResource.DispersionRangeMin = value - origResource.Dispersion;
+        generatedResource.DispersionRangeMax = value + origResource.Dispersion;
+
+        return generatedResource;
     }
 }
