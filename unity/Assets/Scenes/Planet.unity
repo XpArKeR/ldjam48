@@ -2145,6 +2145,7 @@ GameObject:
   - component: {fileID: 1820626000}
   - component: {fileID: 1820626001}
   - component: {fileID: 1820626004}
+  - component: {fileID: 1820626005}
   m_Layer: 5
   m_Name: FlyButton
   m_TagString: Untagged
@@ -2289,6 +2290,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1820626005}
+        m_TargetAssemblyTypeName: MoveRandom, Assembly-CSharp
+        m_MethodName: StartMoving
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1820626002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,6 +2385,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1820626005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820625998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f96a992bd4cb34d8a4c09205fa8e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1873636919
 PrefabInstance:
   m_ObjectHideFlags: 0
