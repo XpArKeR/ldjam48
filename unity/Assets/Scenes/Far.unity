@@ -616,6 +616,23 @@ MonoBehaviour:
   - {fileID: 1197092838}
   - {fileID: 41549304}
   - {fileID: 2120231013}
+--- !u!1 &1191547360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1619200671933797538, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+  m_PrefabInstance: {fileID: 1818911296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1191547361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191547360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a23dbbb4fb8fe4e8b9bb1a2d9d088b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1197092836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -670,6 +687,14 @@ PrefabInstance:
     - target: {fileID: 5787618578487446649, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_Name
       value: PlanetPreview 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927524583970366539, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
@@ -828,6 +853,30 @@ PrefabInstance:
     - target: {fileID: 5787618578487446649, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_Name
       value: PlanetPreview 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927524583970366539, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
@@ -1047,6 +1096,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlanetPreview 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927524583970366539, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
 --- !u!4 &2120231012 stripped
@@ -1119,6 +1176,14 @@ PrefabInstance:
     - target: {fileID: 5787618578487446649, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
       propertyPath: m_Name
       value: PlanetPreview 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734467318861298243, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927524583970366539, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e73afc83528c6c4087a932cc44965aa, type: 3}

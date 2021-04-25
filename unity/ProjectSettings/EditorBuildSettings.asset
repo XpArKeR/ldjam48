@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Approach.unity
     guid: 486c276d67fdb054981ffb0e57bc49ac
   - enabled: 1
+    path: Assets/Scenes/Close.unity
+    guid: 4b175a03787034f449a36707be382405
+  - enabled: 1
     path: Assets/Scenes/Planet.unity
     guid: e7ca38b717fc19145b1d7dd1ace2637d
   m_configObjects: {}

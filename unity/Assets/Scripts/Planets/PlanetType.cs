@@ -9,6 +9,8 @@ public class PlanetType
 {
     public string Name;
 
+    public PlanetResources Resources;
+
     public List<string> LandSprites;
     public List<string> CloudSprites;
     

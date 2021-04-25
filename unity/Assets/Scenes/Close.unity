@@ -570,7 +570,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949009850}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FarMenu, Assembly-CSharp
         m_MethodName: GeneratePlanets
         m_Mode: 1
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 1949009853}
   - component: {fileID: 1949009852}
   - component: {fileID: 1949009851}
-  - component: {fileID: 1949009850}
+  - component: {fileID: 1949009855}
   m_Layer: 5
   m_Name: Planets
   m_TagString: Untagged
@@ -792,23 +792,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1949009850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949009849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebb155e351378b54d93c365dbd69e755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previews:
-  - {fileID: 0}
-  - {fileID: 1215049974}
-  - {fileID: 277445113}
-  - {fileID: 0}
 --- !u!114 &1949009851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +875,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1949009855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949009849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5d823c235d90e469f345b8f74f56fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previews:
+  - {fileID: 1215049974}
+  - {fileID: 277445113}
 --- !u!1 &2037325311
 GameObject:
   m_ObjectHideFlags: 0

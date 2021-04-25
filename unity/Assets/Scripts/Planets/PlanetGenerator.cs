@@ -89,7 +89,7 @@ public static class PlanetGenerator
     {
         Planet planet = new Planet()
         {
-            type = planetType.Name,
+            Type = planetType.Name,
             BaseColor = ChooseRandomColor(planetType.BaseColors),
             LandColor = ChooseRandomColor(planetType.LandColors),
             LandSprite = ChooseRandomSprite(planetType.LandSprites),
