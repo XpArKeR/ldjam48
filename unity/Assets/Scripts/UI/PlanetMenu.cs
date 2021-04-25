@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 
 using Assets.Scripts;
 using Assets.Scripts.Constants;
@@ -19,9 +17,10 @@ public class PlanetMenu : MonoBehaviour
     {
         LoadTargetPlanet();
     }
-    
+
     public void FlyAway()
     {
+        Core.GameState.PlanetsVisited++;
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
 
@@ -29,21 +28,11 @@ public class PlanetMenu : MonoBehaviour
 
         FlyOffAudioSource.Play();
 
-        StartCoroutine(WaitForSound(() =>
+        StartCoroutine(FlyOffAudioSource.WaitForSound(() =>
         {
             SceneManager.LoadScene(SceneNames.Far);
             Core.BackgroundAudioSource.Play();
         }));
-    }
-
-    IEnumerator WaitForSound(Action action)
-    {
-        while (FlyOffAudioSource.isPlaying)
-        {
-            yield return default;
-        }
-
-        action();
     }
 
     public void LoadTargetPlanet()
