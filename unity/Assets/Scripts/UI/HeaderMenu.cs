@@ -6,8 +6,9 @@ using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResourceBar : MonoBehaviour
+public class HeaderMenu : MonoBehaviour
 {
+    public Text PlanetsVisitedText;
     public Slider OxygenSlider;
     public Slider FoodSlider;
     public Slider FuelSlider;
@@ -36,6 +37,8 @@ public class ResourceBar : MonoBehaviour
         {
             this.FuelSlider.value = Core.GameState.Ship.FuelLevel;
         }
+
+        this.PlanetsVisitedText.text = Core.GameState.PlanetsVisited.ToString();
     }
 
     // Update is called once per frame
