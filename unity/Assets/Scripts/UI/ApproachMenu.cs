@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class ApproachMenu : MonoBehaviour
 {
     public List<PlanetPreview> previews;
+    public Image currentBackground;
 
     void Start()
     {
         RefreshPlanetViews();
+        currentBackground.sprite = Core.currentBackground;
     }
 
     private void RefreshPlanetViews()

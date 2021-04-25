@@ -371,6 +371,7 @@ MonoBehaviour:
   - {fileID: 1909998787}
   - {fileID: 40443475}
   - {fileID: 967622937}
+  currentBackground: {fileID: 1942409679}
 --- !u!114 &1106602934
 MonoBehaviour:
   m_ObjectHideFlags: 0

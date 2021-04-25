@@ -816,6 +816,7 @@ MonoBehaviour:
   previews:
   - {fileID: 1215049974}
   - {fileID: 277445113}
+  currentBackground: {fileID: 598641236}
 --- !u!1 &2037325311
 GameObject:
   m_ObjectHideFlags: 0
