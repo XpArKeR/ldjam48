@@ -183,8 +183,8 @@
 			"Dispersion" : "10"
 		},
 		"Fuel" : {
-			"RangeMin" : "90",
-			"RangeMax" : "200",
+			"RangeMin" : "160",
+			"RangeMax" : "270",
 			"Dispersion" : "95"
 		}
 	},
@@ -268,9 +268,9 @@
 			"Dispersion" : "0"
 		},
 		"Fuel" : {
-			"RangeMin" : "120",
-			"RangeMax" : "220",
-			"Dispersion" : "100"
+			"RangeMin" : "190",
+			"RangeMax" : "300",
+			"Dispersion" : "170"
 		}
 	},
     "LandSprites": [
