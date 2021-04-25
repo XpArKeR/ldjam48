@@ -21,6 +21,11 @@ public class PlanetMenu : MonoBehaviour
     {
         LoadTargetPlanet();
         RefreshResources();
+
+        if (Core.GameState.PlanetsVisited > 19)
+        {
+            SceneManager.LoadScene(SceneNames.Victorious);
+        }
     }
 
     public void FlyAway()
