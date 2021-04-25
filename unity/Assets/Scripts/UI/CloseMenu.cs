@@ -1,6 +1,7 @@
-using Assets.Scripts;
-using System.Collections;
 using System.Collections.Generic;
+
+using Assets.Scripts;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,14 +9,10 @@ public class CloseMenu : MonoBehaviour
 {
     public List<PlanetPreview> previews;
 
-
-
     void Start()
     {
         RefreshPlanetViews();
     }
-
-
 
     private void RefreshPlanetViews()
     {
@@ -42,6 +39,5 @@ public class CloseMenu : MonoBehaviour
             }
 
         }
-
     }
 }

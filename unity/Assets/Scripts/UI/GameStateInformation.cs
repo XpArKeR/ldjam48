@@ -17,7 +17,7 @@ public class GameStateInformation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.turnText.text = Core.GameState.CurrentTurn.ToString();
+        this.turnText.text = Core.GameState.PlanetsVisited.ToString();
         this.shipTypeText.text = Core.GameState.Ship.TypeName;
     }
 

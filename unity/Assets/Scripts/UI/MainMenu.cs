@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 
 using Assets.Scripts;
 using Assets.Scripts.Constants;
@@ -15,10 +13,10 @@ public class MainMenu : MonoBehaviour
     public GameObject MainMenuContainer;
     public GameObject OptionsContainer;
     public Slider BackgroundVolumeSlider;
-        
+
     private void Start()
     {
-        
+        Core.BackgroundAudioSource = this.MusicPlayer.GetComponent<AudioSource>();
     }
 
     public void StartGame()
@@ -36,13 +34,13 @@ public class MainMenu : MonoBehaviour
             FuelLevel = 500f,
             FuelConsumtion = 100f,
         };
-        
+
         SceneManager.LoadScene(SceneNames.Far);
     }
 
     public void ShowOptions()
     {
-        this.BackgroundVolumeSlider.value = this.MusicPlayer.GetComponent<AudioSource>().volume;
+        this.BackgroundVolumeSlider.value = Core.BackgroundAudioSource.volume;
 
         this.MainMenuContainer.SetActive(false);
         this.OptionsContainer.SetActive(true);
@@ -50,7 +48,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnBackgroundSliderChanged()
     {
-        this.MusicPlayer.GetComponent<AudioSource>().volume = BackgroundVolumeSlider.value;
+        Core.BackgroundAudioSource.volume = BackgroundVolumeSlider.value;
     }
 
     public void CloseOptions()
@@ -61,7 +59,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        
+
     }
 
     public void Quit()

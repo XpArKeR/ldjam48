@@ -8,14 +8,10 @@ public class ApproachMenu : MonoBehaviour
 {
     public List<PlanetPreview> previews;
 
-
-
     void Start()
     {
         RefreshPlanetViews();
     }
-
-
 
     private void RefreshPlanetViews()
     {
@@ -40,6 +36,5 @@ public class ApproachMenu : MonoBehaviour
                 planetPreview.Scan();
             }
         }
-
     }
 }

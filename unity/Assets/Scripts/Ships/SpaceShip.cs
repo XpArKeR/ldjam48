@@ -21,5 +21,10 @@ namespace Assets.Scripts.Ships
         public float FoodConsumption { get; set; }
         public float FoodLevel { get; set; }
         public float MaxFoodLevel { get; set; }
+
+        public void Move()
+        {
+
+        }
     }
 }

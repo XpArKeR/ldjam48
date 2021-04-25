@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using Assets.Scripts;
 using Assets.Scripts.Constants;
@@ -6,7 +7,6 @@ using Assets.Scripts.Constants;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Linq;
 
 public class PlanetPreview : MonoBehaviour
 {
