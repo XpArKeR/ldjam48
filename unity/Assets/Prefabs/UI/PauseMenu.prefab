@@ -72,7 +72,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 8983295581063867520}
   gameView: {fileID: 0}
-  currentBackground: {fileID: 3352494871893713241}
 --- !u!1 &8639437011678257117
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +248,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -427,8 +426,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 6116248659980328310}
     m_Modifications:
     - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 865336202894181623, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_Layer
@@ -548,7 +567,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865336204184002554, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_Text
-      value: Continue Game
+      value: Lets go
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336204184002554, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336204184002554, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 865336204184002556, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_Layer
@@ -573,8 +600,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 6116248659980328310}
     m_Modifications:
     - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336202894181620, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 865336202894181623, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_Layer
@@ -695,6 +742,14 @@ PrefabInstance:
     - target: {fileID: 865336204184002554, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_Text
       value: Quit Current Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336204184002554, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 865336204184002554, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 865336204184002556, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_Layer
