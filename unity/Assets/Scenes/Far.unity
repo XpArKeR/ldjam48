@@ -784,7 +784,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeaderBar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3053648054622532916, guid: ebc38c08c8a8f984aa4b358ef7b9084c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ebc38c08c8a8f984aa4b358ef7b9084c, type: 3}
 --- !u!1001 &1818911296
 PrefabInstance:
