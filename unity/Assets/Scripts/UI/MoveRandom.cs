@@ -37,11 +37,14 @@ public class MoveRandom : MonoBehaviour
             if (spinnUp > 0)
             {
                 spinnUp -= Time.deltaTime;
-                transform.Translate(Wobble());
+                Vector3 translation = Wobble();
+                transform.Translate(translation);
             }
             else
             {
-                transform.Translate(GetRandomDirection());
+
+                Vector3 translation = GetRandomDirection();
+                transform.Translate(translation);
                 transform.localScale -= scaleChange;
                 if (particles != null)
                 {
