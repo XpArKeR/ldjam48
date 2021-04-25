@@ -1,12 +1,12 @@
 [
   {
-    "Name": "Default",
+    "TypeName": "Default",
     "MaxOxygenLevel": 1000,
     "OxygenLevel": 1000,
     "OxygenConsumption": 100,
     "MaxFoodLevel": 500,
     "FoodLevel": 300,
-    "FoodConsumption": 10,
+    "FoodConsumptiom": 20,
     "MaxFuelLevel": 1000,
     "FuelLevel": 500,
     "FuelConsumption": 100
