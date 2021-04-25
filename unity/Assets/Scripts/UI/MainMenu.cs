@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
             FuelLevel = 500f,
             FuelConsumtion = 100f,
         };
-
+        
         SceneManager.LoadScene(SceneNames.Far);
     }
 

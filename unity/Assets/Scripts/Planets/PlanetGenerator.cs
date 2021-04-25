@@ -1,19 +1,18 @@
-using Assets.Scripts;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
-using UnityEngine.UI;
 
-public static class PlanetGenerator 
+using Assets.Scripts;
+
+using UnityEngine;
+
+public static class PlanetGenerator
 {
 
     private static List<PlanetType> planetTypes = new List<PlanetType>();
 
     public static void LoadPlanetTypes()
     {
-        planetTypes = JsonUtility.ListFromJson<PlanetType>("Assets/Resources/Planets/PlanetTypes.json");
+        planetTypes = JsonUtility.ListFromJson<PlanetType>(Path.Combine(Application.streamingAssetsPath, "Planets", "PlanetTypes.json"));
 
         NormalizeColors();
         Debug.Log("PlanetTypes loaded: " + planetTypes.Count);
@@ -56,7 +55,6 @@ public static class PlanetGenerator
         return planets;
     }
 
-
     public static Planet GeneratePlanet()
     {
         PlanetType planetType = GetRandomPlanetType();
@@ -85,9 +83,8 @@ public static class PlanetGenerator
 
     private static Sprite LoadSprite(string spriteName)
     {
-        return Core.ResourceCache.GetSprit("Planets/Sprites/" + spriteName);
+        return Core.ResourceCache.GetSprite("Planets/Sprites/" + spriteName);
     }
-
     public static Planet GeneratePlanet(PlanetType planetType)
     {
         Planet planet = new Planet()
@@ -102,5 +99,4 @@ public static class PlanetGenerator
 
         return planet;
     }
-
 }
