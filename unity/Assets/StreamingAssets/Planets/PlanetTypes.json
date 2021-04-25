@@ -3,9 +3,9 @@
     "Name": "Water",
     "Resources": {
       "Oxygen": {
-        "RangeMin": "80",
+        "RangeMin": "100",
         "RangeMax": "150",
-        "Dispersion": "50"
+        "Dispersion": "80"
       },
       "Food": {
         "RangeMin": "25",
@@ -98,8 +98,8 @@
         "Dispersion": "35"
       },
       "Fuel": {
-        "RangeMin": "80",
-        "RangeMax": "150",
+        "RangeMin": "60",
+        "RangeMax": "90",
         "Dispersion": "80"
       }
     },
