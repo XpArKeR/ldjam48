@@ -40,7 +40,7 @@ public class MainMenu : MonoBehaviour
             FoodConsumption = 10f,
             MaxFuelLevel = 1000f,
             FuelLevel = 500f,
-            FuelConsumtion = 100f,
+            FuelConsumption = 100f,
         };
 
         Core.GameState.Planets.Clear();
