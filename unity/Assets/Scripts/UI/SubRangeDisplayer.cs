@@ -39,6 +39,19 @@ public class SubRangeDisplayer : MonoBehaviour
             minX /= diff;
             maxX /= diff;
         }
+
+        if (minX < 0)
+        {
+            Debug.Log("minX < 0");
+            Debug.Log(string.Format("minX: {0}; maxX: {1}; rangeMin: {2}; rangeMax: {3}; diff: {4}", minX, maxX, rangeMin, rangeMax, diff));
+            minX = 0;
+        }
+        if (maxX > 1)
+        {
+            Debug.Log("maxX > 0");
+            Debug.Log(string.Format("minX: {0}; maxX: {1}; rangeMin: {2}; rangeMax: {3}; diff: {4}", minX, maxX, rangeMin, rangeMax, diff));
+            maxX = 1;
+        }
         fillArea.rectTransform.anchorMin = new Vector2(minX, 0);
         fillArea.rectTransform.anchorMax = new Vector2(maxX, 1);
     }
