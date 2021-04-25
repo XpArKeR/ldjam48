@@ -8,7 +8,7 @@ public class MoveRandom : MonoBehaviour
 {
 
     private bool move = false;
-    private float speed = 2f;
+    private float speed = 10f;
     private float wobble;
     private float spinnUp = 3.7f;
     private Vector3 scaleChange = new Vector3(0.01f, 0.01f, 0);

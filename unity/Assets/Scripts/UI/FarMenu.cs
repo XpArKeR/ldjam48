@@ -13,10 +13,14 @@ public class FarMenu : MonoBehaviour
     public List<Sprite> backgrounds;
 
 
+    private void Awake()
+    {
+        SelectAndSetBackGround();
+    }
+
     void Start()
     {
         RefreshPlanetViews();
-        SelectAndSetBackGround();
     }
 
     private void SelectAndSetBackGround()
