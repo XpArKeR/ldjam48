@@ -1,23 +1,23 @@
 [
   {
     "Name": "Water",
-	"Resources" : {
-		"Oxygen" : {
-			"RangeMin" : "80",
-			"RangeMax" : "150",
-			"Dispersion" : "50"
-		},
-		"Food" : {
-			"RangeMin" : "25",
-			"RangeMax" : "75",
-			"Dispersion" : "50"
-		},
-		"Fuel" : {
-			"RangeMin" : "15",
-			"RangeMax" : "50",
-			"Dispersion" : "20"
-		}
-	},
+    "Resources": {
+      "Oxygen": {
+        "RangeMin": "80",
+        "RangeMax": "150",
+        "Dispersion": "50"
+      },
+      "Food": {
+        "RangeMin": "25",
+        "RangeMax": "75",
+        "Dispersion": "50"
+      },
+      "Fuel": {
+        "RangeMin": "15",
+        "RangeMax": "50",
+        "Dispersion": "20"
+      }
+    },
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",
@@ -86,23 +86,23 @@
   },
   {
     "Name": "Forest",
-	"Resources" : {
-		"Oxygen" : {
-			"RangeMin" : "120",
-			"RangeMax" : "240",
-			"Dispersion" : "100"
-		},
-		"Food" : {
-			"RangeMin" : "60",
-			"RangeMax" : "120",
-			"Dispersion" : "35"
-		},
-		"Fuel" : {
-			"RangeMin" : "80",
-			"RangeMax" : "150",
-			"Dispersion" : "80"
-		}
-	},
+    "Resources": {
+      "Oxygen": {
+        "RangeMin": "120",
+        "RangeMax": "240",
+        "Dispersion": "100"
+      },
+      "Food": {
+        "RangeMin": "60",
+        "RangeMax": "120",
+        "Dispersion": "35"
+      },
+      "Fuel": {
+        "RangeMin": "80",
+        "RangeMax": "150",
+        "Dispersion": "80"
+      }
+    },
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",
@@ -171,23 +171,23 @@
   },
   {
     "Name": "Rock",
-	"Resources" : {
-		"Oxygen" : {
-			"RangeMin" : "25",
-			"RangeMax" : "40",
-			"Dispersion" : "40"
-		},
-		"Food" : {
-			"RangeMin" : "5",
-			"RangeMax" : "25",
-			"Dispersion" : "10"
-		},
-		"Fuel" : {
-			"RangeMin" : "160",
-			"RangeMax" : "270",
-			"Dispersion" : "95"
-		}
-	},
+    "Resources": {
+      "Oxygen": {
+        "RangeMin": "25",
+        "RangeMax": "40",
+        "Dispersion": "40"
+      },
+      "Food": {
+        "RangeMin": "5",
+        "RangeMax": "25",
+        "Dispersion": "10"
+      },
+      "Fuel": {
+        "RangeMin": "160",
+        "RangeMax": "270",
+        "Dispersion": "95"
+      }
+    },
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",
@@ -256,23 +256,23 @@
   },
   {
     "Name": "Lava",
-	"Resources" : {
-		"Oxygen" : {
-			"RangeMin" : "15",
-			"RangeMax" : "25",
-			"Dispersion" : "10"
-		},
-		"Food" : {
-			"RangeMin" : "0",
-			"RangeMax" : "0",
-			"Dispersion" : "0"
-		},
-		"Fuel" : {
-			"RangeMin" : "190",
-			"RangeMax" : "300",
-			"Dispersion" : "170"
-		}
-	},
+    "Resources": {
+      "Oxygen": {
+        "RangeMin": "15",
+        "RangeMax": "25",
+        "Dispersion": "10"
+      },
+      "Food": {
+        "RangeMin": "0",
+        "RangeMax": "0",
+        "Dispersion": "0"
+      },
+      "Fuel": {
+        "RangeMin": "190",
+        "RangeMax": "300",
+        "Dispersion": "170"
+      }
+    },
     "LandSprites": [
       "planet_01_lm",
       "planet_02_lm",

@@ -29,19 +29,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        Core.GameState.Ship = new SpaceShip()
-        {
-            TypeName = "Default",
-            MaxOxygenLevel = 1000f,
-            OxygenLevel = 1000f,
-            OxygenConsumption = 100f,
-            MaxFoodLevel = 500f,
-            FoodLevel = 300f,
-            FoodConsumption = 10f,
-            MaxFuelLevel = 1000f,
-            FuelLevel = 500f,
-            FuelConsumption = 100f,
-        };
+        Core.GameState.Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]);
 
         Core.GameState.PlanetsVisited = 0;
 
