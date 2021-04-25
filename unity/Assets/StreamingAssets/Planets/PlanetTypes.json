@@ -3,14 +3,14 @@
     "Name": "Water",
     "Resources": {
       "Oxygen": {
-        "RangeMin": "100",
-        "RangeMax": "150",
+        "RangeMin": "120",
+        "RangeMax": "180",
         "Dispersion": "80"
       },
       "Food": {
-        "RangeMin": "25",
-        "RangeMax": "75",
-        "Dispersion": "50"
+        "RangeMin": "80",
+        "RangeMax": "150",
+        "Dispersion": "70"
       },
       "Fuel": {
         "RangeMin": "15",
@@ -27,8 +27,6 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
-      "clouds_01_3",
-      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
@@ -114,8 +112,6 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
-      "clouds_01_3",
-      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
@@ -201,8 +197,6 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
-      "clouds_01_3",
-      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
@@ -288,8 +282,6 @@
     ],
     "CloudSprites": [
       "clouds_01_2",
-      "clouds_01_3",
-      "clouds_01_no",
       "clouds_02_2"
     ],
     "BaseColors": [
