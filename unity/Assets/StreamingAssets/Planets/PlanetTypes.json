@@ -3,19 +3,19 @@
     "Name": "Water",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "10",
-			"RangeMax" : "30",
-			"Dispersion" : "10"
+			"RangeMin" : "70",
+			"RangeMax" : "130",
+			"Dispersion" : "20"
 		},
 		"Food" : {
-			"RangeMin" : "10",
-			"RangeMax" : "30",
+			"RangeMin" : "5",
+			"RangeMax" : "10",
 			"Dispersion" : "10"
 		},
 		"Fuel" : {
-			"RangeMin" : "10",
-			"RangeMax" : "30",
-			"Dispersion" : "10"
+			"RangeMin" : "45",
+			"RangeMax" : "70",
+			"Dispersion" : "30"
 		}
 	},
     "LandSprites": [
@@ -88,9 +88,9 @@
     "Name": "Forest",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "30",
-			"RangeMax" : "50",
-			"Dispersion" : "5"
+			"RangeMin" : "50",
+			"RangeMax" : "90",
+			"Dispersion" : "45"
 		},
 		"Food" : {
 			"RangeMin" : "30",
@@ -98,9 +98,9 @@
 			"Dispersion" : "5"
 		},
 		"Fuel" : {
-			"RangeMin" : "5",
-			"RangeMax" : "10",
-			"Dispersion" : "10"
+			"RangeMin" : "110",
+			"RangeMax" : "150",
+			"Dispersion" : "80"
 		}
 	},
     "LandSprites": [
@@ -173,9 +173,9 @@
     "Name": "Rock",
 	"Resources" : {
 		"Oxygen" : {
-			"RangeMin" : "0",
-			"RangeMax" : "2",
-			"Dispersion" : "3"
+			"RangeMin" : "15",
+			"RangeMax" : "23",
+			"Dispersion" : "67"
 		},
 		"Food" : {
 			"RangeMin" : "0",
@@ -183,9 +183,9 @@
 			"Dispersion" : "0"
 		},
 		"Fuel" : {
-			"RangeMin" : "0",
-			"RangeMax" : "5",
-			"Dispersion" : "3"
+			"RangeMin" : "15",
+			"RangeMax" : "23",
+			"Dispersion" : "342"
 		}
 	},
     "LandSprites": [
@@ -268,9 +268,9 @@
 			"Dispersion" : "0"
 		},
 		"Fuel" : {
-			"RangeMin" : "3",
-			"RangeMax" : "3",
-			"Dispersion" : "0"
+			"RangeMin" : "50",
+			"RangeMax" : "70",
+			"Dispersion" : "90"
 		}
 	},
     "LandSprites": [
