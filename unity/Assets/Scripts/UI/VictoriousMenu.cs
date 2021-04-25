@@ -19,6 +19,12 @@ public class VictoriousMenu : MonoBehaviour
 
     }
 
+    public void OnContinuePlaying()
+    {
+        Core.MusicManager.Resume();
+        SceneManager.LoadScene(SceneNames.Planet);
+    }
+    
     public void OnBackToMainMenu()
     {
         SceneManager.LoadScene(SceneNames.MainMenu);

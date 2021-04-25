@@ -24,8 +24,9 @@ public class PlanetMenu : MonoBehaviour
         LoadTargetPlanet();
         RefreshResources();
 
-        if (Core.GameState.PlanetsVisited > 19)
+        if ((!Core.GameState.IsVictorious) && Core.GameState.PlanetsVisited > 19)
         {
+            Core.GameState.IsVictorious = true;
             SceneManager.LoadScene(SceneNames.Victorious);
         }
     }

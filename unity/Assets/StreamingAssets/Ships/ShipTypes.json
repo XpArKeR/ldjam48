@@ -1,6 +1,6 @@
 [
   {
-    "TypeName": "Default",
+    "Name": "Default",
     "MaxOxygenLevel": 1000,
     "OxygenLevel": 1000,
     "OxygenConsumption": 100,
