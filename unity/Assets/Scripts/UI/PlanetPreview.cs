@@ -19,6 +19,8 @@ public class PlanetPreview : MonoBehaviour
     public Planet planet;
 
     public SubRangeDisplayer oxygenRangeDisplayer;
+    public SubRangeDisplayer foodRangeDisplayer;
+    public SubRangeDisplayer fuelRangeDisplayer;
 
     public void SelectThisPlanet()
     {
@@ -84,8 +86,20 @@ public class PlanetPreview : MonoBehaviour
         oxygenRangeDisplayer.max = planet.Resources.Oxygen.DispersionRangeMax;
         oxygenRangeDisplayer.rangeMin = PlanetGenerator.OxygenMin;
         oxygenRangeDisplayer.rangeMax = PlanetGenerator.OxygenMax;
-
-
         oxygenRangeDisplayer.Redraw();
+
+        foodRangeDisplayer.min = planet.Resources.Food.DispersionRangeMin;
+        foodRangeDisplayer.max = planet.Resources.Food.DispersionRangeMax;
+        foodRangeDisplayer.rangeMin = PlanetGenerator.FoodMin;
+        foodRangeDisplayer.rangeMax = PlanetGenerator.FoodMax;
+        foodRangeDisplayer.Redraw();
+
+        fuelRangeDisplayer.min = planet.Resources.Fuel.DispersionRangeMin;
+        fuelRangeDisplayer.max = planet.Resources.Fuel.DispersionRangeMax;
+        fuelRangeDisplayer.rangeMin = PlanetGenerator.FuelMin;
+        fuelRangeDisplayer.rangeMax = PlanetGenerator.FuelMax;
+        fuelRangeDisplayer.Redraw();
+
+
     }
 }

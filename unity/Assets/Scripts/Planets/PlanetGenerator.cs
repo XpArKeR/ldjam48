@@ -156,6 +156,8 @@ public static class PlanetGenerator
         PlanetResources generatedResources = new PlanetResources();
         PlanetResources resources = planetType.Resources;
         generatedResources.Oxygen = GenerateResource(resources.Oxygen);
+        generatedResources.Food = GenerateResource(resources.Food);
+        generatedResources.Fuel = GenerateResource(resources.Fuel);
         return generatedResources;
     }
 
