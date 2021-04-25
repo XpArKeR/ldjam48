@@ -82,8 +82,8 @@ public class PlanetPreview : MonoBehaviour
         planet.Scanned = true;
         oxygenRangeDisplayer.min = planet.Resources.Oxygen.DispersionRangeMin;
         oxygenRangeDisplayer.max = planet.Resources.Oxygen.DispersionRangeMax;
-        oxygenRangeDisplayer.rangeMin = planet.Resources.Oxygen.RangeMin;
-        oxygenRangeDisplayer.rangeMax = planet.Resources.Oxygen.RangeMax;
+        oxygenRangeDisplayer.rangeMin = PlanetGenerator.OxygenMin;
+        oxygenRangeDisplayer.rangeMax = PlanetGenerator.OxygenMax;
 
 
         oxygenRangeDisplayer.Redraw();

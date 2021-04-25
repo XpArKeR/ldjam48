@@ -34,13 +34,18 @@ public class SubRangeDisplayer : MonoBehaviour
 
         float minX = (min - rangeMin);
         float maxX = (max - rangeMin);
-        Debug.Log("minx: " + minX);
+        Debug.Log("rangeMin: " + rangeMin);
+        Debug.Log("rangeMax: " + rangeMax);
+        Debug.Log("minX: " + minX);
         Debug.Log("maxX: " + maxX);
+        Debug.Log("diff: " + diff);
         if (diff != 0)
         {
             minX /= diff;
             maxX /= diff;
-        } 
+        }
+        Debug.Log("calced minX: " + minX);
+        Debug.Log("calced maxX: " + maxX);
         fillArea.rectTransform.anchorMin = new Vector2(minX, 0);
         fillArea.rectTransform.anchorMax = new Vector2(maxX, 1);
     }
