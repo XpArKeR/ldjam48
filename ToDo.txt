@@ -1,12 +1,12 @@
 #### Required ####
+- GameOverScreen
 
 #### WIP ####
-R: Disable Animations;
+R: Savegames
 
 
 #### Nice to have ####
 - ShipSize (Consumption variation)
-- Savegames
 - Tutorial
 - Hall of Shame (Hightscore)
 - Animations (Satellites etc)
@@ -21,7 +21,7 @@ R: Disable Animations;
 
 #### Done ####
 - Credits Page
-
+- Disable Animations
 
 #### ColorCodes ####
 Yellow Text:
