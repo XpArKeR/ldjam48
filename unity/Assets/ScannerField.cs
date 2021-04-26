@@ -17,8 +17,7 @@ public class ScannerField : MonoBehaviour
     public float Thickness;
     public AudioSource AudioSource;
 
-    // Start is called before the first frame update
-    void Start()
+       void Start()
     {
         if (IsMovingDownwards)
         {
@@ -34,7 +33,6 @@ public class ScannerField : MonoBehaviour
         this.changeAmount = CalculateChange();
     }
 
-    // Update is called once per frame
     void Update()
     {
         var amountToMoveBy = changeAmount * Time.deltaTime;
