@@ -25,10 +25,18 @@ public class PlanetMenu : MonoBehaviour
         RefreshResources();
 
         currentBackground.sprite = Core.currentBackground;
+
         if ((!Core.GameState.IsVictorious) && Core.GameState.PlanetsVisited > 19)
         {
             Core.GameState.IsVictorious = true;
             Core.ChangeScene(SceneNames.Victorious);
+        }
+        else
+        {
+            var appoarchClip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "ApproachEffect"));
+
+            this.AudioSource.clip = appoarchClip;
+            this.AudioSource.Play();
         }
     }
 
