@@ -242,6 +242,7 @@ MonoBehaviour:
   MainMenuContainer: {fileID: 130935823}
   OptionsContainer: {fileID: 1086684068}
   BackgroundVolumeSlider: {fileID: 304544235}
+  sunShader: {fileID: 924990000}
 --- !u!1 &95264846
 GameObject:
   m_ObjectHideFlags: 0
