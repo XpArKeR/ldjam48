@@ -14,7 +14,7 @@ namespace Assets.Scripts
     {
         private static Sprite currentBackground;
         private static ConsumptionRates consumptionRates;
-                
+
         private readonly static ResourceCache resourceCache = new ResourceCache();
         public static ResourceCache ResourceCache
         {
@@ -57,7 +57,7 @@ namespace Assets.Scripts
         {
             if ((currentBackground == default) && (!String.IsNullOrEmpty(GameState?.CurrentBackground)))
             {
-                currentBackground = ResourceCache.GetSprite(Path.Combine("Planets", "Sprites", GameState.CurrentBackground));
+                currentBackground = ResourceCache.GetSprite(Path.Combine("UI", "Sprites", GameState.CurrentBackground));
             }
 
             return currentBackground;

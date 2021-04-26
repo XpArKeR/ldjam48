@@ -34,6 +34,10 @@ public class MainMenu : MonoBehaviour
         {
             Core.MusicManager.Resume();
         }
+        else
+        {
+            Core.MusicManager.Unmute();
+        }
     }
 
     private void Update()
