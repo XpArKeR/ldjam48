@@ -40,6 +40,11 @@ public class FarMenu : MovingSceneBase
     {
         Core.GameState.Planets.DeleteRandomEntry(p => !p.Scanned);
 
+        foreach (var preview in this.previews)
+        {
+            preview.Button.interactable = true;
+        }
+
         this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Approach);
     }
 
