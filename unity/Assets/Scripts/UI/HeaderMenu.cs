@@ -14,9 +14,21 @@ public class HeaderMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UpdateValues();
     }
 
     private void FixedUpdate()
+    {
+        UpdateValues();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void UpdateValues()
     {
         if (Core.GameState?.Ship != default)
         {
@@ -35,18 +47,12 @@ public class HeaderMenu : MonoBehaviour
                 this.FuelSlider.value = Core.GameState.Ship.FuelLevel;
             }
 
-            var fuelLevelString = Core.GameState.Ship.FuelLevel.ToString();
+            var fuelLevelString = Core.GameState.PlanetsVisited.ToString();
 
             if (this.PlanetsVisitedText?.text != fuelLevelString)
             {
                 this.PlanetsVisitedText.text = Core.GameState.PlanetsVisited.ToString();
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
