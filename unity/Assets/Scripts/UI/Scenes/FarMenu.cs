@@ -49,21 +49,8 @@ public class FarMenu : MovingSceneBase
         return backgrounds[index];
     }
 
-    public void GeneratePlanets()
-    {
-        Core.GameState.Planets.Clear();
-        Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
-        RefreshPlanetViews();
-    }
-
     private void RefreshPlanetViews()
-    {
-        if (Core.GameState.Planets.Count == 0)
-        {
-            Core.GameState.Planets.Clear();
-            Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
-        }
-
+    {        
         for (int i = 0; i < previews.Count; i++)
         {
             PlanetPreview planetPreview = previews[i];

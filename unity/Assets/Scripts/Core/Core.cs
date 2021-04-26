@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+using Assets.Scripts.Constants;
 using Assets.Scripts.Ships;
 
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Assets.Scripts
 {
     public class Core
     {
+        private static ConsumptionRates consumptionRates;
+
         internal static Sprite currentBackground;
 
         private readonly static ResourceCache resourceCache = new ResourceCache();
@@ -30,16 +33,29 @@ namespace Assets.Scripts
                 BackgroundVolume = 0.125f
             }
         };
+
         public static GameState GameState
         {
             get
             {
                 return gameState;
             }
+            private set
+            {
+                if (gameState != value)
+                {
+                    gameState = value;
+
+                    if (value?.Options != default)
+                    {
+                        MusicManager.SetVolume(value.Options.BackgroundVolume);
+                    }
+                }
+            }
         }
 
         public static MusicManager MusicManager { get; set; }
-        public static List<GameState> Savegames { get; private set; }
+        public static List<Savegame> Savegames { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitGame()
@@ -51,8 +67,6 @@ namespace Assets.Scripts
             ShipGenerator.LoadShipTypes();
         }
 
-
-
         public static void ChangeScene(String sceneName)
         {
             CursorMode cursorMode = CursorMode.Auto;
@@ -63,14 +77,39 @@ namespace Assets.Scripts
 
         private static void LoadConsumptionRates()
         {
-            var consumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
+            var loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
 
-            GameState.ConsumptionRates = consumptionRates;
+            consumptionRates = loadedConsumptionRates;
+        }
+
+        public static void StartGame(GameState providedGameState = default)
+        {
+            var effectiveGameState = providedGameState;
+
+            if (effectiveGameState == default)
+            {
+                effectiveGameState = new GameState()
+                {
+                    ConsumptionRates = consumptionRates,
+                    Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]),
+                    Options = new GameStateOptions()
+                    {
+                        AreAnimationsEnabled = true,
+                        BackgroundVolume = 0.125f
+                    }
+                };
+
+                effectiveGameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
+                effectiveGameState.CurrentScene = SceneNames.Far;
+            }
+
+            GameState = effectiveGameState;
+            ChangeScene(effectiveGameState.CurrentScene);
         }
 
         private static void LoadSavegames()
         {
-            Savegames = new List<GameState>();
+            Savegames = new List<Savegame>();
 
             var directoryPath = Path.Combine(Application.persistentDataPath, "SaveGames");
 
@@ -78,9 +117,16 @@ namespace Assets.Scripts
             {
                 foreach (var savegameFile in Directory.EnumerateFiles(directoryPath, "Save*.nerds"))
                 {
-                    var loadedGameState = UnityEngine.JsonUtility.FromJson<GameState>(File.ReadAllText(savegameFile));
+                    var gameStateJson = File.ReadAllText(savegameFile);
 
-                    Savegames.Add(loadedGameState);
+                    var loadedGameState = UnityEngine.JsonUtility.FromJson<GameState>(gameStateJson);
+
+                    Savegames.Add(new Savegame()
+                    {
+                        PlanetsVisited = loadedGameState.PlanetsVisited,
+                        SavedOn = loadedGameState.SavedOn,
+                        RawSource = gameStateJson
+                    });
                 }
             }
 

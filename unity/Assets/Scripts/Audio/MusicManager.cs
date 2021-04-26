@@ -28,10 +28,7 @@ public class MusicManager : MonoBehaviour
             {
                 Core.GameState.Options.backgroundVolume = value;
 
-                foreach (var audioSource in this.AudioSources)
-                {
-                    audioSource.volume = value;
-                }
+                SetVolume(value);
             }
         }
     }
@@ -63,6 +60,14 @@ public class MusicManager : MonoBehaviour
             {
                 this.Unmute();
             }
+        }
+    }
+
+    internal void SetVolume(float backgroundVolume)
+    {
+        foreach (var audioSource in this.AudioSources)
+        {
+            audioSource.volume = backgroundVolume;
         }
     }
 

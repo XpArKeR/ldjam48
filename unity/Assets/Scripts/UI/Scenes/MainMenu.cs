@@ -1,7 +1,8 @@
 
+using System;
+using System.Collections.Generic;
+
 using Assets.Scripts;
-using Assets.Scripts.Constants;
-using Assets.Scripts.Ships;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +11,12 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject MusicPlayer;
     public GameObject MainMenuContainer;
+    public GameObject LoadSavegameContainer;
     public GameObject OptionsContainer;
     public GameObject CreditsContainer;
+
+    public List<SaveGameSlotMenu> SavegameSlots;
+
     public Slider BackgroundVolumeSlider;
     public Toggle AnimationEnabledToggle;
     public Image sunShader;
@@ -38,13 +43,34 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        Core.GameState.Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]);
+        Core.StartGame();
+    }
 
-        Core.GameState.PlanetsVisited = 0;
+    public void ShowMainMenu()
+    {
+        SetVisible(mainMenu: true);
+    }
 
-        Core.GameState.Planets.Clear();
-        Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
-        Core.ChangeScene(SceneNames.Far);
+    public void ShowLoadSavegame()
+    {
+        for (int i = 0; i < this.SavegameSlots.Count; i++)
+        {
+            var savegameSlot = this.SavegameSlots[i];
+
+            savegameSlot.Savegame = Core.Savegames[i];
+        }
+
+        SetVisible(loadSavegameContainer: true);
+    }
+
+    public void LoadGameState(SaveGameSlotMenu saveGameSlotMenu)
+    {
+        if (saveGameSlotMenu.Savegame != default)
+        {
+            var gameState = UnityEngine.JsonUtility.FromJson<GameState>(saveGameSlotMenu.Savegame.RawSource);
+
+            Core.StartGame(gameState);
+        }
     }
 
     public void ShowOptions()
@@ -52,9 +78,7 @@ public class MainMenu : MonoBehaviour
         this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
         this.AnimationEnabledToggle.isOn = Core.GameState.Options.AreAnimationsEnabled;
 
-        this.MainMenuContainer.SetActive(false);
-        this.OptionsContainer.SetActive(true);
-        this.CreditsContainer.SetActive(false);
+        SetVisible(optionsContainer: true);
     }
 
     public void OnBackgroundSliderChanged()
@@ -62,28 +86,22 @@ public class MainMenu : MonoBehaviour
         Core.MusicManager.Volume = BackgroundVolumeSlider.value;
     }
 
-    public void ShowMainMenu()
+    public void OnAnimationEnabledToggleValueChanged()
     {
-        this.MainMenuContainer.SetActive(true);
-        this.OptionsContainer.SetActive(false);
-        this.CreditsContainer.SetActive(false);
-    }
-
-    public void LoadGame()
-    {
-
+        Core.GameState.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 
     public void ShowCredits()
     {
-        this.MainMenuContainer.SetActive(false);
-        this.OptionsContainer.SetActive(false);
-        this.CreditsContainer.SetActive(true);
+        SetVisible(creditsConatiner: true);
     }
 
-    public void OnAnimationEnabledToggleValueChanged()
+    private void SetVisible(Boolean mainMenu = false, Boolean loadSavegameContainer = false, Boolean optionsContainer = false, Boolean creditsConatiner = false)
     {
-        Core.GameState.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
+        this.MainMenuContainer.SetActive(mainMenu);
+        this.LoadSavegameContainer.SetActive(loadSavegameContainer);
+        this.OptionsContainer.SetActive(optionsContainer);
+        this.CreditsContainer.SetActive(creditsConatiner);
     }
 
     public void Quit()

@@ -10,8 +10,8 @@ public class SaveGameSlotMenu : MonoBehaviour
     public Text Title;
     public Text SavedOn;
 
-    private GameState gameState;
-    public GameState GameState
+    private Savegame gameState;
+    public Savegame Savegame
     {
         get
         {
@@ -34,10 +34,10 @@ public class SaveGameSlotMenu : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (this.GameState != default)
+        if (this.Savegame != default)
         {
-            this.Title.text = String.Format("Planets visited: {0}", this.GameState.PlanetsVisited);
-            this.SavedOn.text = this.GameState.SavedOn.ToString("G");
+            this.Title.text = String.Format("Planets visited: {0}", this.Savegame.PlanetsVisited);
+            this.SavedOn.text = this.Savegame.SavedOn.ToString("G");
         }
         else
         {

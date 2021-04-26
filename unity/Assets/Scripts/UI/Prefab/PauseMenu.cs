@@ -77,9 +77,12 @@ public class PauseMenu : MonoBehaviour
 
         File.WriteAllText(fileName, gameStateString);
 
-        var clonedGamestate = UnityEngine.JsonUtility.FromJson<GameState>(gameStateString);
-
-        Core.Savegames[slotIndex] = clonedGamestate;
+        Core.Savegames[slotIndex] = new Savegame()
+        {
+            PlanetsVisited = Core.GameState.PlanetsVisited,
+            SavedOn = Core.GameState.SavedOn,
+            RawSource = gameStateString
+        };
 
         this.HideSaveGameArea();
     }
@@ -117,7 +120,7 @@ public class PauseMenu : MonoBehaviour
         {
             var savegameSlot = this.SavegameSlots[i];
 
-            savegameSlot.GameState = Core.Savegames[i];
+            savegameSlot.Savegame = Core.Savegames[i];
         }
     }
 

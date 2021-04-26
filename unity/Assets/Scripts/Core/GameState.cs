@@ -178,13 +178,5 @@ namespace Assets.Scripts
                 }
             }
         }
-
-        public Scene ActiveScene
-        {
-            get
-            {
-                return SceneManager.GetActiveScene();
-            }
-        }
     }
 }
