@@ -6,15 +6,21 @@ using Assets.Scripts;
 using Assets.Scripts.Constants;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public List<SaveGameSlotMenu> SavegameSlots;
 
     public GameObject menu;
+    public GameObject gameView;
     public GameObject menuArea;
     public GameObject saveArea;
-    public GameObject gameView;
+    public GameObject optionsArea;
+
+
+    public Slider BackgroundVolumeSlider;
+    public Toggle AnimationEnabledToggle;
 
     void Start()
     {
@@ -52,6 +58,19 @@ public class PauseMenu : MonoBehaviour
             HideSaveGameArea();
         }
     }
+
+    public void ToggleOptionsVisible()
+    {
+        if (optionsArea.activeSelf)
+        {
+            HideOptionsGameArea();
+        }
+        else
+        {
+            ShowOptionsGameArea();
+        }
+    }
+
 
     public void SaveGameSlotSelected(SaveGameSlotMenu slot)
     {
@@ -92,6 +111,18 @@ public class PauseMenu : MonoBehaviour
         Core.ChangeScene(SceneNames.MainMenu);
     }
 
+    public void OnBackgroundSliderChanged()
+    {
+        Core.MusicManager.Volume = BackgroundVolumeSlider.value;
+    }
+
+    public void OnAnimationEnabledToggleValueChanged()
+    {
+        Core.GameState.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
+    }
+
+
+
     public void Hide()
     {
         if (menuArea.activeSelf)
@@ -103,6 +134,7 @@ public class PauseMenu : MonoBehaviour
         gameView.SetActive(true);
     }
 
+
     public void Show()
     {
         CursorMode cursorMode = CursorMode.Auto;
@@ -110,6 +142,23 @@ public class PauseMenu : MonoBehaviour
         menu.SetActive(true);
         gameView.SetActive(false);
     }
+
+    private void ShowOptionsGameArea()
+    {
+
+        this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
+        this.AnimationEnabledToggle.isOn = Core.GameState.Options.AreAnimationsEnabled;
+
+        menuArea.SetActive(false);
+        optionsArea.SetActive(true);
+    }
+
+    private void HideOptionsGameArea()
+    {
+        menuArea.SetActive(true);
+        optionsArea.SetActive(false);
+    }
+
 
     private void ShowSaveGameArea()
     {
