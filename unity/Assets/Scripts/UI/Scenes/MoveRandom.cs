@@ -65,7 +65,7 @@ public class MoveRandom : MonoBehaviour
 
     private Vector3 GetRandomDirection()
     {
-        float x = UnityEngine.Random.Range(-speed, 2 * speed);
+        float x = UnityEngine.Random.Range(-speed, 3 * speed);
         float y = UnityEngine.Random.Range(-speed, speed);
         return new Vector3(x * Time.deltaTime, y * Time.deltaTime, 0);
     }
