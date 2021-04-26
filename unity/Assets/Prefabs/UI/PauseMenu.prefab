@@ -593,7 +593,7 @@ PrefabInstance:
       objectReference: {fileID: 8730495564948714985}
     - target: {fileID: 865336203673747623, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleMenu
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 865336203673747623, guid: b0768533e2d252d49bde7e20cee319e2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
