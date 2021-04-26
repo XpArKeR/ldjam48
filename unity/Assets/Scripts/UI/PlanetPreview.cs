@@ -35,12 +35,15 @@ public class PlanetPreview : MonoBehaviour
         {
             Core.GameState.CurrentTarget = planet;
             
-            scannerField.Scan();
-            Scan();
+            scannerField.Scan(() =>
+            {
+                Scan();
 
-            //DeleteRandomNotScannedPlanet(Core.GameState.Planets);
+                DeleteRandomNotScannedPlanet(Core.GameState.Planets);
 
-            //Core.ChangeScene(SceneNames.Approach);
+                Core.ChangeScene(SceneNames.Approach);
+            });
+            
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Approach)
         {

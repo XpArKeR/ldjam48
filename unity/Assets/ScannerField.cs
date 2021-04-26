@@ -8,6 +8,7 @@ public class ScannerField : MonoBehaviour
     private float anchorY;
 
     private float changeAmount;
+    private Action onCompleteAction;
     private Int32 currentItteration;
 
     public Int32 HalfIterations;
@@ -41,6 +42,7 @@ public class ScannerField : MonoBehaviour
         if (currentItteration >= HalfIterations)
         {
             this.gameObject.SetActive(false);
+            onCompleteAction.Invoke();
         }
         
         if (IsMovingDownwards)
@@ -68,11 +70,16 @@ public class ScannerField : MonoBehaviour
         ScanBar.rectTransform.anchorMax = new Vector2(1, anchorY + Thickness);
     }
 
-    public void Scan()
+    public void Scan(Action onCompleteAction)
     {
-        this.currentItteration = 0;
-        this.gameObject.SetActive(true);
-        this.AudioSource.Play();
+
+        if (!this.gameObject.activeSelf)
+        {
+            this.onCompleteAction = onCompleteAction;
+            this.currentItteration = 0;
+            this.gameObject.SetActive(true);
+            this.AudioSource.Play();
+        }
     }
 
     private float CalculateChange()

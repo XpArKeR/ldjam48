@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     public Slider BackgroundVolumeSlider;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
-    private static readonly float angle = 1.5f;
+    private static readonly float angle = 5f;
 
     private void Start()
     {
