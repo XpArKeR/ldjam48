@@ -1,5 +1,5 @@
 #### Required ####
-- Credits Page
+
 
 #### Nice to have ####
 - ShipSize (Consumption variation)
@@ -16,10 +16,11 @@
 - Cash Shop
 
 
+#### Done ####
+- Credits Page
 
 
-
-
-Color Code Yellow:
+#### ColorCodes ####
+Yellow Text:
 E2F149
 

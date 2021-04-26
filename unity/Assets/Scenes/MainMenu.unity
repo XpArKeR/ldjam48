@@ -2046,7 +2046,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Loads and loads of Cookies (and coffee)
+  m_Text: An ludicrous amount Cookies and coffee!
 --- !u!222 &827300946
 CanvasRenderer:
   m_ObjectHideFlags: 0
