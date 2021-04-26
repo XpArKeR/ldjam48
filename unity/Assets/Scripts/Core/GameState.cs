@@ -155,15 +155,15 @@ namespace Assets.Scripts
         }
 
         [SerializeField]
-        private string savedOnString;
+        private Int64 savedOnTicks;
         private DateTime? savedOn;
         public DateTime SavedOn
         {
             get
             {
-                if ((!savedOn.HasValue) && (!String.IsNullOrEmpty(savedOnString)))
+                if ((!savedOn.HasValue) && (savedOnTicks > 0))
                 {
-                    savedOn = Convert.ToDateTime(savedOnString);
+                    savedOn = new DateTime(savedOnTicks);
                 }
 
                 return savedOn.GetValueOrDefault();
@@ -173,7 +173,7 @@ namespace Assets.Scripts
                 if (savedOn != value)
                 {
                     savedOn = value;
-                    savedOnString = Convert.ToString(value);
+                    savedOnTicks = value.Ticks;
                 }
             }
         }
