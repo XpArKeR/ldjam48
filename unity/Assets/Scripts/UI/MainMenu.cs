@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public GameObject MusicPlayer;
     public GameObject MainMenuContainer;
     public GameObject OptionsContainer;
+    public GameObject CreditsContainer;
     public Slider BackgroundVolumeSlider;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
@@ -48,9 +49,10 @@ public class MainMenu : MonoBehaviour
     public void ShowOptions()
     {
         this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
-
+                        
         this.MainMenuContainer.SetActive(false);
         this.OptionsContainer.SetActive(true);
+        this.CreditsContainer.SetActive(false);
     }
 
     public void OnBackgroundSliderChanged()
@@ -58,15 +60,23 @@ public class MainMenu : MonoBehaviour
         Core.MusicManager.Volume = BackgroundVolumeSlider.value;
     }
 
-    public void CloseOptions()
+    public void ShowMainMenu()
     {
         this.MainMenuContainer.SetActive(true);
         this.OptionsContainer.SetActive(false);
+        this.CreditsContainer.SetActive(false);
     }
 
     public void LoadGame()
     {
 
+    }
+
+    public void ShowCredits()
+    {
+        this.MainMenuContainer.SetActive(false);
+        this.OptionsContainer.SetActive(false);
+        this.CreditsContainer.SetActive(true);
     }
 
     public void Quit()
