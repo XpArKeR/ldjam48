@@ -57,7 +57,7 @@ namespace Assets.Scripts
         {
             if ((currentBackground == default) && (!String.IsNullOrEmpty(GameState?.CurrentBackground)))
             {
-                currentBackground = ResourceCache.GetSprite(GameState.CurrentBackground);
+                currentBackground = ResourceCache.GetSprite(Path.Combine("Planets", "Sprites", GameState.CurrentBackground));
             }
 
             return currentBackground;
