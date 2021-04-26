@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +6,10 @@ public class MoveRandom : MonoBehaviour
 {
 
     private bool move = false;
-    private float speed = 10f;
+    private float speed = 30f;
     private float wobble;
-    private float spinnUp = 3.7f;
+    private float spinnUpDefaultValue = 1.7f;
+    private float spinnUp;
     private Vector3 scaleChange = new Vector3(0.01f, 0.01f, 0);
     public Image particles;
 
@@ -18,6 +17,7 @@ public class MoveRandom : MonoBehaviour
     private void Start()
     {
         wobble = speed / 10f;
+
         if (particles != null)
         {
             particles.gameObject.SetActive(false);
@@ -27,7 +27,7 @@ public class MoveRandom : MonoBehaviour
     public void StartMoving()
     {
         move = true;
-        spinnUp = 3.7f;
+        spinnUp = spinnUpDefaultValue;
     }
 
     void Update()

@@ -14,6 +14,20 @@ public class HeaderMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Core.GameState?.Ship != default)
+        {
+            this.OxygenSlider?.SetMinMax(0, Core.GameState.Ship.MaxOxygenLevel);
+            this.FoodSlider?.SetMinMax(0, Core.GameState.Ship.MaxFoodLevel);
+            this.FuelSlider?.SetMinMax(0, Core.GameState.Ship.MaxFuelLevel);
+
+            var planetsVisitedText = Core.GameState.PlanetsVisited.ToString();
+
+            if (this.PlanetsVisitedText?.text != planetsVisitedText)
+            {
+                this.PlanetsVisitedText.text = planetsVisitedText;
+            }
+        }
+
         UpdateValues();
     }
 
@@ -47,11 +61,11 @@ public class HeaderMenu : MonoBehaviour
                 this.FuelSlider.value = Core.GameState.Ship.FuelLevel;
             }
 
-            var fuelLevelString = Core.GameState.PlanetsVisited.ToString();
+            var planetsVisitedText = Core.GameState.PlanetsVisited.ToString();
 
-            if (this.PlanetsVisitedText?.text != fuelLevelString)
+            if (this.PlanetsVisitedText?.text != planetsVisitedText)
             {
-                this.PlanetsVisitedText.text = Core.GameState.PlanetsVisited.ToString();
+                this.PlanetsVisitedText.text = planetsVisitedText;
             }
         }
     }

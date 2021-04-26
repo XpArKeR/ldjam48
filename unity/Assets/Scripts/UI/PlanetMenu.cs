@@ -40,7 +40,7 @@ public class PlanetMenu : MonoBehaviour
 
         Core.MusicManager.Mute();
 
-        var clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "FlyOff"));
+        var clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "FlyOff-Short"));
         AudioSource.clip = clip;
 
         AudioSource.Play();
