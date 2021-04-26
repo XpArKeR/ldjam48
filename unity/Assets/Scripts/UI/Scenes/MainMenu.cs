@@ -34,6 +34,10 @@ public class MainMenu : MonoBehaviour
     private void Update()
     {
         sunShader.transform.Rotate(rotationAxis, angle * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowMainMenu();
+        }
     }
 
     public void StartGame()
