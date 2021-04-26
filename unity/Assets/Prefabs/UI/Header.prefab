@@ -1221,6 +1221,7 @@ GameObject:
   - component: {fileID: 4893408595527475574}
   - component: {fileID: 8358505131788936676}
   - component: {fileID: 4296367042324976912}
+  - component: {fileID: 8868743431467653428}
   m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
@@ -1308,6 +1309,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 5.5
+--- !u!114 &8868743431467653428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803870071016880321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &9022063919136927561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,6 +1483,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7083583591639990947}
     m_Modifications:
+    - target: {fileID: 163237153305429073, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: -1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: -1.51
+      objectReference: {fileID: 0}
     - target: {fileID: 651771459238972394, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
       propertyPath: m_Text
       value: Food
@@ -1627,6 +1653,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2878601644627067718}
     m_Modifications:
+    - target: {fileID: 163237153305429073, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: -1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: -1.51
+      objectReference: {fileID: 0}
     - target: {fileID: 651771459238972394, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
       propertyPath: m_Text
       value: Fuel
@@ -1789,6 +1823,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 755383407943984322}
     m_Modifications:
+    - target: {fileID: 163237153305429073, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: -1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: -1.51
+      objectReference: {fileID: 0}
     - target: {fileID: 651771459238972394, guid: de02ac4d5527cfa46871db4e50634756, type: 3}
       propertyPath: m_Text
       value: Oxygen
