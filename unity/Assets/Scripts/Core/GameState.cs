@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Ships;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -175,6 +174,23 @@ namespace Assets.Scripts
                 {
                     savedOn = value;
                     savedOnString = Convert.ToString(value);
+                }
+            }
+        }
+
+        [SerializeField]
+        private String currentBackground;
+        public String CurrentBackground
+        {
+            get
+            {
+                return this.currentBackground;
+            }
+            set
+            {
+                if (this.currentBackground != value)
+                {
+                    this.currentBackground = value;
                 }
             }
         }

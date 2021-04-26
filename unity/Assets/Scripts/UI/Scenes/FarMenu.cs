@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Assets.Scripts;
 using Assets.Scripts.Constants;
+using Assets.Scripts.Extensions;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,31 +39,29 @@ public class FarMenu : MovingSceneBase
 
     private void SelectAndSetBackGround()
     {
-        Sprite background = SelectRandomBackground();
-        Core.currentBackground = background;
+        Sprite background = backgrounds.GetRandomEntry();
+
+        Core.SetCurrentBackground(background);
         currentBackground.sprite = background;
     }
 
-    private Sprite SelectRandomBackground()
-    {
-        int index = UnityEngine.Random.Range(0, backgrounds.Count);
-        return backgrounds[index];
-    }
-
     private void RefreshPlanetViews()
-    {        
-        for (int i = 0; i < previews.Count; i++)
+    {
+        if (Core.GameState.Planets.Count == previews.Count)
         {
-            PlanetPreview planetPreview = previews[i];
-            Planet planet = Core.GameState.Planets[i];
-            planetPreview.planet = planet;
+            for (int i = 0; i < previews.Count; i++)
+            {
+                PlanetPreview planetPreview = previews[i];
+                Planet planet = Core.GameState.Planets[i];
+                planetPreview.planet = planet;
 
-            Text type = planetPreview.type;
-            type.text = planet.Type;
+                Text type = planetPreview.type;
+                type.text = planet.Type;
 
 
-            Image planetImage = planetPreview.planetBase;
-            planetImage.color = planet.BaseColor;
+                Image planetImage = planetPreview.planetBase;
+                planetImage.color = planet.BaseColor;
+            }
         }
     }
 }

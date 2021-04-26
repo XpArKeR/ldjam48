@@ -13,7 +13,7 @@ public class CloseMenu : MovingSceneBase
     void Start()
     {
         RefreshPlanetViews();
-        currentBackground.sprite = Core.currentBackground;
+        currentBackground.sprite = Core.GetBackgroundSprite();
     }
 
     public override void SelectPlanet(PlanetPreview planetPreview)
