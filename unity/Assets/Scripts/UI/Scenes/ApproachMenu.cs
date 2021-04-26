@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ApproachMenu : MovingSceneBase
 {
-    public List<PlanetPreview> previews;
     public Image currentBackground;
 
     void Start()
@@ -31,9 +30,9 @@ public class ApproachMenu : MovingSceneBase
         }
     }
 
-    private void OnScanCompleted()
+    protected override void OnScanCompleted()
     {
-        Core.GameState.Planets.DeleteRandomEntry(p => !p.Scanned);
+        base.OnScanCompleted();
 
         this.Move(Core.GameState.ConsumptionRates.Scan, SceneNames.Close);
     }

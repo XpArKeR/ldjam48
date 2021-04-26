@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class FarMenu : MovingSceneBase
 {
-    public List<PlanetPreview> previews;
     public Image currentBackground;
     public List<Sprite> backgrounds;
 
@@ -24,26 +23,9 @@ public class FarMenu : MovingSceneBase
         RefreshPlanetViews();
     }
 
-    public override void SelectPlanet(PlanetPreview planetPreview)
+    protected override void OnScanCompleted()
     {
-        base.SelectPlanet(planetPreview);
-
-        foreach (var preview in this.previews)
-        {
-            preview.Button.interactable = false;
-        }
-
-        planetPreview.Scan(onScanCompleted);
-    }
-
-    private void onScanCompleted()
-    {
-        Core.GameState.Planets.DeleteRandomEntry(p => !p.Scanned);
-
-        foreach (var preview in this.previews)
-        {
-            preview.Button.interactable = true;
-        }
+        base.OnScanCompleted();
 
         this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Approach);
     }
