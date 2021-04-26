@@ -63,3 +63,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.vsconfig
+/unity/ProjectSettings/Packages/com.unity.connect.share/Settings.json
