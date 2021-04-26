@@ -22,6 +22,7 @@ public class PlanetPreview : MonoBehaviour
     public SubRangeDisplayer foodRangeDisplayer;
     public SubRangeDisplayer fuelRangeDisplayer;
 
+    public ScannerField scannerField;
 
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
@@ -33,10 +34,13 @@ public class PlanetPreview : MonoBehaviour
         if (SceneManager.GetActiveScene().name == SceneNames.Far)
         {
             Core.GameState.CurrentTarget = planet;
+            
+            scannerField.Scan();
             Scan();
-            DeleteRandomNotScannedPlanet(Core.GameState.Planets);
 
-            Core.ChangeScene(SceneNames.Approach);
+            //DeleteRandomNotScannedPlanet(Core.GameState.Planets);
+
+            //Core.ChangeScene(SceneNames.Approach);
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Approach)
         {
