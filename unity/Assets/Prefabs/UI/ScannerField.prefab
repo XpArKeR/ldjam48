@@ -53,7 +53,7 @@ MonoBehaviour:
   IsMovingDownwards: 1
   ScanBar: {fileID: 5620843868709706477}
   Thickness: 0.02
-  Clip: {fileID: 8300000, guid: 452dd9574d0b26749922b45ff3c60b63, type: 3}
+  AudioSource: {fileID: 1380268680098953903}
 --- !u!1 &3210046577813984766
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 452dd9574d0b26749922b45ff3c60b63, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8462e4d903caa0c4e919335a44d531b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
