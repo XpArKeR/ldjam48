@@ -5,7 +5,6 @@ using Assets.Scripts.Constants;
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class GameOverMenu : MonoBehaviour
         Core.MusicManager.Stop();
         PlanesVisitedText.text = Core.GameState.PlanetsVisited.ToString();
     }
-        
+
     // Update is called once per frame
     void Update()
     {
