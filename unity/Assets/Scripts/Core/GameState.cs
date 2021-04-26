@@ -7,8 +7,23 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
+    [Serializable]
     public class GameState
     {
+        public GameState()
+        {
+            id = Guid.NewGuid();
+        }
+
+        public Guid id;
+        public Guid ID
+        {
+            get
+            {
+                return this.id;
+            }
+        }
+
         public Boolean IsVictorious { get; set; }
         public Planet CurrentTarget { get; set; }
         public string CurrentScene { get; set; }
@@ -40,5 +55,8 @@ namespace Assets.Scripts
                 return SceneManager.GetActiveScene();
             }
         }
+
+
+        public GameStateOptions Options { get; internal set; }
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using Assets.Scripts;
+
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -14,22 +16,21 @@ public class MusicManager : MonoBehaviour
 
     private float? oldVolume;
 
-    private float volume = 0.125f;
     public float Volume
     {
         get
         {
-            return this.volume;
+            return Core.GameState.Options.backgroundVolume;
         }
         set
         {
-            if (this.volume != value)
+            if (Core.GameState.Options.backgroundVolume != value)
             {
-                this.volume = value;
+                Core.GameState.Options.backgroundVolume = value;
 
                 foreach (var audioSource in this.AudioSources)
                 {
-                    audioSource.volume = this.volume;
+                    audioSource.volume = value;
                 }
             }
         }

@@ -1,5 +1,8 @@
 #### Required ####
 
+#### WIP ####
+R: Disable Animations;
+
 
 #### Nice to have ####
 - ShipSize (Consumption variation)
