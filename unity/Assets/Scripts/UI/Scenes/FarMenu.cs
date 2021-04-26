@@ -1,12 +1,13 @@
-using System;
 using System.Collections.Generic;
 
 using Assets.Scripts;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Extensions;
 
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FarMenu : MonoBehaviour
+public class FarMenu : MovingSceneBase
 {
     public List<PlanetPreview> previews;
     public Image currentBackground;
@@ -21,6 +22,25 @@ public class FarMenu : MonoBehaviour
     void Start()
     {
         RefreshPlanetViews();
+    }
+
+    public override void SelectPlanet(PlanetPreview planetPreview)
+    {
+        base.SelectPlanet(planetPreview);
+
+        foreach (var preview in this.previews)
+        {
+            preview.Button.interactable = false;
+        }
+
+        planetPreview.Scan(onScanCompleted);
+    }
+
+    private void onScanCompleted()
+    {
+        Core.GameState.Planets.DeleteRandomEntry(p => !p.Scanned);
+
+        this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Approach);
     }
 
     private void SelectAndSetBackGround()

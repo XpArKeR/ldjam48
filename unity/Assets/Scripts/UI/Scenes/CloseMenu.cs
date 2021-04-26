@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 
 using Assets.Scripts;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Extensions;
 
-using UnityEngine;
 using UnityEngine.UI;
 
-public class CloseMenu : MonoBehaviour
+public class CloseMenu : MovingSceneBase
 {
     public List<PlanetPreview> previews;
     public Image currentBackground;
@@ -14,6 +15,27 @@ public class CloseMenu : MonoBehaviour
     {
         RefreshPlanetViews();
         currentBackground.sprite = Core.currentBackground;
+    }
+
+    public override void SelectPlanet(PlanetPreview planetPreview)
+    {
+        base.SelectPlanet(planetPreview);
+
+        if (planetPreview.IsScanned)
+        {
+            this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Planet);
+        }
+        else
+        {
+            planetPreview.Scan(OnScanCompleted);
+        }
+    }
+
+    private void OnScanCompleted()
+    {
+        Core.GameState.Planets.DeleteRandomEntry(p => !p.Scanned);
+
+        this.Move(Core.GameState.ConsumptionRates.Scan, SceneNames.Close);
     }
 
     private void RefreshPlanetViews()
@@ -33,11 +55,11 @@ public class CloseMenu : MonoBehaviour
 
             if (planet == Core.GameState.CurrentTarget)
             {
-                planetPreview.Scan();
+                planetPreview.RevealResources();
             }
             if (Core.GameState.Planets[i].Scanned)
             {
-                planetPreview.Scan();
+                planetPreview.RevealResources();
             }
 
         }
