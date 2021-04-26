@@ -20,8 +20,6 @@ public class MovingSceneBase : MonoBehaviour
         {
             preview.Button.interactable = false;
         }
-
-        planetPreview.Scan(OnScanCompleted);
     }
 
     protected virtual void OnScanCompleted()

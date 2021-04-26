@@ -399,19 +399,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8473213415118951667}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5787618578487446646}
-        m_TargetAssemblyTypeName: PlanetPreview, Assembly-CSharp
-        m_MethodName: SelectThisPlanet
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3571021812278662663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e08d14a707e0e4ba9311fdf708df09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanned: 0
+  IsScanned: 0
   Button: {fileID: 4229510368237298818}
   planetBase: {fileID: 5787618577090616770}
   planetLand: {fileID: 3110192201580901769}

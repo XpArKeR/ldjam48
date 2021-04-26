@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 using Assets.Scripts;
 using Assets.Scripts.Constants;
-using Assets.Scripts.Extensions;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +20,13 @@ public class FarMenu : MovingSceneBase
     void Start()
     {
         RefreshPlanetViews();
+    }
+
+    public override void SelectPlanet(PlanetPreview planetPreview)
+    {
+        base.SelectPlanet(planetPreview);
+
+        planetPreview.Scan(OnScanCompleted);
     }
 
     protected override void OnScanCompleted()
