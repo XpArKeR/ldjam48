@@ -48,16 +48,28 @@ public class PlanetMenu : MonoBehaviour
 
         Core.MusicManager.Mute();
 
-        var clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "FlyOff-Short"));
-        AudioSource.clip = clip;
-
-        AudioSource.Play();
-
-        StartCoroutine(AudioSource.WaitForSound(() =>
+        if (Core.GameState.Options.AreAnimationsEnabled)
         {
-            Core.ChangeScene(SceneNames.Far);
-            Core.MusicManager.Unmute();
-        }));
+            var clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "FlyOff-Short"));
+            AudioSource.clip = clip;
+
+            AudioSource.Play();
+
+            StartCoroutine(AudioSource.WaitForSound(() =>
+            {
+                this.ChangeScene();
+            }));
+        }
+        else
+        {
+            this.ChangeScene();
+        }
+    }
+
+    private void ChangeScene()
+    {
+        Core.ChangeScene(SceneNames.Far);
+        Core.MusicManager.Unmute();
     }
 
     public void LoadTargetPlanet()
@@ -127,6 +139,7 @@ public class PlanetMenu : MonoBehaviour
             var leftoverValue = Core.GameState.Ship.AddFood(Core.GameState.CurrentTarget.Resources.Food.Value);
             Core.GameState.CurrentTarget.Resources.Food.Value = leftoverValue;
             planetFood.text = Core.GameState.CurrentTarget.Resources.Food.Value.ToString("N0");
+
 
             AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Food"));
             AudioSource.Play();

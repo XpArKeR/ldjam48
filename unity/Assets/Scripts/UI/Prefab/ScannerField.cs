@@ -1,5 +1,7 @@
 using System;
 
+using Assets.Scripts;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,8 +76,16 @@ public class ScannerField : MonoBehaviour
         {
             this.onCompleteAction = onCompleteAction;
             this.currentItteration = 0;
-            this.gameObject.SetActive(true);
-            this.AudioSource.Play();
+
+            if (Core.GameState.Options.AreAnimationsEnabled)
+            {
+                this.gameObject.SetActive(true);
+                this.AudioSource.Play();
+            }
+            else
+            {
+                onCompleteAction();
+            }
         }
     }
 

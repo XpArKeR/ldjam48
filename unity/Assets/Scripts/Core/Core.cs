@@ -11,7 +11,6 @@ namespace Assets.Scripts
     {
         internal static Sprite currentBackground;
 
-
         private readonly static ResourceCache resourceCache = new ResourceCache();
         public static ResourceCache ResourceCache
         {
@@ -21,8 +20,14 @@ namespace Assets.Scripts
             }
         }
 
-        private static GameState gameState = new GameState();
-
+        private static GameState gameState = new GameState()
+        {
+            Options = new GameStateOptions()
+            {
+                AreAnimationsEnabled = true,
+                BackgroundVolume = 0.125f
+            }
+        };
         public static GameState GameState
         {
             get

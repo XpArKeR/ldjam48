@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject OptionsContainer;
     public GameObject CreditsContainer;
     public Slider BackgroundVolumeSlider;
+    public Toggle AnimationEnabledToggle;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
     private static readonly float angle = 5f;
@@ -49,7 +50,8 @@ public class MainMenu : MonoBehaviour
     public void ShowOptions()
     {
         this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
-                        
+        this.AnimationEnabledToggle.isOn = Core.GameState.Options.AreAnimationsEnabled;
+
         this.MainMenuContainer.SetActive(false);
         this.OptionsContainer.SetActive(true);
         this.CreditsContainer.SetActive(false);
@@ -77,6 +79,11 @@ public class MainMenu : MonoBehaviour
         this.MainMenuContainer.SetActive(false);
         this.OptionsContainer.SetActive(false);
         this.CreditsContainer.SetActive(true);
+    }
+
+    public void OnAnimationEnabledToggleValueChanged()
+    {
+        Core.GameState.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 
     public void Quit()
