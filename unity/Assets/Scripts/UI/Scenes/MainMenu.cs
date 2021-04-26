@@ -19,12 +19,16 @@ public class MainMenu : MonoBehaviour
 
     public Slider BackgroundVolumeSlider;
     public Toggle AnimationEnabledToggle;
+    public Text VersionText
+        ;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
     private static readonly float angle = 5f;
 
     private void Start()
     {
+        this.VersionText.text = String.Format("Version: {0}", Application.version);
+
         if (Core.MusicManager == default)
         {
             Core.MusicManager = this.MusicPlayer.GetComponent<MusicManager>();

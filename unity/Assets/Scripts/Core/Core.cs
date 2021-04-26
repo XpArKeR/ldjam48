@@ -126,7 +126,7 @@ namespace Assets.Scripts
         {
             Savegames = new List<Savegame>();
 
-            var directoryPath = Path.Combine(Application.persistentDataPath, "SaveGames");
+            var directoryPath = Path.Combine(Application.persistentDataPath, "Savegames");
 
             if (Directory.Exists(directoryPath))
             {
