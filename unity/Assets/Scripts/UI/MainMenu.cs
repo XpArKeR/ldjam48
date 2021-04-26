@@ -12,6 +12,9 @@ public class MainMenu : MonoBehaviour
     public GameObject MainMenuContainer;
     public GameObject OptionsContainer;
     public Slider BackgroundVolumeSlider;
+    public Image sunShader;
+    private Vector3 rotationAxis = new Vector3(0, 0, 1);
+    private static readonly float angle = 1.5f;
 
     private void Start()
     {
@@ -24,6 +27,11 @@ public class MainMenu : MonoBehaviour
         {
             Core.MusicManager.Resume();
         }
+    }
+
+    private void Update()
+    {
+        sunShader.transform.Rotate(rotationAxis, angle * Time.deltaTime);
     }
 
     public void StartGame()
