@@ -896,6 +896,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1119465407}
     m_Modifications:
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 651771459238972394, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
       propertyPath: m_Text
       value: Gather Fuel
@@ -2453,6 +2477,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 414928394}
     m_Modifications:
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 163237153305429073, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 651771459238972394, guid: 7b698099c0eb1d146a590299f37fac6b, type: 3}
       propertyPath: m_Text
       value: Gather Food
