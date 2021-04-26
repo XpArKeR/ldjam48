@@ -1,25 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+
 using UnityEngine;
 
+[Serializable]
 public class Planet
 {
+    public String Type;
+    public Boolean Scanned;
+    public PlanetResources Resources;
+    public Color BaseColor;
+    public Color LandColor;
+    public Color CloudColor;
 
-
-    public string Type { get; set; }
-
-    public bool Scanned { get; set; }
-
-
-    public PlanetResources Resources { get; set; }
-
-
-    public Color BaseColor { get; set; }
-    public Color LandColor { get; set; }
-    public Color CloudColor { get; set; }
-
-    public Sprite LandSprite { get; set; }
-    public Sprite CloudSprite { get; set; }
-
-
+    public Sprite LandSprite;
+    public Sprite CloudSprite;
 }

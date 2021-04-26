@@ -2,16 +2,47 @@ using System;
 
 namespace Assets.Scripts.Ships
 {
+    [Serializable]
     public class SpaceShip
     {
         public SpaceShip()
         {
 
         }
-        public String TypeName { get; set; }
-        public ShipType ShipType { get; set; }
 
-        private float oxygenConsumption;
+        public String typeName;
+        public String TypeName
+        {
+            get
+            {
+                return this.typeName;
+            }
+            set
+            {
+                if (this.typeName != value)
+                {
+                    this.typeName = value;
+                }
+            }
+        }
+
+        public ShipType shipType;
+        public ShipType ShipType
+        {
+            get
+            {
+                return this.shipType;
+            }
+            set
+            {
+                if (this.shipType != value)
+                {
+                    this.shipType = value;
+                }
+            }
+        }
+
+        public float oxygenConsumption;
         public float OxygenConsumption
         {
             get
@@ -27,7 +58,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float oxygenLevel;
+        public float oxygenLevel;
         public float OxygenLevel
         {
             get
@@ -43,7 +74,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float maxOxygenLevel;
+        public float maxOxygenLevel;
         public float MaxOxygenLevel
         {
             get
@@ -59,7 +90,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float foodConsumption;
+        public float foodConsumption;
         public float FoodConsumption
         {
             get
@@ -75,7 +106,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float foodLevel;
+        public float foodLevel;
         public float FoodLevel
         {
             get
@@ -91,7 +122,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float maxFoodLevel;
+        public float maxFoodLevel;
         public float MaxFoodLevel
         {
             get
@@ -107,7 +138,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float fuelConsumption;
+        public float fuelConsumption;
         public float FuelConsumption
         {
             get
@@ -123,7 +154,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float fuelLevel;
+        public float fuelLevel;
         public float FuelLevel
         {
             get
@@ -139,7 +170,7 @@ namespace Assets.Scripts.Ships
             }
         }
 
-        private float maxFuelLevel;
+        public float maxFuelLevel;
         public float MaxFuelLevel
         {
             get
@@ -206,7 +237,7 @@ namespace Assets.Scripts.Ships
 
             return 0;
         }
-                
+
         private Boolean ConsumeResource(ref float level, float consumption, float consumptionFactor)
         {
             var hasEnoughtResource = true;
