@@ -14,3 +14,12 @@
 - Enemies
 - Random Events
 - Cash Shop
+
+
+
+
+
+
+Color Code Yellow:
+E2F149
+
