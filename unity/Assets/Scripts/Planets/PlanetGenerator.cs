@@ -1,7 +1,10 @@
-using Assets.Scripts;
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+using Assets.Scripts;
+using Assets.Scripts.Extensions;
+
 using UnityEngine;
 
 public static class PlanetGenerator
@@ -105,34 +108,14 @@ public static class PlanetGenerator
 
     public static Planet GeneratePlanet()
     {
-        PlanetType planetType = GetRandomPlanetType();
+        PlanetType planetType = planetTypes.GetRandomEntry();
 
         return GeneratePlanet(planetType);
     }
 
-    private static PlanetType GetRandomPlanetType()
-    {
-        int index = UnityEngine.Random.Range(0, planetTypes.Count);
-        return planetTypes[index];
-    }
-
-    private static Color ChooseRandomColor(List<Color> colors)
-    {
-        int index = UnityEngine.Random.Range(0, colors.Count);
-
-        return colors[index];
-    }
-
-    private static Sprite ChooseRandomSprite(List<string> sprites)
-    {
-        int index = UnityEngine.Random.Range(0, sprites.Count);
-
-        return LoadSprite(sprites[index]);
-    }
-
     private static Sprite LoadSprite(string spriteName)
     {
-        return Core.ResourceCache.GetSprite("Planets/Sprites/" + spriteName);
+        return Core.ResourceCache.GetSprite(Path.Combine("Planets", "Sprites", spriteName));
     }
 
     public static Planet GeneratePlanet(PlanetType planetType)
@@ -140,11 +123,11 @@ public static class PlanetGenerator
         Planet planet = new Planet()
         {
             Type = planetType.Name,
-            BaseColor = ChooseRandomColor(planetType.BaseColors),
-            LandColor = ChooseRandomColor(planetType.LandColors),
-            LandSprite = ChooseRandomSprite(planetType.LandSprites),
-            CloudColor = ChooseRandomColor(planetType.CloudColors),
-            CloudSprite = ChooseRandomSprite(planetType.CloudSprites),
+            BaseColor = planetType.BaseColors.GetRandomEntry(),
+            LandColor = planetType.LandColors.GetRandomEntry(),
+            LandSprite = LoadSprite(planetType.LandSprites.GetRandomEntry()),
+            CloudColor = planetType.CloudColors.GetRandomEntry(),
+            CloudSprite = LoadSprite(planetType.CloudSprites.GetRandomEntry()),
             Resources = GenerateResources(planetType)
         };
 
