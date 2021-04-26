@@ -70,7 +70,6 @@ public class ScannerField : MonoBehaviour
 
     public void Scan(Action onCompleteAction)
     {
-
         if (!this.gameObject.activeSelf)
         {
             this.onCompleteAction = onCompleteAction;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,59 +30,71 @@ public class PlanetPreview : MonoBehaviour
     public Vector2 hotSpot = Vector2.zero;
     public void SelectThisPlanet()
     {
-        var consumptionRate = Core.GameState.ConsumptionRates.Movement;
-
         if (SceneManager.GetActiveScene().name == SceneNames.Far)
         {
             Core.GameState.CurrentTarget = planet;
-            
+
             scannerField.Scan(() =>
             {
                 Scan();
 
                 DeleteRandomNotScannedPlanet(Core.GameState.Planets);
 
-                Core.ChangeScene(SceneNames.Approach);
+                this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Approach);
             });
-            
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Approach)
         {
+            Core.GameState.CurrentTarget = planet;
+
             if (this.scanned)
             {
-                Core.ChangeScene(SceneNames.Planet);
+                this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Planet);
             }
             else
             {
-                Core.GameState.CurrentTarget = planet;
-                Scan();
-                DeleteRandomNotScannedPlanet(Core.GameState.Planets);
-                Core.ChangeScene(SceneNames.Close);
+                scannerField.Scan(() =>
+                {
+                    Scan();
 
-                consumptionRate = Core.GameState.ConsumptionRates.Scan;
+                    DeleteRandomNotScannedPlanet(Core.GameState.Planets);
+
+                    this.Move(Core.GameState.ConsumptionRates.Scan, SceneNames.Close);
+                });
             }
         }
         else if (SceneManager.GetActiveScene().name == SceneNames.Close)
         {
+            Core.GameState.CurrentTarget = planet;
+
             if (this.scanned)
             {
-                Core.GameState.CurrentTarget = planet;
-                Core.ChangeScene(SceneNames.Planet);
+                this.Move(Core.GameState.ConsumptionRates.Movement, SceneNames.Planet);
             }
             else
             {
-                Core.GameState.CurrentTarget = planet;
-                Scan();
-                Core.ChangeScene(SceneNames.Close);
+                scannerField.Scan(() =>
+                {
+                    Scan();
 
-                consumptionRate = Core.GameState.ConsumptionRates.Scan;
+                    DeleteRandomNotScannedPlanet(Core.GameState.Planets);
+
+                    this.Move(Core.GameState.ConsumptionRates.Scan, SceneNames.Close);
+                });
             }
         }
+    }
 
+    private void Move(float consumptionRate, String sceneName)
+    {
         if (!Core.GameState.Ship.Consume(consumptionRate))
         {
             Core.ChangeScene(SceneNames.GameOver);
-        }        
+        }
+        else
+        {
+            Core.ChangeScene(sceneName);
+        }
     }
 
     private void DeleteRandomNotScannedPlanet(List<Planet> planets)
