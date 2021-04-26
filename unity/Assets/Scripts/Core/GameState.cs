@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Assets.Scripts.Ships;
 
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
@@ -15,7 +16,8 @@ namespace Assets.Scripts
             id = Guid.NewGuid();
         }
 
-        public Guid id;
+        [SerializeField]
+        private Guid id;
         public Guid ID
         {
             get
@@ -24,7 +26,8 @@ namespace Assets.Scripts
             }
         }
 
-        public Boolean isVictorious;
+        [SerializeField]
+        private Boolean isVictorious;
         public Boolean IsVictorious
         {
             get
@@ -40,7 +43,8 @@ namespace Assets.Scripts
             }
         }
 
-        public Planet currentTarget;
+        [SerializeField]
+        private Planet currentTarget;
         public Planet CurrentTarget
         {
             get
@@ -56,7 +60,8 @@ namespace Assets.Scripts
             }
         }
 
-        public String currentScene;
+        [SerializeField]
+        private String currentScene;
         public String CurrentScene
         {
             get
@@ -72,7 +77,8 @@ namespace Assets.Scripts
             }
         }
 
-        public ConsumptionRates consumptionRates;
+        [SerializeField]
+        private ConsumptionRates consumptionRates;
         public ConsumptionRates ConsumptionRates
         {
             get
@@ -88,7 +94,8 @@ namespace Assets.Scripts
             }
         }
 
-        public List<Planet> planets = new List<Planet>();
+        [SerializeField]
+        private List<Planet> planets = new List<Planet>();
         public List<Planet> Planets
         {
             get
@@ -97,6 +104,7 @@ namespace Assets.Scripts
             }
         }
 
+        [SerializeField]
         private SpaceShip ship;
         public SpaceShip Ship
         {
@@ -113,7 +121,8 @@ namespace Assets.Scripts
             }
         }
 
-        public Int32 planetsVisited;
+        [SerializeField]
+        private Int32 planetsVisited;
         public Int32 PlanetsVisited
         {
             get
@@ -129,7 +138,8 @@ namespace Assets.Scripts
             }
         }
 
-        public GameStateOptions options;
+        [SerializeField]
+        private GameStateOptions options;
         public GameStateOptions Options
         {
             get
@@ -145,6 +155,30 @@ namespace Assets.Scripts
             }
         }
 
+        [SerializeField]
+        private string savedOnString;
+        private DateTime? savedOn;
+        public DateTime SavedOn
+        {
+            get
+            {
+                if ((!savedOn.HasValue) && (!String.IsNullOrEmpty(savedOnString)))
+                {
+                    savedOn = Convert.ToDateTime(savedOnString);
+                }
+
+                return savedOn.GetValueOrDefault();
+            }
+            set
+            {
+                if (savedOn != value)
+                {
+                    savedOn = value;
+                    savedOnString = Convert.ToString(value);
+                }
+            }
+        }
+
         public Scene ActiveScene
         {
             get
@@ -152,7 +186,5 @@ namespace Assets.Scripts
                 return SceneManager.GetActiveScene();
             }
         }
-
-
     }
 }
