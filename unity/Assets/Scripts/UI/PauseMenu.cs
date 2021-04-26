@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
     {
         Core.ChangeScene(SceneNames.MainMenu);
     }
-
+    
     public void ToggleMenu()
     {
         if (menu.activeSelf == true)
