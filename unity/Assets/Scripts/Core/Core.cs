@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 using Assets.Scripts.Ships;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,15 +38,27 @@ namespace Assets.Scripts
             }
         }
 
-        public static MusicManager MusicManager{ get; set; }
+        public static MusicManager MusicManager { get; set; }
+        public static List<GameState> Savegames { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitGame()
         {
             LoadConsumptionRates();
+            LoadSavegames();
 
             PlanetGenerator.LoadPlanetTypes();
             ShipGenerator.LoadShipTypes();
+        }
+
+
+
+        public static void ChangeScene(String sceneName)
+        {
+            CursorMode cursorMode = CursorMode.Auto;
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
+            gameState.CurrentScene = sceneName;
+            SceneManager.LoadScene(sceneName);
         }
 
         private static void LoadConsumptionRates()
@@ -54,12 +68,26 @@ namespace Assets.Scripts
             GameState.ConsumptionRates = consumptionRates;
         }
 
-        public static void ChangeScene(String sceneName)
+        private static void LoadSavegames()
         {
-            CursorMode cursorMode = CursorMode.Auto;
-            Cursor.SetCursor(null, Vector2.zero, cursorMode);
-            gameState.CurrentScene = sceneName;
-            SceneManager.LoadScene(sceneName);
+            Savegames = new List<GameState>();
+
+            var directoryPath = Path.Combine(Application.persistentDataPath, "SaveGames");
+
+            if (Directory.Exists(directoryPath))
+            {
+                foreach (var savegameFile in Directory.EnumerateFiles(directoryPath, "Save*.nerds"))
+                {
+                    var loadedGameState = UnityEngine.JsonUtility.FromJson<GameState>(File.ReadAllText(savegameFile));
+
+                    Savegames.Add(loadedGameState);
+                }
+            }
+
+            while (Savegames.Count < 3)
+            {
+                Savegames.Add(default);
+            }
         }
     }
 }

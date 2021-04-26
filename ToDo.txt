@@ -27,3 +27,5 @@ R: Savegames
 Yellow Text:
 E2F149
 
+Blue background:
+1137BC Alpha: 87
