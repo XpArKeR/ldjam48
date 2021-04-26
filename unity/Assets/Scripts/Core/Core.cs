@@ -12,10 +12,9 @@ namespace Assets.Scripts
 {
     public class Core
     {
+        private static Sprite currentBackground;
         private static ConsumptionRates consumptionRates;
-
-        internal static Sprite currentBackground;
-
+                
         private readonly static ResourceCache resourceCache = new ResourceCache();
         public static ResourceCache ResourceCache
         {
@@ -52,6 +51,22 @@ namespace Assets.Scripts
                     }
                 }
             }
+        }
+
+        public static Sprite GetBackgroundSprite()
+        {
+            if ((currentBackground == default) && (!String.IsNullOrEmpty(GameState?.CurrentBackground)))
+            {
+                currentBackground = ResourceCache.GetSprite(GameState.CurrentBackground);
+            }
+
+            return currentBackground;
+        }
+
+        public static void SetCurrentBackground(Sprite background)
+        {
+            currentBackground = background;
+            GameState.CurrentBackground = background.name;
         }
 
         public static MusicManager MusicManager { get; set; }

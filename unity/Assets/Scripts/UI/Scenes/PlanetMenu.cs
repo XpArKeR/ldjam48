@@ -24,7 +24,7 @@ public class PlanetMenu : MonoBehaviour
         LoadTargetPlanet();
         RefreshResources();
 
-        currentBackground.sprite = Core.currentBackground;
+        currentBackground.sprite = Core.GetBackgroundSprite();
 
         if ((!Core.GameState.IsVictorious) && Core.GameState.PlanetsVisited > 19)
         {

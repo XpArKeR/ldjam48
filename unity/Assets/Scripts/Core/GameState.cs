@@ -178,5 +178,21 @@ namespace Assets.Scripts
                 }
             }
         }
+
+        private String currentBackground;
+        public String CurrentBackground
+        {
+            get
+            {
+                return this.currentBackground;
+            }
+            set
+            {
+                if (this.currentBackground != value)
+                {
+                    this.currentBackground = value;
+                }
+            }
+        }
     }
 }

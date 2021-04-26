@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Assets.Scripts;
 using Assets.Scripts.Constants;
+using Assets.Scripts.Extensions;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,15 +39,10 @@ public class FarMenu : MovingSceneBase
 
     private void SelectAndSetBackGround()
     {
-        Sprite background = SelectRandomBackground();
-        Core.currentBackground = background;
-        currentBackground.sprite = background;
-    }
+        Sprite background = backgrounds.GetRandomEntry();
 
-    private Sprite SelectRandomBackground()
-    {
-        int index = UnityEngine.Random.Range(0, backgrounds.Count);
-        return backgrounds[index];
+        Core.SetCurrentBackground(background);
+        currentBackground.sprite = background;
     }
 
     private void RefreshPlanetViews()
