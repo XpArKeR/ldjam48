@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class ToolTipButton : MonoBehaviour
 {
     public GameObject ToolTip;
-        
+
     public void OnPointerEnter()
     {
         this.ShowToolTip();
@@ -25,7 +24,7 @@ public class ToolTipButton : MonoBehaviour
     {
         this.ToolTip?.SetActive(true);
     }
-    
+
     private void HideToolTip()
     {
         this.ToolTip?.SetActive(false);
@@ -34,12 +33,12 @@ public class ToolTipButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -1,0 +1,16 @@
+#### Required ####
+- Credits Page
+
+#### Nice to have ####
+- ShipSize (Consumption variation)
+- Savegames
+- Tutorial
+- Hall of Shame (Hightscore)
+- Animations (Satellites etc)
+
+#### Ideas ####
+- Ship damage
+- Gathering Capacity (max per gathering)
+- Enemies
+- Random Events
+- Cash Shop
