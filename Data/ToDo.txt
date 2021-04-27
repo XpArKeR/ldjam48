@@ -21,6 +21,7 @@
 - Chance based planets
 - Weighted planet types
 - Planet names
+- Starmap
 
 
 #### Done ####
