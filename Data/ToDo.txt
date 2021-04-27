@@ -1,8 +1,7 @@
 #### Required ####
-- GameOverScreen
+
 
 #### WIP ####
-R: Savegames
 
 
 #### Nice to have ####
@@ -10,6 +9,9 @@ R: Savegames
 - Tutorial
 - Hall of Shame (Hightscore)
 - Animations (Satellites etc)
+- Windowed mode
+- Resolution selection (UIScale?=)
+
 
 #### Ideas ####
 - Ship damage
@@ -22,6 +24,8 @@ R: Savegames
 #### Done ####
 - Credits Page
 - Disable Animations
+- GameOverScreen
+- Savegames
 
 #### ColorCodes ####
 Yellow Text:
