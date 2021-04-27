@@ -11,6 +11,7 @@ You, as the player, have to manage and balance 3 resource types: Oxygen, Food an
  2. Enjoy
  3. Like, share and subscribe
 
+Get it here: [N.E.R.D.S (Win-x86_64)](https://github.com/XpArKeR/ldjam48/releases/tag/LDJam48)
 
  Jokes aside:
 ## Main Menu
