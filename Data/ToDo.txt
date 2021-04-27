@@ -8,6 +8,7 @@
 - Tutorial
 - Windowed mode
 - Resolution selection (UIScale?)
+- Starmap
 
 #### Ideas ####
 - Ship damage
@@ -21,7 +22,6 @@
 - Chance based planets
 - Weighted planet types
 - Planet names
-- Starmap
 
 
 #### Done ####
