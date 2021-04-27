@@ -5,13 +5,9 @@
 
 
 #### Nice to have ####
-- ShipSize (Consumption variation)
 - Tutorial
-- Hall of Shame (Hightscore)
-- Animations (Satellites etc)
 - Windowed mode
-- Resolution selection (UIScale?=)
-
+- Resolution selection (UIScale?)
 
 #### Ideas ####
 - Ship damage
@@ -19,6 +15,12 @@
 - Enemies
 - Random Events
 - Cash Shop
+- ShipSize (Consumption variation)
+- Hall of Shame (Hightscore)
+- Animations (Satellites etc)
+- Chance based planets
+- Weighted planet types
+- Planet names
 
 
 #### Done ####
