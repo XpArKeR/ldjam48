@@ -14,7 +14,7 @@ namespace Assets.Scripts
     {
         private static Sprite currentBackground;
         private static ConsumptionRates consumptionRates;
-                
+
         private readonly static ResourceCache resourceCache = new ResourceCache();
         public static ResourceCache ResourceCache
         {
@@ -103,16 +103,22 @@ namespace Assets.Scripts
 
             if (effectiveGameState == default)
             {
-                effectiveGameState = new GameState()
-                {
-                    ConsumptionRates = consumptionRates,
-                    Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]),
-                    Options = new GameStateOptions()
-                    {
-                        AreAnimationsEnabled = true,
-                        BackgroundVolume = 0.125f
-                    }
-                };
+                GameStateOptions gameStateOptions = new GameStateOptions();
+                gameStateOptions.AreAnimationsEnabled = true;
+                gameStateOptions.BackgroundVolume = 0.125f;
+                effectiveGameState = new GameState();
+                effectiveGameState.ConsumptionRates = consumptionRates;
+                effectiveGameState.Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]);
+                effectiveGameState.Options = gameStateOptions;
+                //{
+                //    ConsumptionRates = consumptionRates,
+                //    Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]),
+                //    Options = new GameStateOptions()
+                //    {
+                //        AreAnimationsEnabled = true,
+                //        BackgroundVolume = 0.125f
+                //    }
+                //};
 
                 effectiveGameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
                 effectiveGameState.CurrentScene = SceneNames.Far;

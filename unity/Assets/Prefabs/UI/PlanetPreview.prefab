@@ -1323,11 +1323,41 @@ MonoBehaviour:
   planetLand: {fileID: 3110192201580901769}
   planetCloud: {fileID: 5179607137732107740}
   type: {fileID: 5787618577412405289}
+  planet:
+    Type: 
+    Scanned: 0
+    Resources:
+      Oxygen:
+        Value: 0
+        RangeMin: 0
+        RangeMax: 0
+        Dispersion: 0
+        DispersionRangeMin: 0
+        DispersionRangeMax: 0
+      Food:
+        Value: 0
+        RangeMin: 0
+        RangeMax: 0
+        Dispersion: 0
+        DispersionRangeMin: 0
+        DispersionRangeMax: 0
+      Fuel:
+        Value: 0
+        RangeMin: 0
+        RangeMax: 0
+        Dispersion: 0
+        DispersionRangeMin: 0
+        DispersionRangeMax: 0
+    BaseColor: {r: 0, g: 0, b: 0, a: 0}
+    LandColor: {r: 0, g: 0, b: 0, a: 0}
+    CloudColor: {r: 0, g: 0, b: 0, a: 0}
+    LandSprite: {fileID: 0}
+    CloudSprite: {fileID: 0}
   oxygenRangeDisplayer: {fileID: 2710018956030370312}
   foodRangeDisplayer: {fileID: 185937853607847470}
   fuelRangeDisplayer: {fileID: 9129110955387506357}
   scannerField: {fileID: 7748383307670251093}
-  cursorTexture: {fileID: 2800000, guid: e8a202bdb43ae434d8568cdcc7a600d6, type: 3}
+  cursorTexture: {fileID: 0}
   cursorMode: 0
   hotSpot: {x: 0, y: 0}
 --- !u!114 &1365741377455696040
@@ -1346,35 +1376,11 @@ MonoBehaviour:
   - eventID: 0
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5787618578487446646}
-          m_TargetAssemblyTypeName: PlanetPreview, Assembly-CSharp
-          m_MethodName: ChangeCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5787618578487446646}
-          m_TargetAssemblyTypeName: PlanetPreview, Assembly-CSharp
-          m_MethodName: RevertCursor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &6562590949435407365
 MonoBehaviour:
   m_ObjectHideFlags: 0
