@@ -57,7 +57,7 @@ namespace Assets.Scripts
         {
             if ((currentBackground == default) && (!String.IsNullOrEmpty(GameState?.CurrentBackground)))
             {
-                currentBackground = ResourceCache.GetSprite(Path.Combine("Planets", "Sprites", GameState.CurrentBackground));
+                currentBackground = ResourceCache.GetSprite(Path.Combine("UI", "Sprites", GameState.CurrentBackground));
             }
 
             return currentBackground;
@@ -132,7 +132,7 @@ namespace Assets.Scripts
         {
             Savegames = new List<Savegame>();
 
-            var directoryPath = Path.Combine(Application.persistentDataPath, "SaveGames");
+            var directoryPath = Path.Combine(Application.persistentDataPath, "Savegames");
 
             if (Directory.Exists(directoryPath))
             {

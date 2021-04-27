@@ -78,7 +78,7 @@ public class PauseMenu : MonoBehaviour
 
         var gameStateString = UnityEngine.JsonUtility.ToJson(Core.GameState, true);
 
-        var directoryPath = Path.Combine(Application.persistentDataPath, "SaveGames");
+        var directoryPath = Path.Combine(Application.persistentDataPath, "Savegames");
 
         if (!Directory.Exists(directoryPath))
         {

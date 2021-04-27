@@ -1,15 +1,14 @@
 #### Required ####
-- GameOverScreen
+
 
 #### WIP ####
-R: Savegames
 
 
 #### Nice to have ####
-- ShipSize (Consumption variation)
 - Tutorial
-- Hall of Shame (Hightscore)
-- Animations (Satellites etc)
+- Windowed mode
+- Resolution selection (UIScale?)
+- Starmap
 
 #### Ideas ####
 - Ship damage
@@ -17,11 +16,18 @@ R: Savegames
 - Enemies
 - Random Events
 - Cash Shop
-
+- ShipSize (Consumption variation)
+- Hall of Shame (Hightscore)
+- Animations (Satellites etc)
+- Chance based planets
+- Weighted planet types
+- Planet names
 
 #### Done ####
 - Credits Page
 - Disable Animations
+- GameOverScreen
+- Savegames
 
 #### ColorCodes ####
 Yellow Text:
