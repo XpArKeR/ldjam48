@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     public GameObject LoadSavegameContainer;
     public GameObject OptionsContainer;
     public GameObject CreditsContainer;
+    public Button loadGameButton;
+
 
     public List<SaveGameSlotMenu> SavegameSlots;
 
@@ -27,6 +29,11 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            loadGameButton.gameObject.SetActive(false);
+        }
+
         this.VersionText.text = String.Format("Version: {0}", Application.version);
 
         if (Core.MusicManager == default)

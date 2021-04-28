@@ -11,7 +11,25 @@ namespace Assets.Scripts.Ships
 
         public static void LoadShipTypes()
         {
-            ShipTypes = JsonUtility.ListFromJson<ShipType>(Path.Combine(Application.streamingAssetsPath, "Ships", "ShipTypes.json"));
+            //ShipTypes = JsonUtility.ListFromJson<ShipType>(Path.Combine(Application.streamingAssetsPath, "Ships", "ShipTypes.json"));
+            ShipTypes = JsonUtility.ListFromJsonString<ShipType>(@"[  {
+                ""Name"": ""Default"",
+    ""MaxOxygenLevel"": 1000,
+    ""OxygenLevel"": 1000,
+    ""OxygenConsumption"": 60,
+    ""MaxFoodLevel"": 500,
+    ""FoodLevel"": 300,
+    ""FoodConsumption"": 20,
+    ""MaxFuelLevel"": 1000,
+    ""FuelLevel"": 500,
+    ""FuelConsumption"": 100
+  }
+]
+");
+            if (ShipTypes?.Count < 1)
+            {
+                throw new MissingComponentException(nameof(ShipTypes));
+            }
             Debug.Log("ShipTypes loaded: " + ShipTypes.Count);
         }
 

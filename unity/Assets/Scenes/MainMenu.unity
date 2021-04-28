@@ -378,6 +378,7 @@ MonoBehaviour:
   LoadSavegameContainer: {fileID: 1973214976}
   OptionsContainer: {fileID: 1086684068}
   CreditsContainer: {fileID: 138966975}
+  loadGameButton: {fileID: 1210424611}
   SavegameSlots:
   - {fileID: 1477149398}
   - {fileID: 1298509930}
@@ -2489,6 +2490,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5865278983240936799, guid: 25d2ec0ed1399a348b024d0161a9a309, type: 3}
   m_PrefabInstance: {fileID: 1210424609}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1210424611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8849340443900071137, guid: 25d2ec0ed1399a348b024d0161a9a309, type: 3}
+  m_PrefabInstance: {fileID: 1210424609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1253573420
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject menuArea;
     public GameObject saveArea;
     public GameObject optionsArea;
+    public Button saveGameButton;
 
 
     public Slider BackgroundVolumeSlider;
@@ -24,6 +25,10 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            saveGameButton.gameObject.SetActive(false);
+        }
         Hide();
     }
 

@@ -76,7 +76,7 @@ namespace Assets.Scripts
         public static void InitGame()
         {
             LoadConsumptionRates();
-            LoadSavegames();
+            //LoadSavegames();
 
             PlanetGenerator.LoadPlanetTypes();
             ShipGenerator.LoadShipTypes();
@@ -92,7 +92,19 @@ namespace Assets.Scripts
 
         private static void LoadConsumptionRates()
         {
-            var loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
+          //  var loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
+           var loadedConsumptionRates = UnityEngine.JsonUtility.FromJson<ConsumptionRates>(@"{
+  ""scan"": 0.05,
+  ""movement"": 1.0,
+  ""gatherOxygen"": 0.1,
+  ""gatherFood"": 0.1,
+  ""gatherFuel"": 0.1
+}");
+
+            if (loadedConsumptionRates == default)
+            {
+                throw new MissingComponentException("Consumption");
+            }
 
             consumptionRates = loadedConsumptionRates;
         }
@@ -106,6 +118,7 @@ namespace Assets.Scripts
                 GameStateOptions gameStateOptions = new GameStateOptions();
                 gameStateOptions.AreAnimationsEnabled = true;
                 gameStateOptions.BackgroundVolume = 0.125f;
+
                 effectiveGameState = new GameState();
                 effectiveGameState.ConsumptionRates = consumptionRates;
                 effectiveGameState.Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]);

@@ -12,6 +12,11 @@ public class JsonUtility
     public static List<T> ListFromJson<T>(string path)
     {
         string json = File.ReadAllText(path);
+        return ListFromJsonString<T>(json);
+    }
+
+    public static List<T> ListFromJsonString<T>(string json)
+    {
         json = "{\"objects\":" + json + "}";
         var planetTypeList = UnityEngine.JsonUtility.FromJson<JsonList<T>>(json);
         return planetTypeList.objects;
