@@ -1,6 +1,7 @@
 #### Bugs ####
 - Opening pause menu
 - strings for loading json in webgl
+- deactive save buttons with message in webgl
 
 #### Required ####
  
