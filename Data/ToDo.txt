@@ -2,6 +2,7 @@
 - Opening pause menu
 - strings for loading json in webgl
 - deactive save buttons with message in webgl
+- Pause menu button
 
 #### Required ####
  
