@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class MoveRandom : MonoBehaviour
 {
-
     private bool move = false;
     private float speed = 30f;
     private float wobble;
@@ -12,7 +11,6 @@ public class MoveRandom : MonoBehaviour
     private float spinnUp;
     private Vector3 scaleChange;
     public Image particles;
-
 
     private void Start()
     {
@@ -44,7 +42,6 @@ public class MoveRandom : MonoBehaviour
             }
             else
             {
-
                 Vector3 translation = GetRandomDirection();
                 transform.Translate(translation);
                 transform.localScale -= scaleChange * Time.deltaTime;
