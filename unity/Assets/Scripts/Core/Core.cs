@@ -69,7 +69,22 @@ namespace Assets.Scripts
             GameState.CurrentBackground = background.name;
         }
 
-        public static MusicManager MusicManager { get; set; }
+        private static MusicManager musicManager;
+        public static MusicManager MusicManager
+        {
+            get
+            {
+                return musicManager;
+            }
+            set
+            {
+                if (musicManager != value)
+                {
+                    musicManager = value;
+                }
+            }
+        }
+
         public static List<Savegame> Savegames { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -92,8 +107,8 @@ namespace Assets.Scripts
 
         private static void LoadConsumptionRates()
         {
-          //  var loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
-           var loadedConsumptionRates = UnityEngine.JsonUtility.FromJson<ConsumptionRates>(@"{
+            //  var loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
+            var loadedConsumptionRates = UnityEngine.JsonUtility.FromJson<ConsumptionRates>(@"{
   ""scan"": 0.05,
   ""movement"": 1.0,
   ""gatherOxygen"": 0.1,

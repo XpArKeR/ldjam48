@@ -1,20 +1,20 @@
 #### Bugs ####
-- Opening pause menu
+- Opening pause menu (Pause Button)
 - strings for loading json in webgl
-- deactive save buttons with message in webgl
-- Pause menu button
+- Planets visited not visible on Smartphone
 
 #### Required ####
- 
+- deactive save buttons with message in webgl
 
 #### WIP ####
-
+- Pause / Resume SFX on pause
 
 #### Nice to have ####
 - Tutorial
 - Windowed mode
 - Resolution selection (UIScale?)
 - Starmap
+- SFX Volume Slider
 
 #### Ideas ####
 - Ship damage

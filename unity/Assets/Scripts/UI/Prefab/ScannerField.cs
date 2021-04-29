@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class ScannerField : MonoBehaviour
 {
+    private float pauseTime;
+
     private float anchorY;
 
     private float changeAmount;
@@ -19,8 +21,13 @@ public class ScannerField : MonoBehaviour
     public float Thickness;
     public AudioSource AudioSource;
 
-       void Start()
+    void Start()
     {
+        if (Core.MusicManager != default)
+        {
+            Core.MusicManager.PauseToggled.AddListener(OnPauseToggled);
+        }
+
         if (IsMovingDownwards)
         {
             anchorY = 1;
@@ -35,6 +42,30 @@ public class ScannerField : MonoBehaviour
         this.changeAmount = CalculateChange();
     }
 
+    private void OnPauseToggled(Boolean isPaused)
+    {
+        Debug.Log(String.Format("IsPaused: {0} - AudioSource Playing: {1} at {2} (Pausetime: {3})", isPaused, this.AudioSource.isPlaying, this.AudioSource.time, pauseTime));
+        
+        if (isPaused)
+        {
+            if (this.AudioSource.isPlaying)
+            {
+                this.AudioSource.Pause();
+                pauseTime = this.AudioSource.time;
+            }
+        }
+        else
+        {
+            if ((!this.AudioSource.isPlaying) && (pauseTime > 0))
+            {
+                this.AudioSource.time = pauseTime;
+                this.AudioSource.Play();
+
+                pauseTime = default;
+            }
+        }
+    }
+
     void Update()
     {
         var amountToMoveBy = changeAmount * Time.deltaTime;
@@ -44,7 +75,7 @@ public class ScannerField : MonoBehaviour
             this.gameObject.SetActive(false);
             onCompleteAction.Invoke();
         }
-        
+
         if (IsMovingDownwards)
         {
             anchorY -= amountToMoveBy;

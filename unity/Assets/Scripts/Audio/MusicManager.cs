@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using Assets.Scripts;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicManager : MonoBehaviour
 {
+    public UnityEvent<Boolean> PauseToggled = new UnityEvent<Boolean>();
+
     public List<AudioSource> AudioSources;
     public List<AudioClip> clips;
 
@@ -35,6 +38,11 @@ public class MusicManager : MonoBehaviour
 
     public Boolean IsPlaying { get; private set; }
 
+    public void Pause()
+    {
+        this.PauseToggled?.Invoke(true);
+    }
+
     public void Stop()
     {
         if (IsPlaying)
@@ -56,6 +64,8 @@ public class MusicManager : MonoBehaviour
         }
         else
         {
+            this.PauseToggled?.Invoke(false);
+
             if (this.oldVolume.HasValue)
             {
                 this.Unmute();

@@ -45,9 +45,15 @@ public class PauseMenu : MonoBehaviour
         if (menu.activeSelf == true)
         {
             Hide();
+
+            Time.timeScale = 1;
+            Core.MusicManager.Resume();
         }
         else
         {
+            Time.timeScale = 0;
+            Core.MusicManager.Pause();
+            
             Show();
         }
     }
