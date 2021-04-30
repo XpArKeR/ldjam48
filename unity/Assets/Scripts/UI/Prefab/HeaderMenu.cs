@@ -10,6 +10,7 @@ public class HeaderMenu : MonoBehaviour
     public Slider OxygenSlider;
     public Slider FoodSlider;
     public Slider FuelSlider;
+    public PauseMenu pauseMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,10 @@ public class HeaderMenu : MonoBehaviour
         UpdateValues();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+    public void TogglePauseMenu()
+    {
+        pauseMenu.ToggleMenu();
     }
 
     private void UpdateValues()
