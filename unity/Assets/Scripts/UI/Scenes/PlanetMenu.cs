@@ -1,14 +1,17 @@
 
-using System.IO;
-
 using Assets.Scripts;
 using Assets.Scripts.Constants;
+
+using System;
+using System.IO;
 
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
 {
+    private float pauseTime;
+
     public AudioSource AudioSource;
     public Image planetBase;
     public Image planetLand;
@@ -19,36 +22,15 @@ public class PlanetMenu : MonoBehaviour
     public Text planetFuel;
     public Image currentBackground;
 
-    private void Start()
-    {
-        LoadTargetPlanet();
-        RefreshResources();
-
-        currentBackground.sprite = Core.GetBackgroundSprite();
-
-        if ((!Core.GameState.IsVictorious) && Core.GameState.PlanetsVisited > 19)
-        {
-            Core.GameState.IsVictorious = true;
-            Core.ChangeScene(SceneNames.Victorious);
-        }
-        else
-        {
-            var appoarchClip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "ApproachEffect"));
-
-            this.AudioSource.clip = appoarchClip;
-            this.AudioSource.Play();
-        }
-    }
-
     public void FlyAway()
     {
         Core.GameState.PlanetsVisited++;
         Core.GameState.Planets.Clear();
         Core.GameState.Planets.AddRange(PlanetGenerator.GeneratePlanets(4));
 
-        Core.MusicManager.Mute();
+        Core.BackgroundMusicManager.Mute();
 
-        if (Core.GameState.Options.AreAnimationsEnabled)
+        if (Core.Options.AreAnimationsEnabled)
         {
             var clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "FlyOff-Short"));
             AudioSource.clip = clip;
@@ -64,12 +46,6 @@ public class PlanetMenu : MonoBehaviour
         {
             this.ChangeScene();
         }
-    }
-
-    private void ChangeScene()
-    {
-        Core.ChangeScene(SceneNames.Far);
-        Core.MusicManager.Unmute();
     }
 
     public void LoadTargetPlanet()
@@ -171,5 +147,67 @@ public class PlanetMenu : MonoBehaviour
             AudioSource.clip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "Gathering_Failed"));
             AudioSource.Play();
         }
+    }
+
+    private void Start()
+    {
+        if (Core.BackgroundMusicManager != default)
+        {
+            Core.BackgroundMusicManager.PauseToggled.AddListener(this.OnPauseToggled);
+        }
+
+        LoadTargetPlanet();
+        RefreshResources();
+
+        currentBackground.sprite = Core.GetBackgroundSprite();
+
+        if ((!Core.GameState.IsVictorious) && Core.GameState.PlanetsVisited > 19)
+        {
+            Core.GameState.IsVictorious = true;
+            Core.ChangeScene(SceneNames.Victorious);
+        }
+        else
+        {
+            var appoarchClip = Core.ResourceCache.GetAudioClip(Path.Combine("Audio", "Effects", "ApproachEffect"));
+
+            this.AudioSource.clip = appoarchClip;
+            this.AudioSource.Play();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (Core.BackgroundMusicManager != default)
+        {
+            Core.BackgroundMusicManager.PauseToggled.RemoveListener(this.OnPauseToggled);
+        }
+    }
+
+    private void OnPauseToggled(Boolean isPaused)
+    {
+        if (isPaused)
+        {
+            if (this.AudioSource.isPlaying)
+            {
+                this.AudioSource.Pause();
+                pauseTime = this.AudioSource.time;
+            }
+        }
+        else
+        {
+            if ((!this.AudioSource.isPlaying) && (pauseTime > 0))
+            {
+                this.AudioSource.time = pauseTime;
+                this.AudioSource.Play();
+
+                pauseTime = default;
+            }
+        }
+    }
+
+    private void ChangeScene()
+    {
+        Core.ChangeScene(SceneNames.Far);
+        Core.BackgroundMusicManager.Unmute();
     }
 }

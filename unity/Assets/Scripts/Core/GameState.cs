@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Ships;
 
-using Assets.Scripts.Ships;
+using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -133,23 +133,6 @@ namespace Assets.Scripts
                 if (planetsVisited != value)
                 {
                     planetsVisited = value;
-                }
-            }
-        }
-
-        [SerializeField]
-        private GameStateOptions options;
-        public GameStateOptions Options
-        {
-            get
-            {
-                return options;
-            }
-            set
-            {
-                if (options != value)
-                {
-                    options = value;
                 }
             }
         }

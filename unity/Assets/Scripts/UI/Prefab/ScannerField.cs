@@ -1,6 +1,6 @@
-using System;
-
 using Assets.Scripts;
+
+using System;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,9 +23,9 @@ public class ScannerField : MonoBehaviour
 
     void Start()
     {
-        if (Core.MusicManager != default)
+        if (Core.BackgroundMusicManager != default)
         {
-            Core.MusicManager.PauseToggled.AddListener(OnPauseToggled);
+            Core.BackgroundMusicManager.PauseToggled.AddListener(OnPauseToggled);
         }
 
         if (IsMovingDownwards)
@@ -42,10 +42,16 @@ public class ScannerField : MonoBehaviour
         this.changeAmount = CalculateChange();
     }
 
+    private void OnDestroy()
+    {
+        if (Core.BackgroundMusicManager != default)
+        {
+            Core.BackgroundMusicManager.PauseToggled.RemoveListener(OnPauseToggled);
+        }
+    }
+
     private void OnPauseToggled(Boolean isPaused)
     {
-        Debug.Log(String.Format("IsPaused: {0} - AudioSource Playing: {1} at {2} (Pausetime: {3})", isPaused, this.AudioSource.isPlaying, this.AudioSource.time, pauseTime));
-        
         if (isPaused)
         {
             if (this.AudioSource.isPlaying)
@@ -108,7 +114,7 @@ public class ScannerField : MonoBehaviour
             this.onCompleteAction = onCompleteAction;
             this.currentItteration = 0;
 
-            if (Core.GameState.Options.AreAnimationsEnabled)
+            if (Core.Options.AreAnimationsEnabled)
             {
                 this.gameObject.SetActive(true);
                 this.AudioSource.Play();

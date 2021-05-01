@@ -1,9 +1,10 @@
+using Assets.Scripts.Audio;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Ships;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-using Assets.Scripts.Constants;
-using Assets.Scripts.Ships;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,15 +25,23 @@ namespace Assets.Scripts
             }
         }
 
-        private static GameState gameState = new GameState()
+        private static PlayerOptions options;
+        public static PlayerOptions Options
         {
-            Options = new GameStateOptions()
+            get
             {
-                AreAnimationsEnabled = true,
-                BackgroundVolume = 0.125f
+                return options;
             }
-        };
+            private set
+            {
+                if (options != value)
+                {
+                    options = value;
+                }
+            }
+        }
 
+        private static GameState gameState;
         public static GameState GameState
         {
             get
@@ -44,12 +53,79 @@ namespace Assets.Scripts
                 if (gameState != value)
                 {
                     gameState = value;
-
-                    if (value?.Options != default)
-                    {
-                        MusicManager.SetVolume(value.Options.BackgroundVolume);
-                    }
                 }
+            }
+        }
+
+        private static BackgroundManager backgroundMusicManager;
+        public static BackgroundManager BackgroundMusicManager
+        {
+            get
+            {
+                return backgroundMusicManager;
+            }
+            set
+            {
+                if (backgroundMusicManager != value)
+                {
+                    backgroundMusicManager = value;
+                }
+            }
+        }
+
+        private static ForegroundManager foregroundMusicManager;
+        public static ForegroundManager ForegroundMusicManager
+        {
+            get
+            {
+                return foregroundMusicManager;
+            }
+            set
+            {
+                if (foregroundMusicManager != value)
+                {
+                    foregroundMusicManager = value;
+                }
+            }
+        }
+
+        public static List<Savegame> Savegames { get; } = new List<Savegame>();
+
+        private static Boolean isFileAccessPossible;
+        public static Boolean IsFileAccessPossible
+        {
+            get
+            {
+                return isFileAccessPossible;
+            }
+            private set
+            {
+                if (isFileAccessPossible != value)
+                {
+                    isFileAccessPossible = value;
+                }
+            }
+        }
+
+        public static void OnClose()
+        {
+            if (IsFileAccessPossible)
+            {
+                if (!Directory.Exists(Application.persistentDataPath))
+                {
+                    Directory.CreateDirectory(Application.persistentDataPath);
+                }
+
+                var filename = Path.Combine(Application.persistentDataPath, "PlayerConfig.json");
+
+                var optionsString = UnityEngine.JsonUtility.ToJson(Options);
+
+                if (File.Exists(filename))
+                {
+                    File.Delete(filename);
+                }
+
+                File.WriteAllText(filename, optionsString);
             }
         }
 
@@ -69,29 +145,21 @@ namespace Assets.Scripts
             GameState.CurrentBackground = background.name;
         }
 
-        private static MusicManager musicManager;
-        public static MusicManager MusicManager
-        {
-            get
-            {
-                return musicManager;
-            }
-            set
-            {
-                if (musicManager != value)
-                {
-                    musicManager = value;
-                }
-            }
-        }
-
-        public static List<Savegame> Savegames { get; private set; }
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void InitGame()
         {
+            if (Application.platform == RuntimePlatform.WebGLPlayer || Application.platform == RuntimePlatform.Android)
+            {
+                IsFileAccessPossible = false;
+            }
+            else
+            {
+                IsFileAccessPossible = true;
+            }
+
+            LoadPlayerOptions();
             LoadConsumptionRates();
-            //LoadSavegames();
+            LoadSavegames();
 
             PlanetGenerator.LoadPlanetTypes();
             ShipGenerator.LoadShipTypes();
@@ -107,14 +175,16 @@ namespace Assets.Scripts
 
         private static void LoadConsumptionRates()
         {
-            //  var loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
-            var loadedConsumptionRates = UnityEngine.JsonUtility.FromJson<ConsumptionRates>(@"{
-  ""scan"": 0.05,
-  ""movement"": 1.0,
-  ""gatherOxygen"": 0.1,
-  ""gatherFood"": 0.1,
-  ""gatherFuel"": 0.1
-}");
+            var loadedConsumptionRates = default(ConsumptionRates);
+
+            if (IsFileAccessPossible)
+            {
+                loadedConsumptionRates = JsonUtility.FromJson<ConsumptionRates>(Path.Combine(Application.streamingAssetsPath, "Core", "ConsumptionRates.json"));
+            }
+            else
+            {
+                loadedConsumptionRates = Constants.Defaults.ConsumptionRates;
+            }
 
             if (loadedConsumptionRates == default)
             {
@@ -130,14 +200,9 @@ namespace Assets.Scripts
 
             if (effectiveGameState == default)
             {
-                GameStateOptions gameStateOptions = new GameStateOptions();
-                gameStateOptions.AreAnimationsEnabled = true;
-                gameStateOptions.BackgroundVolume = 0.125f;
-
                 effectiveGameState = new GameState();
                 effectiveGameState.ConsumptionRates = consumptionRates;
                 effectiveGameState.Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]);
-                effectiveGameState.Options = gameStateOptions;
                 //{
                 //    ConsumptionRates = consumptionRates,
                 //    Ship = ShipGenerator.GenerateShip(ShipGenerator.ShipTypes[0]),
@@ -156,32 +221,61 @@ namespace Assets.Scripts
             ChangeScene(effectiveGameState.CurrentScene);
         }
 
-        private static void LoadSavegames()
+        private static void LoadPlayerOptions()
         {
-            Savegames = new List<Savegame>();
-
-            var directoryPath = Path.Combine(Application.persistentDataPath, "Savegames");
-
-            if (Directory.Exists(directoryPath))
+            if (IsFileAccessPossible)
             {
-                foreach (var savegameFile in Directory.EnumerateFiles(directoryPath, "Save*.nerds"))
+                if (Directory.Exists(Application.persistentDataPath))
                 {
-                    var gameStateJson = File.ReadAllText(savegameFile);
+                    var filename = Path.Combine(Application.persistentDataPath, "PlayerConfig.json");
 
-                    var loadedGameState = UnityEngine.JsonUtility.FromJson<GameState>(gameStateJson);
-
-                    Savegames.Add(new Savegame()
+                    if (File.Exists(filename))
                     {
-                        PlanetsVisited = loadedGameState.PlanetsVisited,
-                        SavedOn = loadedGameState.SavedOn,
-                        RawSource = gameStateJson
-                    });
+                        var configString = File.ReadAllText(filename);
+
+                        Options = UnityEngine.JsonUtility.FromJson<PlayerOptions>(configString);
+                    }
                 }
             }
 
-            while (Savegames.Count < 3)
+            if (Options == default)
             {
-                Savegames.Add(default);
+                Options = new PlayerOptions()
+                {
+                    AreAnimationsEnabled = true,
+                    BackgroundVolume = 0.125f,
+                    ForegroundVolume = 1f
+                };
+            }
+        }
+
+        private static void LoadSavegames()
+        {
+            if (IsFileAccessPossible)
+            {
+                var directoryPath = Path.Combine(Application.persistentDataPath, "Savegames");
+
+                if (Directory.Exists(directoryPath))
+                {
+                    foreach (var savegameFile in Directory.EnumerateFiles(directoryPath, "Save*.nerds"))
+                    {
+                        var gameStateJson = File.ReadAllText(savegameFile);
+
+                        var loadedGameState = UnityEngine.JsonUtility.FromJson<GameState>(gameStateJson);
+
+                        Savegames.Add(new Savegame()
+                        {
+                            PlanetsVisited = loadedGameState.PlanetsVisited,
+                            SavedOn = loadedGameState.SavedOn,
+                            RawSource = gameStateJson
+                        });
+                    }
+                }
+
+                while (Savegames.Count < 3)
+                {
+                    Savegames.Add(default);
+                }
             }
         }
     }

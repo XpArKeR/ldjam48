@@ -1,28 +1,28 @@
 
+using Assets.Scripts;
+using Assets.Scripts.Audio;
+
 using System;
 using System.Collections.Generic;
-
-using Assets.Scripts;
 
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject MusicPlayer;
+    public BackgroundManager BackgroundManager;
+    public ForegroundManager ForegroundManager;
     public GameObject MainMenuContainer;
     public GameObject LoadSavegameContainer;
     public GameObject OptionsContainer;
     public GameObject CreditsContainer;
     public Button loadGameButton;
 
-
     public List<SaveGameSlotMenu> SavegameSlots;
 
     public Slider BackgroundVolumeSlider;
     public Toggle AnimationEnabledToggle;
-    public Text VersionText
-        ;
+    public Text VersionText;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
     private static readonly float angle = 5f;
@@ -36,19 +36,30 @@ public class MainMenu : MonoBehaviour
 
         this.VersionText.text = String.Format("Version: {0}", Application.version);
 
-        if (Core.MusicManager == default)
+        if (Core.BackgroundMusicManager == default)
         {
-            Core.MusicManager = this.MusicPlayer.GetComponent<MusicManager>();
+            Core.BackgroundMusicManager = this.BackgroundManager;
+            Core.BackgroundMusicManager.SetVolume(Core.Options.BackgroundVolume);
         }
 
-        if (!Core.MusicManager.IsPlaying)
+        if (Core.ForegroundMusicManager == default)
         {
-            Core.MusicManager.Resume();
+            Core.ForegroundMusicManager = this.ForegroundManager;
+        }
+
+        if (!Core.BackgroundMusicManager.IsPlaying)
+        {
+            Core.BackgroundMusicManager.Resume();
         }
         else
         {
-            Core.MusicManager.Unmute();
+            Core.BackgroundMusicManager.Unmute();
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Core.OnClose();
     }
 
     private void Update()
@@ -72,11 +83,14 @@ public class MainMenu : MonoBehaviour
 
     public void ShowLoadSavegame()
     {
-        for (int i = 0; i < this.SavegameSlots.Count; i++)
+        if (Core.IsFileAccessPossible)
         {
-            var savegameSlot = this.SavegameSlots[i];
+            for (int i = 0; i < this.SavegameSlots.Count; i++)
+            {
+                var savegameSlot = this.SavegameSlots[i];
 
-            savegameSlot.Savegame = Core.Savegames[i];
+                savegameSlot.Savegame = Core.Savegames[i];
+            }
         }
 
         SetVisible(loadSavegameContainer: true);
@@ -94,20 +108,20 @@ public class MainMenu : MonoBehaviour
 
     public void ShowOptions()
     {
-        this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
-        this.AnimationEnabledToggle.isOn = Core.GameState.Options.AreAnimationsEnabled;
+        this.BackgroundVolumeSlider.value = Core.BackgroundMusicManager.Volume;
+        this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
 
         SetVisible(optionsContainer: true);
     }
 
     public void OnBackgroundSliderChanged()
     {
-        Core.MusicManager.Volume = BackgroundVolumeSlider.value;
+        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
     }
 
     public void OnAnimationEnabledToggleValueChanged()
     {
-        Core.GameState.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
+        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 
     public void ShowCredits()

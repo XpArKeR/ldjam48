@@ -10,7 +10,7 @@ public class VictoriousMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Core.MusicManager.Stop();
+        Core.BackgroundMusicManager.Stop();
     }
 
     // Update is called once per frame
@@ -21,10 +21,10 @@ public class VictoriousMenu : MonoBehaviour
 
     public void OnContinuePlaying()
     {
-        Core.MusicManager.Resume();
+        Core.BackgroundMusicManager.Resume();
         SceneManager.LoadScene(SceneNames.Planet);
     }
-    
+
     public void OnBackToMainMenu()
     {
         Core.ChangeScene(SceneNames.MainMenu);

@@ -47,12 +47,12 @@ public class PauseMenu : MonoBehaviour
             Hide();
 
             Time.timeScale = 1;
-            Core.MusicManager.Resume();
+            Core.BackgroundMusicManager.Resume();
         }
         else
         {
             Time.timeScale = 0;
-            Core.MusicManager.Pause();
+            Core.BackgroundMusicManager.Pause();
             
             Show();
         }
@@ -124,15 +124,13 @@ public class PauseMenu : MonoBehaviour
 
     public void OnBackgroundSliderChanged()
     {
-        Core.MusicManager.Volume = BackgroundVolumeSlider.value;
+        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
     }
 
     public void OnAnimationEnabledToggleValueChanged()
     {
-        Core.GameState.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
+        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
-
-
 
     public void Hide()
     {
@@ -157,8 +155,8 @@ public class PauseMenu : MonoBehaviour
     private void ShowOptionsGameArea()
     {
 
-        this.BackgroundVolumeSlider.value = Core.MusicManager.Volume;
-        this.AnimationEnabledToggle.isOn = Core.GameState.Options.AreAnimationsEnabled;
+        this.BackgroundVolumeSlider.value = Core.BackgroundMusicManager.Volume;
+        this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
 
         menuArea.SetActive(false);
         optionsArea.SetActive(true);

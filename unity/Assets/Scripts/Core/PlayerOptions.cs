@@ -1,11 +1,14 @@
 ﻿using System;
 
+using UnityEngine;
+
 namespace Assets.Scripts
 {
     [Serializable]
-    public class GameStateOptions
+    public class PlayerOptions
     {
-        public Boolean areAnimationsEnabled;
+        [SerializeField]
+        private Boolean areAnimationsEnabled;
         public Boolean AreAnimationsEnabled
         {
             get
@@ -21,7 +24,8 @@ namespace Assets.Scripts
             }
         }
 
-        public float backgroundVolume;
+        [SerializeField]
+        private float backgroundVolume;
         public float BackgroundVolume
         {
             get
@@ -33,6 +37,23 @@ namespace Assets.Scripts
                 if (this.backgroundVolume != value)
                 {
                     this.backgroundVolume = value;
+                }
+            }
+        }
+
+        [SerializeField]
+        private float foregroundVolume;
+        public float ForegroundVolume
+        {
+            get
+            {
+                return this.foregroundVolume;
+            }
+            set
+            {
+                if (this.foregroundVolume != value)
+                {
+                    this.foregroundVolume = value;
                 }
             }
         }
