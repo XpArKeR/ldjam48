@@ -34,12 +34,12 @@ public class MainMenu : MonoBehaviour
 
         if (Core.IsFileAccessPossible)
         {
-            loadGameButton.interactable = false;
-            tooltip.enabled = true;
+            tooltip.enabled = false;
         }
         else
         {
-            tooltip.enabled = false;
+            loadGameButton.interactable = false;
+            tooltip.enabled = true;
         }
 
         this.VersionText.text = String.Format("Version: {0}", Application.version);

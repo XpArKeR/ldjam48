@@ -109,24 +109,7 @@ namespace Assets.Scripts
 
         public static void OnClose()
         {
-            if (IsFileAccessPossible)
-            {
-                if (!Directory.Exists(Application.persistentDataPath))
-                {
-                    Directory.CreateDirectory(Application.persistentDataPath);
-                }
-
-                var filename = Path.Combine(Application.persistentDataPath, "PlayerConfig.json");
-
-                var optionsString = UnityEngine.JsonUtility.ToJson(Options);
-
-                if (File.Exists(filename))
-                {
-                    File.Delete(filename);
-                }
-
-                File.WriteAllText(filename, optionsString);
-            }
+            SavePlayerOptions();
         }
 
         public static Sprite GetBackgroundSprite()
@@ -223,23 +206,13 @@ namespace Assets.Scripts
 
         private static void LoadPlayerOptions()
         {
-            if (IsFileAccessPossible)
-            {
-                if (Directory.Exists(Application.persistentDataPath))
-                {
-                    var filename = Path.Combine(Application.persistentDataPath, "PlayerConfig.json");
+            var configString = PlayerPrefs.GetString("PlayerOptions");
 
-                    if (File.Exists(filename))
-                    {
-                        var configString = File.ReadAllText(filename);
-
-                        Options = UnityEngine.JsonUtility.FromJson<PlayerOptions>(configString);
-                    }
-                }
-            }
+            Options = UnityEngine.JsonUtility.FromJson<PlayerOptions>(configString);
 
             if (Options == default)
             {
+                Debug.Log("Failed to load PlayerOptions.");
                 Options = new PlayerOptions()
                 {
                     AreAnimationsEnabled = true,
@@ -247,6 +220,13 @@ namespace Assets.Scripts
                     ForegroundVolume = 1f
                 };
             }
+        }
+
+        private static void SavePlayerOptions()
+        {
+            var optionsString = UnityEngine.JsonUtility.ToJson(Options);
+
+            PlayerPrefs.SetString("PlayerOptions", optionsString);
         }
 
         private static void LoadSavegames()

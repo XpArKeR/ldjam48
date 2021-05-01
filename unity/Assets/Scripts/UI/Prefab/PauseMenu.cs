@@ -29,13 +29,14 @@ public class PauseMenu : MonoBehaviour
 
         if (Core.IsFileAccessPossible)
         {
-            saveGameButton.interactable = false;
-            tooltip.enabled = true;
+            tooltip.enabled = false;
         }
         else
         {
-            tooltip.enabled = false;
+            saveGameButton.interactable = false;
+            tooltip.enabled = true;
         }
+
         Hide();
     }
 
