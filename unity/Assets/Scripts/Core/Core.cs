@@ -208,11 +208,13 @@ namespace Assets.Scripts
         {
             var configString = PlayerPrefs.GetString("PlayerOptions");
 
-            Options = UnityEngine.JsonUtility.FromJson<PlayerOptions>(configString);
+            if (!String.IsNullOrEmpty(configString))
+            {
+                Options = UnityEngine.JsonUtility.FromJson<PlayerOptions>(configString);
+            }
 
             if (Options == default)
             {
-                Debug.Log("Failed to load PlayerOptions.");
                 Options = new PlayerOptions()
                 {
                     AreAnimationsEnabled = true,
