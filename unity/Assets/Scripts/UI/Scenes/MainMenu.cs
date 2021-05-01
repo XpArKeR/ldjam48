@@ -30,16 +30,15 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        EventTrigger tooltip = loadGameButton.GetComponent<EventTrigger>();
 
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        if (Core.IsFileAccessPossible)
         {
             loadGameButton.interactable = false;
-            EventTrigger tooltip = loadGameButton.GetComponent<EventTrigger>();
             tooltip.enabled = true;
         }
         else
         {
-            EventTrigger tooltip = loadGameButton.GetComponent<EventTrigger>();
             tooltip.enabled = false;
         }
 

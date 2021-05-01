@@ -1,13 +1,12 @@
+using Assets.Scripts;
+using Assets.Scripts.Constants;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Assets.Scripts;
-using Assets.Scripts.Constants;
-using Assets.Scripts.Extensions;
-using UnityEngine.EventSystems;
-
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -21,20 +20,20 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsArea;
     public Button saveGameButton;
 
-
     public Slider BackgroundVolumeSlider;
     public Toggle AnimationEnabledToggle;
 
     void Start()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
+
+        if (Core.IsFileAccessPossible)
         {
             saveGameButton.interactable = false;
-            EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
             tooltip.enabled = true;
-        } else
+        }
+        else
         {
-            EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
             tooltip.enabled = false;
         }
         Hide();
@@ -61,7 +60,7 @@ public class PauseMenu : MonoBehaviour
         {
             Time.timeScale = 0;
             Core.BackgroundMusicManager.Pause();
-            
+
             Show();
         }
     }
@@ -89,7 +88,6 @@ public class PauseMenu : MonoBehaviour
             ShowOptionsGameArea();
         }
     }
-
 
     public void SaveGameSlotSelected(SaveGameSlotMenu slot)
     {
