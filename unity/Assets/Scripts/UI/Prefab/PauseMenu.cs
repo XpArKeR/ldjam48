@@ -5,6 +5,7 @@ using System.IO;
 using Assets.Scripts;
 using Assets.Scripts.Constants;
 using Assets.Scripts.Extensions;
+using UnityEngine.EventSystems;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,8 +30,12 @@ public class PauseMenu : MonoBehaviour
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             saveGameButton.interactable = false;
-            Component tooltip = saveGameButton.GetChildComponentByName<Component>("ToolTip");
-            tooltip.gameObject.SetActive(true);
+            EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
+            tooltip.enabled = true;
+        } else
+        {
+            EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
+            tooltip.enabled = false;
         }
         Hide();
     }

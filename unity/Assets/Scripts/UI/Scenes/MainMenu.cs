@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -29,9 +30,17 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            loadGameButton.gameObject.SetActive(false);
+            loadGameButton.interactable = false;
+            EventTrigger tooltip = loadGameButton.GetComponent<EventTrigger>();
+            tooltip.enabled = true;
+        }
+        else
+        {
+            EventTrigger tooltip = loadGameButton.GetComponent<EventTrigger>();
+            tooltip.enabled = false;
         }
 
         this.VersionText.text = String.Format("Version: {0}", Application.version);
