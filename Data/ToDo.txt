@@ -1,13 +1,14 @@
 #### Bugs ####
-- Opening pause menu (Pause Button)
-- strings for loading json in webgl
+
+
 - Planets visited not visible on Smartphone
 
 #### Required ####
 - deactive save buttons with message in webgl
 
 #### WIP ####
-- Pause / Resume SFX on pause
+- strings for loading json in webgl
+
 
 #### Nice to have ####
 - Tutorial
@@ -34,6 +35,8 @@
 - Disable Animations
 - GameOverScreen
 - Savegames
+- Opening pause menu (Pause Button)
+- Pause / Resume SFX on pause
 
 #### ColorCodes ####
 Yellow Text:
