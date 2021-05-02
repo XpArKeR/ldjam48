@@ -1,13 +1,9 @@
 #### Bugs ####
 
 
-- Planets visited not visible on Smartphone
-
 #### Required ####
-- deactive save buttons with message in webgl
 
 #### WIP ####
-- strings for loading json in webgl
 
 
 #### Nice to have ####
