@@ -1,17 +1,16 @@
 #### Bugs ####
 
-
 #### Required ####
 
 #### WIP ####
-
+- SFX Volume Slider
 
 #### Nice to have ####
 - Tutorial
 - Windowed mode
 - Resolution selection (UIScale?)
 - Starmap
-- SFX Volume Slider
+
 
 #### Ideas ####
 - Ship damage
