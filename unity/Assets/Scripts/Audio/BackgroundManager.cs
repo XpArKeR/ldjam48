@@ -13,6 +13,23 @@ namespace Assets.Scripts.Audio
         private Int32 toggle = 0;
         private Double nextStartTime;
 
+        public override float Volume
+        {
+            get
+            {
+                return Core.Options.BackgroundVolume;
+            }
+            set
+            {
+                if (Core.Options.BackgroundVolume != value)
+                {
+                    Core.Options.BackgroundVolume = value;
+
+                    SetVolume(value);
+                }
+            }
+        }
+
         public override void Resume()
         {
             if (!IsPlaying)

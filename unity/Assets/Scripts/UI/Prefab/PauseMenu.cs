@@ -20,9 +20,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsArea;
     public Button saveGameButton;
 
-    public Slider BackgroundVolumeSlider;
-    public Toggle AnimationEnabledToggle;
-
     void Start()
     {
         EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
@@ -129,16 +126,6 @@ public class PauseMenu : MonoBehaviour
         Core.ChangeScene(SceneNames.MainMenu);
     }
 
-    public void OnBackgroundSliderChanged()
-    {
-        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
-    }
-
-    public void OnAnimationEnabledToggleValueChanged()
-    {
-        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
-    }
-
     public void Hide()
     {
         if (menuArea.activeSelf)
@@ -161,10 +148,6 @@ public class PauseMenu : MonoBehaviour
 
     private void ShowOptionsGameArea()
     {
-
-        this.BackgroundVolumeSlider.value = Core.BackgroundMusicManager.Volume;
-        this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
-
         menuArea.SetActive(false);
         optionsArea.SetActive(true);
     }

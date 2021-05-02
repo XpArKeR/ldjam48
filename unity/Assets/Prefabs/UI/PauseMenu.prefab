@@ -1037,6 +1037,10 @@ PrefabInstance:
       value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5508897733177618366, guid: bb9d472f4aca1b842adc8989bf50b525, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508897733177618366, guid: bb9d472f4aca1b842adc8989bf50b525, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8730495564948714985}
@@ -1051,6 +1055,10 @@ PrefabInstance:
     - target: {fileID: 5508897733907157345, guid: bb9d472f4aca1b842adc8989bf50b525, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508897734447352559, guid: bb9d472f4aca1b842adc8989bf50b525, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5508897734447352559, guid: bb9d472f4aca1b842adc8989bf50b525, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

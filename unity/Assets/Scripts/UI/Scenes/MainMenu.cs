@@ -21,8 +21,6 @@ public class MainMenu : MonoBehaviour
 
     public List<SaveGameSlotMenu> SavegameSlots;
 
-    public Slider BackgroundVolumeSlider;
-    public Toggle AnimationEnabledToggle;
     public Text VersionText;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
@@ -53,6 +51,7 @@ public class MainMenu : MonoBehaviour
         if (Core.ForegroundMusicManager == default)
         {
             Core.ForegroundMusicManager = this.ForegroundManager;
+            Core.ForegroundMusicManager.SetVolume(Core.Options.ForegroundVolume);
         }
 
         if (!Core.BackgroundMusicManager.IsPlaying)
@@ -116,20 +115,7 @@ public class MainMenu : MonoBehaviour
 
     public void ShowOptions()
     {
-        this.BackgroundVolumeSlider.value = Core.BackgroundMusicManager.Volume;
-        this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
-
         SetVisible(optionsContainer: true);
-    }
-
-    public void OnBackgroundSliderChanged()
-    {
-        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
-    }
-
-    public void OnAnimationEnabledToggleValueChanged()
-    {
-        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 
     public void ShowCredits()
