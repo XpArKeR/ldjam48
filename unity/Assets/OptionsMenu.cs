@@ -1,3 +1,4 @@
+
 using Assets.Scripts;
 
 using UnityEngine;
@@ -11,15 +12,37 @@ public class OptionsMenu : MonoBehaviour
 
     private void Start()
     {
-        if (Core.Options != default)
-        {
-            this.ForegroundVolumeSlider.value = Core.Options.ForegroundVolume;
-            this.BackgroundVolumeSlider.value = Core.Options.BackgroundVolume;
-            this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
-        }
+        this.UpdateValues();
     }
 
     private void FixedUpdate()
+    {
+        this.UpdateValues();
+    }
+
+    public void OnForegroundSliderChanged()
+    {
+        Core.ForegroundMusicManager.Volume = ForegroundVolumeSlider.value;
+    }
+
+    public void OnBackgroundSliderChanged()
+    {
+        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
+    }
+
+    public void OnAnimationEnabledToggleValueChanged()
+    {
+        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
+    }
+
+    public void OnRestoreDefaultsClick()
+    {
+        Core.ForegroundMusicManager.Volume = 1f;
+        Core.BackgroundMusicManager.Volume = 0.125f;
+        Core.Options.AreAnimationsEnabled = true;
+    }
+
+    private void UpdateValues()
     {
         if (Core.Options != default)
         {
@@ -38,20 +61,5 @@ public class OptionsMenu : MonoBehaviour
                 this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
             }
         }
-    }
-
-    public void OnForegroundSliderChanged()
-    {
-        Core.ForegroundMusicManager.Volume = ForegroundVolumeSlider.value;
-    }
-
-    public void OnBackgroundSliderChanged()
-    {
-        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
-    }
-
-    public void OnAnimationEnabledToggleValueChanged()
-    {
-        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 }

@@ -156,6 +156,11 @@ public class PlanetMenu : MonoBehaviour
             Core.BackgroundMusicManager.PauseToggled.AddListener(this.OnPauseToggled);
         }
 
+        if (Core.ForegroundMusicManager != default)
+        {
+            this.AudioSource.volume = Core.ForegroundMusicManager.Volume;
+        }
+
         LoadTargetPlanet();
         RefreshResources();
 

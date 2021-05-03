@@ -28,6 +28,12 @@ public class ScannerField : MonoBehaviour
             Core.BackgroundMusicManager.PauseToggled.AddListener(OnPauseToggled);
         }
 
+
+        if (Core.ForegroundMusicManager != default)
+        {
+            this.AudioSource.volume = Core.ForegroundMusicManager.Volume;
+        }
+
         if (IsMovingDownwards)
         {
             anchorY = 1;
