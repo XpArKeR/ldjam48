@@ -1,9 +1,9 @@
 
-using Assets.Scripts;
-using Assets.Scripts.Audio;
-
 using System;
 using System.Collections.Generic;
+
+using Assets.Scripts;
+using Assets.Scripts.Audio;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
     public GameObject OptionsContainer;
     public GameObject CreditsContainer;
     public Button loadGameButton;
+    public GameObject QuitButton;
+    public GameObject BackButton;
 
     public List<SaveGameSlotMenu> SavegameSlots;
 
@@ -126,6 +128,18 @@ public class MainMenu : MonoBehaviour
     private void SetVisible(Boolean mainMenu = false, Boolean loadSavegameContainer = false, Boolean optionsContainer = false, Boolean creditsConatiner = false)
     {
         this.MainMenuContainer.SetActive(mainMenu);
+
+        if (mainMenu)
+        {
+            this.QuitButton.SetActive(true);
+            this.BackButton.SetActive(false);
+        }
+        else
+        {
+            this.QuitButton.SetActive(false);
+            this.BackButton.SetActive(true);
+        }
+
         this.LoadSavegameContainer.SetActive(loadSavegameContainer);
         this.OptionsContainer.SetActive(optionsContainer);
         this.CreditsContainer.SetActive(creditsConatiner);

@@ -129,7 +129,11 @@ public class Planet
             if (this.landSprite != value)
             {
                 this.landSprite = value;
-                this.landSpriteName = value?.name;
+
+                if (value != default)
+                {
+                    this.landSpriteName = value.name;
+                }
             }
         }
     }
@@ -153,7 +157,11 @@ public class Planet
             if (this.cloudSprite != value)
             {
                 this.cloudSprite = value;
-                this.cloudSpriteName = value?.name;
+
+                if (value != default)
+                {
+                    this.cloudSpriteName = value.name;
+                }
             }
         }
     }
