@@ -29,25 +29,21 @@ public class SaveGameSlotMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (this.Savegame != default)
-        {
-            this.Title.text = String.Format("Planets visited: {0}", this.Savegame.PlanetsVisited);
-            this.SavedOn.text = this.Savegame.SavedOn.ToString("G");
-        }
-        else
-        {
-            this.Title.text = "";
-            this.SavedOn.text = "Empty";
-        }
+        this.UpdateTexts();
     }
 
     private void FixedUpdate()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
+    {
+        this.UpdateTexts();
+    }
+
+    private void UpdateTexts()
     {
         if (this.Savegame != default)
         {
