@@ -1,9 +1,9 @@
 
-using Assets.Scripts;
-using Assets.Scripts.Audio;
-
 using System;
 using System.Collections.Generic;
+
+using Assets.Scripts;
+using Assets.Scripts.Audio;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,11 +18,11 @@ public class MainMenu : MonoBehaviour
     public GameObject OptionsContainer;
     public GameObject CreditsContainer;
     public Button loadGameButton;
+    public GameObject QuitButton;
+    public GameObject BackButton;
 
     public List<SaveGameSlotMenu> SavegameSlots;
 
-    public Slider BackgroundVolumeSlider;
-    public Toggle AnimationEnabledToggle;
     public Text VersionText;
     public Image sunShader;
     private Vector3 rotationAxis = new Vector3(0, 0, 1);
@@ -53,6 +53,7 @@ public class MainMenu : MonoBehaviour
         if (Core.ForegroundMusicManager == default)
         {
             Core.ForegroundMusicManager = this.ForegroundManager;
+            Core.ForegroundMusicManager.SetVolume(Core.Options.ForegroundVolume);
         }
 
         if (!Core.BackgroundMusicManager.IsPlaying)
@@ -116,20 +117,7 @@ public class MainMenu : MonoBehaviour
 
     public void ShowOptions()
     {
-        this.BackgroundVolumeSlider.value = Core.BackgroundMusicManager.Volume;
-        this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
-
         SetVisible(optionsContainer: true);
-    }
-
-    public void OnBackgroundSliderChanged()
-    {
-        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
-    }
-
-    public void OnAnimationEnabledToggleValueChanged()
-    {
-        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 
     public void ShowCredits()
@@ -140,6 +128,18 @@ public class MainMenu : MonoBehaviour
     private void SetVisible(Boolean mainMenu = false, Boolean loadSavegameContainer = false, Boolean optionsContainer = false, Boolean creditsConatiner = false)
     {
         this.MainMenuContainer.SetActive(mainMenu);
+
+        if (mainMenu)
+        {
+            this.QuitButton.SetActive(true);
+            this.BackButton.SetActive(false);
+        }
+        else
+        {
+            this.QuitButton.SetActive(false);
+            this.BackButton.SetActive(true);
+        }
+
         this.LoadSavegameContainer.SetActive(loadSavegameContainer);
         this.OptionsContainer.SetActive(optionsContainer);
         this.CreditsContainer.SetActive(creditsConatiner);

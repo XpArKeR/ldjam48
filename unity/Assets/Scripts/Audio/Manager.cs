@@ -31,20 +31,15 @@ namespace Assets.Scripts.Audio
             }
         }
 
-        public float Volume
+        public virtual float Volume
         {
             get
             {
-                return Core.Options.BackgroundVolume;
+                throw new NotImplementedException();
             }
             set
             {
-                if (Core.Options.BackgroundVolume != value)
-                {
-                    Core.Options.BackgroundVolume = value;
-
-                    SetVolume(value);
-                }
+                throw new NotImplementedException();
             }
         }
 

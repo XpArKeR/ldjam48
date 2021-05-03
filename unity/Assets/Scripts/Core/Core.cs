@@ -1,10 +1,10 @@
-using Assets.Scripts.Audio;
-using Assets.Scripts.Constants;
-using Assets.Scripts.Ships;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+using Assets.Scripts.Audio;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Ships;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -107,6 +107,11 @@ namespace Assets.Scripts
             }
         }
 
+        public static void CloseGamestate()
+        {
+            GameState = default;
+        }
+
         public static void OnClose()
         {
             SavePlayerOptions();
@@ -152,7 +157,12 @@ namespace Assets.Scripts
         {
             CursorMode cursorMode = CursorMode.Auto;
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
-            gameState.CurrentScene = sceneName;
+
+            if (GameState != default)
+            {
+                GameState.CurrentScene = sceneName;
+            }
+
             SceneManager.LoadScene(sceneName);
         }
 

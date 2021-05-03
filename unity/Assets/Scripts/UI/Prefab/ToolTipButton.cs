@@ -22,12 +22,18 @@ public class ToolTipButton : MonoBehaviour
 
     private void ShowToolTip()
     {
-        this.ToolTip?.SetActive(true);
+        if (this.ToolTip != default)
+        {
+            this.ToolTip.SetActive(true);
+        }
     }
 
     private void HideToolTip()
     {
-        this.ToolTip?.SetActive(false);
+        if (this.ToolTip != default)
+        {
+            this.ToolTip.SetActive(false);
+        }
     }
 
     // Start is called before the first frame update

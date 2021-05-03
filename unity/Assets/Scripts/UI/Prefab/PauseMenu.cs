@@ -1,9 +1,9 @@
-using Assets.Scripts;
-using Assets.Scripts.Constants;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+using Assets.Scripts;
+using Assets.Scripts.Constants;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,34 +19,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject saveArea;
     public GameObject optionsArea;
     public Button saveGameButton;
-
-    public Slider BackgroundVolumeSlider;
-    public Toggle AnimationEnabledToggle;
-
-    void Start()
-    {
-        EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
-
-        if (Core.IsFileAccessPossible)
-        {
-            tooltip.enabled = false;
-        }
-        else
-        {
-            saveGameButton.interactable = false;
-            tooltip.enabled = true;
-        }
-
-        Hide();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleMenu();
-        }
-    }
+    public GameObject BackButton;
+    public GameObject ContinueButton;
 
     public void ToggleMenu()
     {
@@ -66,28 +40,21 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ToggleSaveGameVisible()
+    public void ShowSavegames()
     {
-        if (menuArea.activeSelf)
+        for (int i = 0; i < this.SavegameSlots.Count; i++)
         {
-            ShowSaveGameArea();
+            var savegameSlot = this.SavegameSlots[i];
+
+            savegameSlot.Savegame = Core.Savegames[i];
         }
-        else
-        {
-            HideSaveGameArea();
-        }
+
+        this.SetVisible(savegames: true);
     }
 
-    public void ToggleOptionsVisible()
+    public void ShowOptions()
     {
-        if (optionsArea.activeSelf)
-        {
-            HideOptionsGameArea();
-        }
-        else
-        {
-            ShowOptionsGameArea();
-        }
+        this.SetVisible(options: true);
     }
 
     public void SaveGameSlotSelected(SaveGameSlotMenu slot)
@@ -121,77 +88,69 @@ public class PauseMenu : MonoBehaviour
             RawSource = gameStateString
         };
 
-        this.HideSaveGameArea();
+        SetVisible(pauseMenu: true);
     }
 
     public void Quit()
     {
+        Core.CloseGamestate();
         Core.ChangeScene(SceneNames.MainMenu);
-    }
-
-    public void OnBackgroundSliderChanged()
-    {
-        Core.BackgroundMusicManager.Volume = BackgroundVolumeSlider.value;
-    }
-
-    public void OnAnimationEnabledToggleValueChanged()
-    {
-        Core.Options.AreAnimationsEnabled = this.AnimationEnabledToggle.isOn;
     }
 
     public void Hide()
     {
-        if (menuArea.activeSelf)
-        {
-            this.HideSaveGameArea();
-        }
-
         menu.SetActive(false);
         gameView.SetActive(true);
     }
-
 
     public void Show()
     {
         CursorMode cursorMode = CursorMode.Auto;
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
+
+        SetVisible(pauseMenu: true);
+
         menu.SetActive(true);
         gameView.SetActive(false);
     }
 
-    private void ShowOptionsGameArea()
+    public void OnBackButtonClicked()
     {
-
-        this.BackgroundVolumeSlider.value = Core.BackgroundMusicManager.Volume;
-        this.AnimationEnabledToggle.isOn = Core.Options.AreAnimationsEnabled;
-
-        menuArea.SetActive(false);
-        optionsArea.SetActive(true);
+        SetVisible(pauseMenu: true);
     }
 
-    private void HideOptionsGameArea()
+    void Start()
     {
-        menuArea.SetActive(true);
-        optionsArea.SetActive(false);
-    }
+        EventTrigger tooltip = saveGameButton.GetComponent<EventTrigger>();
 
-
-    private void ShowSaveGameArea()
-    {
-        menuArea.SetActive(false);
-        saveArea.SetActive(true);
-
-        for (int i = 0; i < this.SavegameSlots.Count; i++)
+        if (Core.IsFileAccessPossible)
         {
-            var savegameSlot = this.SavegameSlots[i];
+            tooltip.enabled = false;
+        }
+        else
+        {
+            saveGameButton.interactable = false;
+            tooltip.enabled = true;
+        }
 
-            savegameSlot.Savegame = Core.Savegames[i];
+        Hide();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleMenu();
         }
     }
 
-    private void HideSaveGameArea()
+    private void SetVisible(Boolean pauseMenu = false, Boolean savegames = false, Boolean options = false)
     {
-        menuArea.SetActive(true);
-        saveArea.SetActive(false);
+        this.menuArea.SetActive(pauseMenu);
+        this.optionsArea.SetActive(options);
+        this.saveArea.SetActive(savegames);
+
+        this.ContinueButton.SetActive(pauseMenu);
+        this.BackButton.SetActive(!pauseMenu);
     }
 }

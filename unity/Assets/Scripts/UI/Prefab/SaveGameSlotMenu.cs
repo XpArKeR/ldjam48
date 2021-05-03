@@ -29,10 +29,21 @@ public class SaveGameSlotMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        this.UpdateTexts();
     }
 
     private void FixedUpdate()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        this.UpdateTexts();
+    }
+
+    private void UpdateTexts()
     {
         if (this.Savegame != default)
         {
@@ -44,11 +55,5 @@ public class SaveGameSlotMenu : MonoBehaviour
             this.Title.text = "";
             this.SavedOn.text = "Empty";
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
