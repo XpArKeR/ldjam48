@@ -3,11 +3,10 @@
 #### Required ####
 
 #### WIP ####
-- SFX Volume Slider
+- Windowed mode
 
 #### Nice to have ####
 - Tutorial
-- Windowed mode
 - Resolution selection (UIScale?)
 - Starmap
 
@@ -32,6 +31,7 @@
 - Savegames
 - Opening pause menu (Pause Button)
 - Pause / Resume SFX on pause
+- SFX Volume Slider
 
 #### ColorCodes ####
 Yellow Text:
