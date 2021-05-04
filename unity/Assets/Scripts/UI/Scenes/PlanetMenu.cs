@@ -1,9 +1,9 @@
 
-using Assets.Scripts;
-using Assets.Scripts.Constants;
-
 using System;
 using System.IO;
+
+using Assets.Scripts;
+using Assets.Scripts.Constants;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -159,6 +159,7 @@ public class PlanetMenu : MonoBehaviour
         if (Core.ForegroundMusicManager != default)
         {
             this.AudioSource.volume = Core.ForegroundMusicManager.Volume;
+            Core.ForegroundMusicManager.VolumeChanged.AddListener(OnEffectsVolumeChanged);
         }
 
         LoadTargetPlanet();
@@ -208,6 +209,11 @@ public class PlanetMenu : MonoBehaviour
                 pauseTime = default;
             }
         }
+    }
+
+    private void OnEffectsVolumeChanged(float volume)
+    {
+        this.AudioSource.volume = volume;
     }
 
     private void ChangeScene()

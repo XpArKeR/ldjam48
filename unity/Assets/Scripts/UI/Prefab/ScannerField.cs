@@ -1,6 +1,6 @@
-using Assets.Scripts;
-
 using System;
+
+using Assets.Scripts;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,10 +28,10 @@ public class ScannerField : MonoBehaviour
             Core.BackgroundMusicManager.PauseToggled.AddListener(OnPauseToggled);
         }
 
-
         if (Core.ForegroundMusicManager != default)
         {
             this.AudioSource.volume = Core.ForegroundMusicManager.Volume;
+            Core.ForegroundMusicManager.VolumeChanged.AddListener(OnEffectsVolumeChanged);
         }
 
         if (IsMovingDownwards)
@@ -54,27 +54,10 @@ public class ScannerField : MonoBehaviour
         {
             Core.BackgroundMusicManager.PauseToggled.RemoveListener(OnPauseToggled);
         }
-    }
 
-    private void OnPauseToggled(Boolean isPaused)
-    {
-        if (isPaused)
+        if (Core.ForegroundMusicManager != default)
         {
-            if (this.AudioSource.isPlaying)
-            {
-                this.AudioSource.Pause();
-                pauseTime = this.AudioSource.time;
-            }
-        }
-        else
-        {
-            if ((!this.AudioSource.isPlaying) && (pauseTime > 0))
-            {
-                this.AudioSource.time = pauseTime;
-                this.AudioSource.Play();
-
-                pauseTime = default;
-            }
+            Core.ForegroundMusicManager.VolumeChanged.RemoveListener(OnEffectsVolumeChanged);
         }
     }
 
@@ -144,5 +127,32 @@ public class ScannerField : MonoBehaviour
         }
 
         return relativeChange;
+    }
+
+    private void OnPauseToggled(Boolean isPaused)
+    {
+        if (isPaused)
+        {
+            if (this.AudioSource.isPlaying)
+            {
+                this.AudioSource.Pause();
+                pauseTime = this.AudioSource.time;
+            }
+        }
+        else
+        {
+            if ((!this.AudioSource.isPlaying) && (pauseTime > 0))
+            {
+                this.AudioSource.time = pauseTime;
+                this.AudioSource.Play();
+
+                pauseTime = default;
+            }
+        }
+    }
+
+    private void OnEffectsVolumeChanged(float volume)
+    {
+        this.AudioSource.volume = volume;
     }
 }

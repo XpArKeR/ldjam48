@@ -10,7 +10,6 @@
 - Resolution selection (UIScale?)
 - Starmap
 
-
 #### Ideas ####
 - Ship damage
 - Gathering Capacity (max per gathering)

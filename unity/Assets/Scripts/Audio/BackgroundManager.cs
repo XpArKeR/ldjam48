@@ -9,6 +9,7 @@ namespace Assets.Scripts.Audio
     public class BackgroundManager : Manager
     {
         public List<AudioClip> clips;
+        public List<AudioSource> AudioSources;
 
         private Int32 toggle = 0;
         private Double nextStartTime;
@@ -25,7 +26,35 @@ namespace Assets.Scripts.Audio
                 {
                     Core.Options.BackgroundVolume = value;
 
-                    SetVolume(value);
+                    this.VolumeChanged.Invoke(value);
+
+                    foreach (var audioSource in this.AudioSources)
+                    {
+                        audioSource.volume = value;
+                    }
+                }
+            }
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            foreach (var audioSource in this.AudioSources)
+            {
+                audioSource.volume = Volume;
+            }
+        }
+
+        public override void Stop()
+        {
+            if (IsPlaying)
+            {
+                IsPlaying = false;
+
+                foreach (var audioSource in this.AudioSources)
+                {
+                    audioSource.Stop();
                 }
             }
         }
@@ -50,25 +79,36 @@ namespace Assets.Scripts.Audio
         // Start is called before the first frame update
         protected override void Start()
         {
-            StartAudio();
+            //StartAudio();
+        }
+
+        private void FixedUpdate()
+        {
         }
 
         // Update is called once per frame
         protected override void Update()
         {
-            if (AudioSettings.dspTime > nextStartTime)
+            if (!IsPlaying)
             {
-                QueueAudio();
+                StartAudio();
+            }
+            else
+            {
+                if (AudioSettings.dspTime > nextStartTime)
+                {
+                    nextStartTime = QueueAudio(nextStartTime);
+                }
             }
         }
 
         private void StartAudio()
         {
-            PlayNow();
-            QueueAudio();
+            nextStartTime = QueueAudio(AudioSettings.dspTime, 0.2d);
+            nextStartTime = QueueAudio(nextStartTime);
         }
 
-        private void PlayNow()
+        private double QueueAudio(Double startTime, Double delay = 0d)
         {
             var clip = GetRandomClip();
 
@@ -76,37 +116,41 @@ namespace Assets.Scripts.Audio
 
             var duration = (Double)clip.samples / clip.frequency;
 
-            nextStartTime = AudioSettings.dspTime + 0.2d;
+            var startAt = startTime + delay;
+
+            var finishedOn = startAt + duration;
 
             audioSource.clip = clip;
 
-            Debug.Log(String.Format("Now Playing: {0} at {1} on AudioSource {2}. Duration: {3}", clip.name, AudioSettings.dspTime, toggle, duration));
-            audioSource.PlayScheduled(nextStartTime);
+            audioSource.PlayScheduled(startAt);
+            Debug.Log(String.Format("Scheduled: {0} at {1} - FinishedOn {4} on AudioSource {2}. Duration: {3}", clip.name, nextStartTime, toggle, duration, finishedOn));
 
             toggle = 1 - toggle;
 
             IsPlaying = true;
+
+            return finishedOn;
         }
 
-        private void QueueAudio()
-        {
-            var clip = GetRandomClip();
+        //private void QueueAudio(Double startDelay)
+        //{
+        //    var clip = GetRandomClip();
 
-            var audioSource = AudioSources[toggle];
+        //    var audioSource = AudioSources[toggle];
 
-            var duration = (Double)clip.samples / clip.frequency;
+        //    var duration = (Double)clip.samples / clip.frequency;
 
-            nextStartTime = nextStartTime + duration;
+        //    nextStartTime = startDelay + duration;
 
-            audioSource.clip = clip;
+        //    audioSource.clip = clip;
 
-            Debug.Log(String.Format("Queued: {0} at {1} on AudioSource {2}. Duration: {3}", clip.name, nextStartTime, toggle, duration));
-            audioSource.PlayScheduled(nextStartTime);
+        //    audioSource.PlayScheduled(nextStartTime);
+        //    Debug.Log(String.Format("Scheduled: {0} at {1} on AudioSource {2}. Duration: {3}", clip.name, nextStartTime, toggle, duration));
 
-            IsPlaying = true;
+        //    toggle = 1 - toggle;
 
-            toggle = 1 - toggle;
-        }
+        //    IsPlaying = true;
+        //}
 
         private AudioClip GetRandomClip()
         {

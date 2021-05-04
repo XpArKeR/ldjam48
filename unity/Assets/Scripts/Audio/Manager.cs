@@ -12,8 +12,8 @@ namespace Assets.Scripts.Audio
     {
         protected float? oldVolume;
 
+        public UnityEvent<float> VolumeChanged = new UnityEvent<float>();
         public UnityEvent<Boolean> PauseToggled = new UnityEvent<Boolean>();
-        public List<AudioSource> AudioSources;
 
         private Boolean isPlaying;
         public Boolean IsPlaying
@@ -43,6 +43,11 @@ namespace Assets.Scripts.Audio
             }
         }
 
+        public virtual void Initialize()
+        {
+
+        }
+
         public virtual void Pause()
         {
             this.PauseToggled?.Invoke(true);
@@ -52,12 +57,7 @@ namespace Assets.Scripts.Audio
         {
             if (IsPlaying)
             {
-                IsPlaying = false;
-
-                foreach (var audioSource in this.AudioSources)
-                {
-                    audioSource.Stop();
-                }
+                this.IsPlaying = false;
             }
         }
 
@@ -89,14 +89,6 @@ namespace Assets.Scripts.Audio
 
         protected virtual void Update()
         {
-        }
-
-        public virtual void SetVolume(float backgroundVolume)
-        {
-            foreach (var audioSource in this.AudioSources)
-            {
-                audioSource.volume = backgroundVolume;
-            }
         }
     }
 }

@@ -47,13 +47,13 @@ public class MainMenu : MonoBehaviour
         if (Core.BackgroundMusicManager == default)
         {
             Core.BackgroundMusicManager = this.BackgroundManager;
-            Core.BackgroundMusicManager.SetVolume(Core.Options.BackgroundVolume);
+            Core.BackgroundMusicManager.Initialize();            
         }
 
         if (Core.ForegroundMusicManager == default)
         {
             Core.ForegroundMusicManager = this.ForegroundManager;
-            Core.ForegroundMusicManager.SetVolume(Core.Options.ForegroundVolume);
+            Core.ForegroundMusicManager.Initialize();
         }
 
         if (!Core.BackgroundMusicManager.IsPlaying)

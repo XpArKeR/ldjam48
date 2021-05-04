@@ -18,7 +18,7 @@ namespace Assets.Scripts.Audio
                 {
                     Core.Options.ForegroundVolume = value;
 
-                    SetVolume(value);
+                    this.VolumeChanged.Invoke(value);
                 }
             }
         }
