@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HeaderMenu : MonoBehaviour
 {
     public Text PlanetsVisitedText;
+    public Text VersionText;
     public Slider OxygenSlider;
     public Slider FoodSlider;
     public Slider FuelSlider;
@@ -39,6 +40,8 @@ public class HeaderMenu : MonoBehaviour
                 this.PlanetsVisitedText.text = planetsVisitedText;
             }
         }
+
+        VersionText.text = Application.version;
 
         UpdateValues();
     }
