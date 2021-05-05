@@ -1,4 +1,5 @@
 #### Bugs ####
+- Pause audio on FlyOff cases game to be stuck
 
 #### Required ####
 
