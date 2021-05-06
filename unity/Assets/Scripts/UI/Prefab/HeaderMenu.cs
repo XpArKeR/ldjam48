@@ -41,7 +41,10 @@ public class HeaderMenu : MonoBehaviour
             }
         }
 
-        VersionText.text = Application.version;
+        if (this.VersionText != default)
+        {
+            VersionText.text = Application.version;
+        }
 
         UpdateValues();
     }
