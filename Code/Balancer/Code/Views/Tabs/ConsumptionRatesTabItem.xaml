@@ -1,0 +1,105 @@
+﻿<TabItem x:Class="Balancer.Views.Tabs.ConsumptionRatesTabItem"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:controls="clr-namespace:Balancer.Controls"
+         xmlns:local="clr-namespace:Balancer.Views.Tabs"
+         IsEnabled="{Binding IsEnabled}"
+         Header="ConsumptionRates">
+    <TabItem.DataContext>
+        <local:ConsumptionRatesContext />
+    </TabItem.DataContext>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0"
+                  Header="Ship">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Movement:" />
+                <controls:NumericTextBox Grid.Column="2"
+                                         Grid.Row="0"
+                                         VerticalContentAlignment="Center"
+                                         IsDecimalAllowed="True" 
+                                         MaxLength="100" 
+                                         Scale="3"  
+                                         Text="{Binding Value.Movement}"
+                                         />
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Scan:" />
+                <controls:NumericTextBox Grid.Column="2" 
+                                         Grid.Row="2" 
+                                         VerticalContentAlignment="Center"
+                                         IsDecimalAllowed="True" 
+                                         MaxLength="100" 
+                                         Scale="3"  
+                                         Text="{Binding Value.Scan}"
+                                         />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2"
+                  Header="Gathering">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Ogygen:" />
+                <controls:NumericTextBox Grid.Column="2"
+                                         Grid.Row="0"
+                                         VerticalContentAlignment="Center"
+                                         IsDecimalAllowed="True" 
+                                         MaxLength="100" 
+                                         Scale="3"  
+                                         Text="{Binding Value.GatherOxygen}"
+                                         />
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Food:" />
+                <controls:NumericTextBox Grid.Column="2" 
+                                         Grid.Row="2" 
+                                         VerticalContentAlignment="Center"
+                                         IsDecimalAllowed="True" 
+                                         MaxLength="100" 
+                                         Scale="3"  
+                                         Text="{Binding Value.GatherFood}"
+                                         />
+
+                <Label Grid.Column="0" Grid.Row="4" Content="Fuel:" />
+                <controls:NumericTextBox Grid.Column="2" 
+                                         Grid.Row="4" 
+                                         VerticalContentAlignment="Center"
+                                         IsDecimalAllowed="True" 
+                                         MaxLength="100" 
+                                         Scale="3"  
+                                         Text="{Binding Value.GatherFuel}"
+                                         />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</TabItem>

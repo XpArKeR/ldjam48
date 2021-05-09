@@ -1,0 +1,9 @@
+﻿<TabItem x:Class="Balancer.Views.Tabs.PlanetTypesTabItem"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         IsEnabled="{Binding IsEnabled}"
+         Header="Planet types">
+    <Grid>
+
+    </Grid>
+</TabItem>
