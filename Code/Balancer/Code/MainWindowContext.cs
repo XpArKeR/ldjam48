@@ -153,20 +153,9 @@ namespace Balancer
             return await Task.Run(() =>
             {
                 Debug.WriteLine("Started loading Planets");
-
-                var isSuccessful = false;
-
-                var planetTypesFileName = Path.Combine(this.ResourceDirectoryName, "Assets", "StreamingAssets", "Planets", "PlanetTypes.json");
-
-                if (File.Exists(planetTypesFileName))
-                {
-                    var planetTypes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlanetType>>(File.ReadAllText(planetTypesFileName));
-
-                    this.PlanetTypesContext.SetContext(planetTypes);
-
-                    isSuccessful = true;
-                }
-
+                                
+                var isSuccessful = this.PlanetTypesContext.Load(this.ResourceDirectoryName);
+                
                 Debug.WriteLine("Finished loading Planets");
 
                 return isSuccessful;
@@ -179,19 +168,8 @@ namespace Balancer
             {
                 Debug.WriteLine("Started loading ShipTypes");
 
-                var isSuccessful = false;
-
-                var shipTypesFileName = Path.Combine(this.ResourceDirectoryName, "Assets", "StreamingAssets", "Ships", "ShipTypes.json");
-
-                if (File.Exists(shipTypesFileName))
-                {
-                    var shipTypes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ShipType>>(File.ReadAllText(shipTypesFileName));
-
-                    this.ShipTypesContext.SetContext(shipTypes);
-
-                    isSuccessful = true;
-                }
-
+                var isSuccessful = this.ShipTypesContext.Load(this.ResourceDirectoryName);
+                
                 Debug.WriteLine("Finished loading ShipTypes");
 
                 return isSuccessful;
@@ -204,19 +182,8 @@ namespace Balancer
             {
                 Debug.WriteLine("Started loading ConsumptionRates");
 
-                var isSuccessful = false;
-
-                var consumptionRatesFilenName = Path.Combine(this.ResourceDirectoryName, "Assets", "StreamingAssets", "Core", "ConsumptionRates.json");
-
-                if (File.Exists(consumptionRatesFilenName))
-                {
-                    var consumptionRates = Newtonsoft.Json.JsonConvert.DeserializeObject<ConsumptionRates>(File.ReadAllText(consumptionRatesFilenName));
-
-                    this.ConsumptionRatesContext.SetContext(consumptionRates);
-
-                    isSuccessful = true;
-                }
-
+                var isSuccessful = this.ConsumptionRatesContext.Load(this.ResourceDirectoryName);
+                
                 Debug.WriteLine("Finished loading ConsumptionRates");
 
                 return isSuccessful;

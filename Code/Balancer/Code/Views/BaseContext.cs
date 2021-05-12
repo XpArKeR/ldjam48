@@ -13,11 +13,17 @@ namespace Balancer.Views
             if (!Equals(field, newValue))
             {
                 field = newValue;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                OnPropertyChanged(propertyName);
+
                 return true;
             }
 
             return false;
+        }
+
+        protected void OnPropertyChanged(String propertyName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

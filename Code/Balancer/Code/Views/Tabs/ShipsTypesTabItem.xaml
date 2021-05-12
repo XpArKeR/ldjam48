@@ -1,9 +1,275 @@
 ﻿<TabItem x:Class="Balancer.Views.Tabs.ShipsTypesTabItem"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:controls="clr-namespace:Balancer.Controls"
+         xmlns:converters="clr-namespace:Balancer.Converters"
+         xmlns:local="clr-namespace:Balancer.Views.Tabs"
          IsEnabled="{Binding IsEnabled}"
          Header="Ship types">
-    <Grid>
+    <TabItem.DataContext>
+        <local:ShipTypesContext />
+    </TabItem.DataContext>
 
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Header="Types">
+            <ListBox ItemsSource="{Binding Value}" 
+                     SelectedItem="{Binding SelectedShipType}"
+                     DisplayMemberPath="Name"
+                     Margin="5">
+            </ListBox>
+        </GroupBox>
+
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" 
+                      Margin="5"
+                      Header="Details">
+                <Grid Margin="5">
+                    <Grid Visibility="{Binding HasSelectedShipType, Converter={converters:BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" />
+                        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedShipType.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Header="Consumption Rates" >
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <GroupBox Grid.Row="0" Header="Oxygen">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           Text="Max level:"                                           
+                                           ToolTip="Capacity that can be stored of the resource." />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="0"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"
+                                                         ToolTip="Capacity that can be stored of the resource."
+                                                         Text="{Binding SelectedShipType.MaxOxygenLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="2" 
+                                           Text="Start level:" 
+                                           ToolTip="Level of resouces at the start of a game." 
+                                           />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="2"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"  
+                                                         ToolTip="Level of resouces at the start of a game." 
+                                                         Text="{Binding SelectedShipType.OxygenLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="4" 
+                                           Text="Consumption:" 
+                                           ToolTip="Consumption of Resource per action taken." 
+                                           />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="4"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"  
+                                                         ToolTip="Consumption of Resource per action taken."
+                                                         Text="{Binding SelectedShipType.OxygenConsumption, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Row="2" Header="Food">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           Text="Max level:"                                           
+                                           ToolTip="Capacity that can be stored of the resource." />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="0"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"
+                                                         ToolTip="Capacity that can be stored of the resource."
+                                                         Text="{Binding SelectedShipType.MaxFoodLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="2" 
+                                           Text="Start level:" 
+                                           ToolTip="Level of resouces at the start of a game." 
+                                           />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="2"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"  
+                                                         ToolTip="Level of resouces at the start of a game." 
+                                                         Text="{Binding SelectedShipType.FoodLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="4" 
+                                           Text="Consumption:" 
+                                           ToolTip="Consumption of Resource per action taken." 
+                                           />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="4"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"  
+                                                         ToolTip="Consumption of Resource per action taken."
+                                                         Text="{Binding SelectedShipType.FoodConsumption, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Row="4" Header="Fuel">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="0" 
+                                           Text="Max level:"                                           
+                                           ToolTip="Capacity that can be stored of the resource." />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="0"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"
+                                                         ToolTip="Capacity that can be stored of the resource."
+                                                         Text="{Binding SelectedShipType.MaxFuelLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="2" 
+                                           Text="Start level:" 
+                                           ToolTip="Level of resouces at the start of a game." 
+                                           />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="2"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"  
+                                                         ToolTip="Level of resouces at the start of a game." 
+                                                         Text="{Binding SelectedShipType.FuelLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+
+                                        <TextBlock Grid.Column="0" 
+                                           Grid.Row="4" 
+                                           Text="Consumption:" 
+                                           ToolTip="Consumption of Resource per action taken." 
+                                           />
+                                        <controls:NumericTextBox Grid.Column="2"
+                                                         Grid.Row="4"
+                                                         VerticalContentAlignment="Center"
+                                                         IsDecimalAllowed="True" 
+                                                         MaxLength="100" 
+                                                         Scale="3"  
+                                                         ToolTip="Consumption of Resource per action taken."
+                                                         Text="{Binding SelectedShipType.FuelConsumption, UpdateSourceTrigger=PropertyChanged}"
+                                                         />
+                                    </Grid>
+                                </GroupBox>
+
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+
+                    <TextBlock Visibility="{Binding HasSelectedShipType, Converter={converters:BooleanToVisibilityConverter IsInvertingValue=True}}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Foreground="#AA000000"
+                               Text="Please select a ship type..."/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="2" Header="Actions">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="160" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="2" 
+                            Content="Write to file"
+                            Command="{Binding WriteToFileCommand}"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
     </Grid>
 </TabItem>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Balancer.Views
 {
@@ -16,6 +14,19 @@ namespace Balancer.Views
             set
             {
                 SetProperty(ref this.isEnabled, value);
+            }
+        }
+
+        private String basePath;
+        public String BasePath
+        {
+            get
+            {
+                return this.basePath;
+            }
+            private set
+            {
+                SetProperty(ref this.basePath, value);
             }
         }
 
@@ -35,6 +46,13 @@ namespace Balancer.Views
         public virtual void SetContext(T context)
         {
             this.Value = context;
+        }
+
+        public virtual Boolean Load(String baseDirectoryPath)
+        {
+            this.BasePath = baseDirectoryPath;
+
+            return true;
         }
     }
 }

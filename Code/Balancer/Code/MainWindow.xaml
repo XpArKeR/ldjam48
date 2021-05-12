@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Balancer"
         xmlns:tabs="clr-namespace:Balancer.Views.Tabs"
-        xmlns:li="clr-namespace:LoadingIndicators.WPF;assembly=LoadingIndicators.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Window.DataContext>
         <local:MainWindowContext />
     </Window.DataContext>
@@ -18,13 +17,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <li:LoadingIndicator Grid.Column="0" 
+        <!--<li:LoadingIndicator Grid.Column="0" 
                              Grid.ColumnSpan="1" 
                              Grid.Row="0" 
                              Grid.RowSpan="3" 
                              SpeedRatio="1" 
                              IsActive="{Binding IsLoading}" 
-                             />
+                             />-->
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -35,7 +34,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="Resource Directory" />
+            <TextBlock Grid.Column="0" Text="Unity Solution Directory:" />
 
             <TextBox Grid.Column="2" IsReadOnly="True" VerticalContentAlignment="Center" Text="{Binding ResourceDirectoryName}" />
 

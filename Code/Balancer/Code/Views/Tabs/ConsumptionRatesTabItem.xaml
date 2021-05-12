@@ -15,10 +15,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="5" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0"
                   Header="Ship">
-            <Grid>
+            <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="5" />
@@ -55,7 +57,7 @@
 
         <GroupBox Grid.Row="2"
                   Header="Gathering">
-            <Grid>
+            <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="5" />
@@ -99,6 +101,20 @@
                                          Scale="3"  
                                          Text="{Binding Value.GatherFuel}"
                                          />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="6" Header="Actions">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="160" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="2" 
+                            Content="Write to file"
+                            Command="{Binding WriteToFileCommand}"/>
             </Grid>
         </GroupBox>
     </Grid>
