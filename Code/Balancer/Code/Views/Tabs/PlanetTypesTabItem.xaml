@@ -1,6 +1,8 @@
 ﻿<TabItem x:Class="Balancer.Views.Tabs.PlanetTypesTabItem"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:behaviors="clr-namespace:Balancer.Behaviors"
          xmlns:controls="clr-namespace:Balancer.Controls"
          xmlns:converters="clr-namespace:Balancer.Converters"
          xmlns:local="clr-namespace:Balancer.Views.Tabs"
@@ -42,211 +44,363 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="5" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" />
                         <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedPlanetType.Name, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Header="Resources" >
-                            <Grid Margin="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="5" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="5" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                        <TabControl Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
+                            <TabItem Header="Resources">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
 
-                                <GroupBox Grid.Row="0" Header="Oxygen">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions >
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="5" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                    <GroupBox Grid.Row="0" Header="Oxygen">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions >
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="5" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="5" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="5" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="0" 
-                                           Text="Max level:"                                           
-                                           ToolTip="Capacity that can be stored of the resource." />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                           Text="Range Min:"                                           
+                                           ToolTip="Minimum value of the Value range." />
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="0"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"
-                                                         ToolTip="Capacity that can be stored of the resource."
-                                                         Text="{Binding SelectedPlanetType.MaxOxygenLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Minimum value of the Value range."
+                                                         Text="{Binding SelectedPlanetType.Resources.Oxygen.RangeMin, UpdateSourceTrigger=PropertyChanged}"
                                                          />
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="2" 
-                                           Text="Start level:" 
-                                           ToolTip="Level of resouces at the start of a game." 
+                                           Text="Range Max:" 
+                                           ToolTip="Maximum value of the Value range." 
                                            />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="2"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"  
-                                                         ToolTip="Level of resouces at the start of a game." 
-                                                         Text="{Binding SelectedPlanetType.OxygenLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Maximum value of the Value range." 
+                                                         Text="{Binding SelectedPlanetType.Resources.Oxygen.RangeMax, UpdateSourceTrigger=PropertyChanged}"
                                                          />
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="4" 
-                                           Text="Consumption:" 
-                                           ToolTip="Consumption of Resource per action taken." 
+                                           Text="Dispersion:" 
+                                           ToolTip="Dispersion of random value from range." 
                                            />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="4"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"  
-                                                         ToolTip="Consumption of Resource per action taken."
-                                                         Text="{Binding SelectedPlanetType.OxygenConsumption, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Dispersion of random value from range."
+                                                         Text="{Binding SelectedPlanetType.Resources.Oxygen.Dispersion, UpdateSourceTrigger=PropertyChanged}"
                                                          />
-                                    </Grid>
-                                </GroupBox>
+                                        </Grid>
+                                    </GroupBox>
 
-                                <GroupBox Grid.Row="2" Header="Food">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions >
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="5" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                    <GroupBox Grid.Row="2" Header="Food">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions >
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="5" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="5" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="5" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="0" 
-                                           Text="Max level:"                                           
-                                           ToolTip="Capacity that can be stored of the resource." />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                           Text="Range Min:"                                           
+                                           ToolTip="Minimum value of the Value range." />
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="0"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"
-                                                         ToolTip="Capacity that can be stored of the resource."
-                                                         Text="{Binding SelectedPlanetType.MaxFoodLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Minimum value of the Value range."
+                                                         Text="{Binding SelectedPlanetType.Resources.Food.RangeMin, UpdateSourceTrigger=PropertyChanged}"
                                                          />
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="2" 
-                                           Text="Start level:" 
-                                           ToolTip="Level of resouces at the start of a game." 
+                                           Text="Range Max:" 
+                                           ToolTip="Maximum value of the Value range." 
                                            />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="2"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"  
-                                                         ToolTip="Level of resouces at the start of a game." 
-                                                         Text="{Binding SelectedPlanetType.FoodLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Maximum value of the Value range." 
+                                                         Text="{Binding SelectedPlanetType.Resources.Food.RangeMax, UpdateSourceTrigger=PropertyChanged}"
                                                          />
 
-                                        <TextBlock Grid.Column="0" 
-                                           Grid.Row="4" 
-                                           Text="Consumption:" 
-                                           ToolTip="Consumption of Resource per action taken." 
-                                           />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                            <TextBlock Grid.Column="0" 
+                                                       Grid.Row="4" 
+                                                       Text="Dispersion:" 
+                                                       ToolTip="Dispersion of random value from range." 
+                                                       />
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="4"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"  
-                                                         ToolTip="Consumption of Resource per action taken."
-                                                         Text="{Binding SelectedPlanetType.FoodConsumption, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Dispersion of random value from range."
+                                                         Text="{Binding SelectedPlanetType.Resources.Food.Dispersion, UpdateSourceTrigger=PropertyChanged}"
                                                          />
-                                    </Grid>
-                                </GroupBox>
+                                        </Grid>
+                                    </GroupBox>
 
-                                <GroupBox Grid.Row="4" Header="Fuel">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions >
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="5" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                    <GroupBox Grid.Row="4" Header="Fuel">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions >
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="5" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="5" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="5" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="0" 
-                                           Text="Max level:"                                           
-                                           ToolTip="Capacity that can be stored of the resource." />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                           Text="Range Min:"                                           
+                                           ToolTip="Minimum value of the Value range." />
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="0"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"
-                                                         ToolTip="Capacity that can be stored of the resource."
-                                                         Text="{Binding SelectedPlanetType.MaxFuelLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Minimum value of the Value range."
+                                                         Text="{Binding SelectedPlanetType.Resources.Fuel.RangeMin, UpdateSourceTrigger=PropertyChanged}"
                                                          />
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="2" 
-                                           Text="Start level:" 
-                                           ToolTip="Level of resouces at the start of a game." 
+                                           Text="Range Max:" 
+                                           ToolTip="Maximum value of the Value range." 
                                            />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="2"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"  
-                                                         ToolTip="Level of resouces at the start of a game." 
-                                                         Text="{Binding SelectedPlanetType.FuelLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Maximum value of the Value range." 
+                                                         Text="{Binding SelectedPlanetType.Resources.Fuel.RangeMax, UpdateSourceTrigger=PropertyChanged}"
                                                          />
 
-                                        <TextBlock Grid.Column="0" 
+                                            <TextBlock Grid.Column="0" 
                                            Grid.Row="4" 
-                                           Text="Consumption:" 
-                                           ToolTip="Consumption of Resource per action taken." 
+                                           Text="Dispersion:" 
+                                           ToolTip="Dispersion of random value from range." 
                                            />
-                                        <controls:NumericTextBox Grid.Column="2"
+                                            <controls:NumericTextBox Grid.Column="2"
                                                          Grid.Row="4"
                                                          VerticalContentAlignment="Center"
                                                          IsDecimalAllowed="True" 
                                                          MaxLength="100" 
                                                          Scale="3"  
-                                                         ToolTip="Consumption of Resource per action taken."
-                                                         Text="{Binding SelectedPlanetType.FuelConsumption, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTip="Dispersion of random value from range."
+                                                         Text="{Binding SelectedPlanetType.Resources.Fuel.Dispersion, UpdateSourceTrigger=PropertyChanged}"
                                                          />
-                                    </Grid>
-                                </GroupBox>
+                                        </Grid>
+                                    </GroupBox>
 
-                            </Grid>
-                        </GroupBox>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Header="Land Sprites">
+
+                            </TabItem>
+
+                            <TabItem Header="Cloud Sprites">
+
+                            </TabItem>
+
+                            <TabItem Header="Colors">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <GroupBox Grid.Row="0" Header="Base" >
+                                        <ListBox ItemsSource="{Binding SelectedPlanetType.BaseColors}" HorizontalContentAlignment="Stretch">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="16" >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Border Grid.Column="0" 
+                                                                BorderBrush="Black"
+                                                                BorderThickness="1"
+                                                                Width="16"
+                                                                Height="16"
+                                                                >
+                                                            <Border.Background>
+                                                                <MultiBinding Converter="{converters:MultiDecimalToSolidColorBrushConverter}">
+                                                                    <Binding Path="A" />
+                                                                    <Binding Path="R" />
+                                                                    <Binding Path="G" />
+                                                                    <Binding Path="B" />
+                                                                </MultiBinding>
+                                                            </Border.Background>
+                                                        </Border>
+
+                                                        <Grid Grid.Column="2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="A" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     ToolTip="Alpha value of color. Must be between 0 and 1."
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" MinValue="0" MaxValue="1" JustPositivDecimalInput="True" />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="4">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="R" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     ToolTip="Red value of color. Must be within 0 and 255."
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="6">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="G" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     ToolTip="Green value of color. Must be within 0 and 255."
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="8">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="B" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     VerticalContentAlignment="Center"
+                                                                     ToolTip="Blue value of color. Must be within 0 and 255."
+                                                                     Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </GroupBox>
+
+                                    <GroupBox Grid.Row="2" Header="Land" />
+
+                                    <GroupBox Grid.Row="4" Header="Cloud" />
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
                     </Grid>
 
                     <TextBlock Visibility="{Binding HasSelectedPlanetType, Converter={converters:BooleanToVisibilityConverter IsInvertingValue=True}}"
