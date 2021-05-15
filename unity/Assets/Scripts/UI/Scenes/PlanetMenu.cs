@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class PlanetMenu : MonoBehaviour
 {
+    private Boolean isFlyingOff;
     private float pauseTime;
 
     public AudioSource AudioSource;
@@ -37,15 +38,20 @@ public class PlanetMenu : MonoBehaviour
 
             AudioSource.Play();
 
-            StartCoroutine(AudioSource.WaitForSound(() =>
-            {
-                this.ChangeScene();
-            }));
+            this.isFlyingOff = true;
+
+            StartCoroutine(AudioSource.WaitForSound(FinishedFlyOff));
         }
         else
         {
             this.ChangeScene();
         }
+    }
+
+    private void FinishedFlyOff()
+    {
+        this.isFlyingOff = false;
+        this.ChangeScene();
     }
 
     public void LoadTargetPlanet()
@@ -195,6 +201,11 @@ public class PlanetMenu : MonoBehaviour
         {
             if (this.AudioSource.isPlaying)
             {
+                if (isFlyingOff)
+                {
+                    StopCoroutine(AudioSource.WaitForSound(FinishedFlyOff));
+                }
+
                 this.AudioSource.Pause();
                 pauseTime = this.AudioSource.time;
             }
@@ -205,6 +216,11 @@ public class PlanetMenu : MonoBehaviour
             {
                 this.AudioSource.time = pauseTime;
                 this.AudioSource.Play();
+
+                if (isFlyingOff)
+                {
+                    StartCoroutine(AudioSource.WaitForSound(FinishedFlyOff));
+                }
 
                 pauseTime = default;
             }
