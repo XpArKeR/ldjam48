@@ -1,4 +1,5 @@
 #### Bugs ####
+- GameOver screen on Web / Mobile device
 - UI Header size not equal on Planet and Far/approach
 
 #### Required ####
