@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Balancer.Model.Planets
 {
@@ -7,10 +7,10 @@ namespace Balancer.Model.Planets
     {
         public String Name { get; set; }
         public PlanetResources Resources { get; set; }
-        public List<String> LandSprites { get; set; }
-        public List<String> CloudSprites { get; set; }
-        public List<CustomColor> BaseColors { get; set; }
-        public List<CustomColor> LandColors { get; set; }
-        public List<CustomColor> CloudColors { get; set; }
+        public ObservableCollection<String> LandSprites { get; set; }
+        public ObservableCollection<String> CloudSprites { get; set; }
+        public ObservableCollection<CustomColor> BaseColors { get; set; }
+        public ObservableCollection<CustomColor> LandColors { get; set; }
+        public ObservableCollection<CustomColor> CloudColors { get; set; }
     }
 }

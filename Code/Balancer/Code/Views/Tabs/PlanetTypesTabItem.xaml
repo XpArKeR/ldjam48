@@ -256,7 +256,40 @@
                             </TabItem>
 
                             <TabItem Header="Cloud Sprites">
+                                <Grid Margin="5">
+                                    <ListBox Grid.Row="0" 
+                                             HorizontalContentAlignment="Stretch"
+                                             ItemsSource="{Binding SelectedPlanetType.CloudSprites}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="5" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
 
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="5" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" />
+                                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding}" />                                                    
+                                                    
+                                                    <Image Grid.Column="0" 
+                                                           Grid.ColumnSpan="3" 
+                                                           Grid.Row="2" 
+                                                           Width="64" 
+                                                           Height="64"
+                                                           Source="{Binding Converter={converters:ResourceNameToImageSourceConverter}}"
+                                                           />                                                    
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Grid>
                             </TabItem>
 
                             <TabItem Header="Colors">
@@ -270,7 +303,9 @@
                                     </Grid.RowDefinitions>
 
                                     <GroupBox Grid.Row="0" Header="Base" >
-                                        <ListBox ItemsSource="{Binding SelectedPlanetType.BaseColors}" HorizontalContentAlignment="Stretch">
+                                        <ListBox HorizontalContentAlignment="Stretch"
+                                                 ItemsSource="{Binding SelectedPlanetType.BaseColors}"
+                                                 >
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="16" >
@@ -284,6 +319,8 @@
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="5" />
                                                             <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="Auto" />
                                                         </Grid.ColumnDefinitions>
 
                                                         <Border Grid.Column="0" 
@@ -389,15 +426,277 @@
                                                                 </i:Interaction.Behaviors>
                                                             </TextBox>
                                                         </Grid>
+
+                                                        <Button Grid.Column="10" Content="Delete" Command="{Binding DataContext.RemoveBaseColorCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
                                                     </Grid>
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
                                     </GroupBox>
 
-                                    <GroupBox Grid.Row="2" Header="Land" />
+                                    <GroupBox Grid.Row="2" Header="Land">
+                                        <ListBox HorizontalContentAlignment="Stretch"
+                                                 ItemsSource="{Binding SelectedPlanetType.LandColors}"
+                                                 >
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="16" >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
 
-                                    <GroupBox Grid.Row="4" Header="Cloud" />
+                                                        <Border Grid.Column="0" 
+                                                                BorderBrush="Black"
+                                                                BorderThickness="1"
+                                                                Width="16"
+                                                                Height="16"
+                                                                >
+                                                            <Border.Background>
+                                                                <MultiBinding Converter="{converters:MultiDecimalToSolidColorBrushConverter}">
+                                                                    <Binding Path="A" />
+                                                                    <Binding Path="R" />
+                                                                    <Binding Path="G" />
+                                                                    <Binding Path="B" />
+                                                                </MultiBinding>
+                                                            </Border.Background>
+                                                        </Border>
+
+                                                        <Grid Grid.Column="2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="A" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     ToolTip="Alpha value of color. Must be between 0 and 1."
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" MinValue="0" MaxValue="1" JustPositivDecimalInput="True" />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="4">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="R" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     ToolTip="Red value of color. Must be within 0 and 255."
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="6">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="G" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     ToolTip="Green value of color. Must be within 0 and 255."
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="8">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="B" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     VerticalContentAlignment="Center"
+                                                                     ToolTip="Blue value of color. Must be within 0 and 255."
+                                                                     Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Button Grid.Column="10" Content="Delete" Command="{Binding DataContext.RemoveLandColorCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </GroupBox>
+
+                                    <GroupBox Grid.Row="4" Header="Cloud">
+                                        <ListBox HorizontalContentAlignment="Stretch"
+                                                 ItemsSource="{Binding SelectedPlanetType.CloudColors}"
+                                                 >
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="16" >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Border Grid.Column="0" 
+                                                                BorderBrush="Black"
+                                                                BorderThickness="1"
+                                                                Width="16"
+                                                                Height="16"
+                                                                >
+                                                            <Border.Background>
+                                                                <MultiBinding Converter="{converters:MultiDecimalToSolidColorBrushConverter}">
+                                                                    <Binding Path="A" />
+                                                                    <Binding Path="R" />
+                                                                    <Binding Path="G" />
+                                                                    <Binding Path="B" />
+                                                                </MultiBinding>
+                                                            </Border.Background>
+                                                        </Border>
+
+                                                        <Grid Grid.Column="2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="A" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     ToolTip="Alpha value of color. Must be between 0 and 1."
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" MinValue="0" MaxValue="1" JustPositivDecimalInput="True" />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="4">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="R" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     ToolTip="Red value of color. Must be within 0 and 255."
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="6">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="G" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     ToolTip="Green value of color. Must be within 0 and 255."
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Grid Grid.Column="8">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="5"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="B" />
+                                                            <TextBox Grid.Column="2" 
+                                                                     VerticalContentAlignment="Center"
+                                                                     ToolTip="Blue value of color. Must be within 0 and 255."
+                                                                     Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     >
+                                                                <i:Interaction.Behaviors>
+                                                                    <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
+                                                                </i:Interaction.Behaviors>
+                                                            </TextBox>
+                                                        </Grid>
+
+                                                        <Button Grid.Column="10" Content="Delete" Command="{Binding DataContext.RemoveCloudColorCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" />
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </GroupBox>
                                 </Grid>
                             </TabItem>
                         </TabControl>
@@ -407,7 +706,7 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                Foreground="#AA000000"
-                               Text="Please select a ship type..."/>
+                               Text="Please select a planet type..."/>
                 </Grid>
             </GroupBox>
 

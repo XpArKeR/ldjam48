@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Input;
 
 using Balancer.Commands;
+using Balancer.Model;
 using Balancer.Model.Planets;
 
 using Newtonsoft.Json;
@@ -51,6 +52,19 @@ namespace Balancer.Views.Tabs
             }
         }
 
+        private CustomColor selectedPlanetBaseColor;
+        public CustomColor SelectedPlanetBaseColor
+        {
+            get
+            {
+                return this.selectedPlanetBaseColor;
+            }
+            set
+            {
+                SetProperty(ref this.selectedPlanetBaseColor, value);
+            }
+        }
+
         private ICommand writeToFileCommand;
         public ICommand WriteToFileCommand
         {
@@ -62,6 +76,48 @@ namespace Balancer.Views.Tabs
                 }
 
                 return this.writeToFileCommand;
+            }
+        }
+
+        private ICommand removeBaseColorCommand;
+        public ICommand RemoveBaseColorCommand
+        {
+            get
+            {
+                if (this.removeBaseColorCommand == default)
+                {
+                    this.removeBaseColorCommand = new SimpleCommand<CustomColor>(ExecuteRemoveBaseColorCommand);
+                }
+
+                return this.removeBaseColorCommand;
+            }
+        }
+
+        private ICommand removeLandColorCommand;
+        public ICommand RemoveLandColorCommand
+        {
+            get
+            {
+                if (this.removeLandColorCommand == default)
+                {
+                    this.removeLandColorCommand = new SimpleCommand<CustomColor>(ExecuteRemoveLandColorCommand);
+                }
+
+                return this.removeLandColorCommand;
+            }
+        }
+
+        private ICommand removeCloudColorCommand;
+        public ICommand RemoveCloudColorCommand
+        {
+            get
+            {
+                if (this.removeCloudColorCommand == default)
+                {
+                    this.removeCloudColorCommand = new SimpleCommand<CustomColor>(ExecuteRemoveCloudColorCommand);
+                }
+
+                return this.removeCloudColorCommand;
             }
         }
 
@@ -116,6 +172,21 @@ namespace Balancer.Views.Tabs
 
                 File.WriteAllText(planetTypesFileName, planetTypesString);
             }
+        }
+
+        private void ExecuteRemoveBaseColorCommand(CustomColor customColor)
+        {
+            this.SelectedPlanetType.BaseColors.Remove(customColor);
+        }
+
+        private void ExecuteRemoveLandColorCommand(CustomColor customColor)
+        {
+            this.SelectedPlanetType.LandColors.Remove(customColor);
+        }
+
+        private void ExecuteRemoveCloudColorCommand(CustomColor customColor)
+        {
+            this.SelectedPlanetType.CloudColors.Remove(customColor);
         }
     }
 }

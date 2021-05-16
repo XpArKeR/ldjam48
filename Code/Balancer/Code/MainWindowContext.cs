@@ -134,13 +134,15 @@ namespace Balancer
         {
             this.IsLoading = true;
 
+            var loadResourcesTask = Base.Resources.LoadAsync(this.ResourceDirectoryName);
+
             var loadPlanetsTask = this.LoadPlanetTypesAsync();
             var loadShipTypesTask = this.LoadShipTypesAsync();
             var loadConsumptionRatesTask = this.LoadConsumptionRatesAsymc();
 
             Debug.WriteLine("Started Tasks");
 
-            await Task.WhenAll(loadPlanetsTask, loadShipTypesTask, loadConsumptionRatesTask);
+            await Task.WhenAll(loadResourcesTask, loadPlanetsTask, loadShipTypesTask, loadConsumptionRatesTask);
 
             Debug.WriteLine("Completed Tasks");
 
