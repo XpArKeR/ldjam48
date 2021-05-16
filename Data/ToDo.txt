@@ -1,10 +1,11 @@
 #### Bugs ####
-
+- UI Header size not equal on Planet and Far/approach
 
 #### Required ####
 
 #### WIP ####
 - Windowed mode
+- Starmap
 
 #### Nice to have ####
 - Tutorial
