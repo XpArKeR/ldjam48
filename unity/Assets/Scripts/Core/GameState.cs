@@ -120,6 +120,15 @@ namespace Assets.Scripts
             }
         }
 
+        private Starmap starmap;
+        public Starmap Starmap
+        {
+            get
+            {
+                return starmap;
+            }
+        }
+
         [SerializeField]
         private Int32 planetsVisited;
         public Int32 PlanetsVisited
