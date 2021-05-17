@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,24 +9,28 @@ namespace Balancer.Model.Resources
     public class ResourceCache
     {
         IDictionary<String, Resource> resourceByKeyCache = new Dictionary<String, Resource>();
-        IDictionary<String, Resource> resourceByNameCache = new Dictionary<String, Resource>();
+        IDictionary<String, List<Resource>> resourceByNameCache = new Dictionary<String, List<Resource>>();
 
-        public IList<Resource> GetResources(String resourceName)
+        public IEnumerable<Resource> GetResources(String resourceName)
         {
-            var results = new List<Resource>();
+            if (resourceByNameCache.TryGetValue(resourceName, out List<Resource> namedResources))
+            {
+                foreach (var resource in namedResources)
+                {
+                    yield return resource;
+                }
+            }
 
-
-
-            return results;
+            yield break;
         }
 
-        public static Resource GetResource(String resourceKey)
+        public Resource GetResource(String resourceKey)
         {
             var resource = default(Resource);
 
-            if (!String.IsNullOrEmpty(resourceKey))
+            if ((!String.IsNullOrEmpty(resourceKey)) && (!resourceByKeyCache.TryGetValue(resourceKey, out resource)))
             {
-
+                Debug.WriteLine(String.Format("No resource found for Key '{0}'", resourceKey));
             }
 
             return resource;
@@ -50,12 +55,14 @@ namespace Balancer.Model.Resources
             {
                 var extension = Path.GetExtension(file).ToLower();
 
+                var resource = default(Resource);
+
                 switch (extension)
                 {
                     case ".png":
                     case ".jpg":
                     case ".jpeg":
-                        var resource = new Resource()
+                        resource = new Resource()
                         {
                             Key = GetResourceKey(file, baseDirectory),
                             Name = Path.GetFileNameWithoutExtension(file),
@@ -63,13 +70,24 @@ namespace Balancer.Model.Resources
                             ResourceType = ResourceType.Image
                         };
 
-                        this.resourceByKeyCache[resource.Key] = resource;
-                        this.resourceByNameCache[resource.Name] = resource;
                         break;
 
                     case ".json":
 
                         break;
+                }
+
+                if (resource != default)
+                {
+                    this.resourceByKeyCache[resource.Key] = resource;
+
+                    if (!resourceByNameCache.TryGetValue(resource.Name, out List<Resource> namedResources))
+                    {
+                        namedResources = new List<Resource>();
+                        this.resourceByNameCache[resource.Name] = namedResources;
+                    }
+
+                    namedResources.Add(resource);
                 }
             }
 

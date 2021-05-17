@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -9,6 +10,9 @@ namespace Balancer.Converters
 {
     public class ResourceNameToImageSourceConverter : MarkupExtension, IValueConverter
     {
+        public Boolean IsLoadingUsingKey { get; set; }
+        public String ResourceKeyBase { get; set; }
+
         public override Object ProvideValue(IServiceProvider serviceProvider)
         {
             return this;
@@ -20,12 +24,16 @@ namespace Balancer.Converters
             {
                 var resources = Resources.GetResources(stringValue);
 
-                if (resources.Count == 1)
-                {
-                }
-                else if (resources.Count > 1)
-                {
+                var resourceCount = resources.Count();
 
+                if (resourceCount == 1)
+                {
+                    var resource = resources.First();
+
+                    if (resource.ResourceType == Model.Resources.ResourceType.Image)
+                    {
+                        return resource.ToImageSource();
+                    }
                 }
             }
 

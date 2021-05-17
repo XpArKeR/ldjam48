@@ -24,7 +24,7 @@ namespace Balancer.Base
             return ResourceCache.GetResource(resourceName);
         }
 
-        public static IList<Resource> GetResources(String resourceName)
+        public static IEnumerable<Resource> GetResources(String resourceName)
         {
             return ResourceCache.GetResources(resourceName);
         }
