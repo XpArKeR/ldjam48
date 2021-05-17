@@ -52,6 +52,38 @@ namespace Balancer.Views.Tabs
             }
         }
 
+        private String selectedLandResource;
+        public String SelectedLandResource
+        {
+            get
+            {
+                return this.selectedLandResource;
+            }
+            set
+            {
+                if (SetProperty(ref this.selectedLandResource, value))
+                {
+                    this.RemoveSelectedCloudSpriteCommand.OnCanExecuteChanged();
+                }
+            }
+        }
+
+        private String selectedCloudResource;
+        public String SelectedCloudResource
+        {
+            get
+            {
+                return this.selectedCloudResource;
+            }
+            set
+            {
+                if (SetProperty(ref this.selectedCloudResource, value))
+                {
+                    CommandManager.InvalidateRequerySuggested();
+                }
+            }
+        }
+
         private CustomColor selectedPlanetBaseColor;
         public CustomColor SelectedPlanetBaseColor
         {
@@ -76,6 +108,34 @@ namespace Balancer.Views.Tabs
                 }
 
                 return this.writeToFileCommand;
+            }
+        }
+
+        private ICommand removeSelectedLandSpriteCommand;
+        public SimpleCommand<String> RemoveSelectedLandSpriteCommand
+        {
+            get
+            {
+                if (this.removeSelectedLandSpriteCommand == default)
+                {
+                    this.removeSelectedLandSpriteCommand = new SimpleCommand<String>(CanExecuteRemoveSelectedLandResourceCommand, ExecuteRemoveSelectedLandResourceCommand);
+                }
+
+                return this.removeSelectedLandSpriteCommand;
+            }
+        }
+
+        private ICommand removeSelectedCloudSpriteCommand;
+        public SimpleCommand<String> RemoveSelectedCloudSpriteCommand
+        {
+            get
+            {
+                if (this.removeSelectedCloudSpriteCommand == default)
+                {
+                    this.removeSelectedCloudSpriteCommand = new SimpleCommand<String>(CanExecuteRemoveSelectedCloudResourceCommand, ExecuteRemoveSelectedCloudResourceCommand);
+                }
+
+                return this.removeSelectedCloudSpriteCommand;
             }
         }
 
@@ -171,6 +231,32 @@ namespace Balancer.Views.Tabs
                 }
 
                 File.WriteAllText(planetTypesFileName, planetTypesString);
+            }
+        }
+
+        private Boolean CanExecuteRemoveSelectedLandResourceCommand(String resourceName)
+        {
+            return (this.SelectedLandResource != default);
+        }
+
+        private void ExecuteRemoveSelectedLandResourceCommand(String resourceName)
+        {
+            if (!String.IsNullOrEmpty(resourceName))
+            {
+                this.SelectedPlanetType.LandSprites.Remove(resourceName);
+            }
+        }
+
+        private Boolean CanExecuteRemoveSelectedCloudResourceCommand(String resourceName)
+        {
+            return (this.SelectedCloudResource != default);
+        }
+
+        private void ExecuteRemoveSelectedCloudResourceCommand(String resourceName)
+        {
+            if (!String.IsNullOrEmpty(resourceName))
+            {
+                this.SelectedPlanetType.CloudSprites.Remove(resourceName);
             }
         }
 

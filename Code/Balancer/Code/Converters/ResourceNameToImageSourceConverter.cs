@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 
 using Balancer.Base;
+using Balancer.Extensions;
 
 namespace Balancer.Converters
 {
@@ -42,7 +43,7 @@ namespace Balancer.Converters
 
         public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return Binding.DoNothing;
         }
     }
 }

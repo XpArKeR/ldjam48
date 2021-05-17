@@ -13,9 +13,13 @@ namespace Balancer.Commands
 
         }
 
-        public SimpleCommand(Action<T> action, Func<T, Boolean> canExecuteAction = null)
+        public SimpleCommand(Action<T> action) : this()
         {
             this.ExecuteDelegate = action;
+        }
+
+        public SimpleCommand(Func<T, Boolean> canExecuteAction, Action<T> action) : this(action)
+        {
             this.CanExecuteDelegate = canExecuteAction;
         }
 
@@ -23,6 +27,16 @@ namespace Balancer.Commands
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public virtual void OnCanExecuteChanged()
+        {
+            var canExecuteChanged = this.CanExecuteChanged;
+
+            if (canExecuteChanged != default)
+            {
+                canExecuteChanged(this, EventArgs.Empty);
+            }
         }
 
         public virtual bool CanExecute(object parameter)

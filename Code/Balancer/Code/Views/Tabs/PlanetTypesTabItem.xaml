@@ -252,40 +252,182 @@
                             </TabItem>
 
                             <TabItem Header="Land Sprites">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
 
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="75" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Grid.Column="2" Content="Remove" Command="{Binding RemoveSelectedCloudSpriteCommand}" />
+                                        <Button Grid.Column="4" Content="Add" Command="{Binding AddCloudSpriteCommand}" />
+                                    </Grid>
+
+                                    <ListBox Grid.Row="2" 
+                                             HorizontalContentAlignment="Stretch"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                             ItemsSource="{Binding SelectedPlanetType.LandSprites}"
+                                             SelectedItem="{Binding SelectedLandResource, UpdateSourceTrigger=PropertyChanged}"
+                                             >
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border BorderThickness="1"
+                                                        BorderBrush="Black"
+                                                        >
+                                                    <Grid VerticalAlignment="Stretch" 
+                                                      HorizontalAlignment="Stretch"
+                                                      Margin="5"
+                                                      >
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="5" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" />
+                                                        <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding}" />
+
+                                                        <Border Grid.Column="0"                                                            
+                                                            Grid.ColumnSpan="3" 
+                                                            Grid.Row="2" 
+                                                            Width="128" 
+                                                            Height="128"
+                                                            Margin="5"
+                                                            BorderThickness="1"
+                                                            BorderBrush="Black"
+                                                            >
+                                                            <Grid>
+                                                                <Image x:Name="RelatedImage"
+                                                           VerticalAlignment="Stretch" 
+                                                           HorizontalAlignment="Stretch"                                                           
+                                                           Source="{Binding Converter={converters:ResourceNameToImageSourceConverter}}"
+                                                           />
+
+                                                                <Rectangle VerticalAlignment="Stretch" 
+                                                               HorizontalAlignment="Stretch"
+                                                               >
+                                                                    <Rectangle.Fill>
+                                                                        <SolidColorBrush Color="Green"/>
+                                                                    </Rectangle.Fill>
+                                                                    <Rectangle.OpacityMask>
+                                                                        <ImageBrush ImageSource="{Binding ElementName=RelatedImage, Path=Source}"/>
+                                                                    </Rectangle.OpacityMask>
+                                                                </Rectangle>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>                                    
+                                </Grid>
                             </TabItem>
 
                             <TabItem Header="Cloud Sprites">
                                 <Grid Margin="5">
-                                    <ListBox Grid.Row="0" 
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="75" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Grid.Column="2" Content="Remove" Command="{Binding RemoveSelectedCloudSpriteCommand}" />
+                                        <Button Grid.Column="4" Content="Add" Command="{Binding AddCloudSpriteCommand}" />
+                                    </Grid>
+                                    
+                                    <ListBox Grid.Row="2" 
                                              HorizontalContentAlignment="Stretch"
-                                             ItemsSource="{Binding SelectedPlanetType.CloudSprites}">
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                             ItemsSource="{Binding SelectedPlanetType.CloudSprites}"
+                                             >
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                                    <Grid.ColumnDefinitions >
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="5" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
+                                                <Border BorderThickness="1"
+                                                        BorderBrush="Black"
+                                                        >
+                                                    <Grid VerticalAlignment="Stretch" 
+                                                      HorizontalAlignment="Stretch"
+                                                      Margin="5"
+                                                      >
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="5" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
 
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                        <RowDefinition Height="5" />
-                                                        <RowDefinition Height="*" />
-                                                    </Grid.RowDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="5" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
 
-                                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" />
-                                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding}" />                                                    
-                                                    
-                                                    <Image Grid.Column="0" 
-                                                           Grid.ColumnSpan="3" 
-                                                           Grid.Row="2" 
-                                                           Width="64" 
-                                                           Height="64"
+                                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" />
+                                                        <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding}" />
+
+                                                        <Border Grid.Column="0"                                                            
+                                                            Grid.ColumnSpan="3" 
+                                                            Grid.Row="2" 
+                                                            Width="128" 
+                                                            Height="128"
+                                                            Margin="5"
+                                                            BorderThickness="1"
+                                                            BorderBrush="Black"
+                                                            >
+                                                            <Grid>
+                                                                <Image x:Name="RelatedImage"
+                                                           VerticalAlignment="Stretch" 
+                                                           HorizontalAlignment="Stretch"                                                           
                                                            Source="{Binding Converter={converters:ResourceNameToImageSourceConverter}}"
-                                                           />                                                    
-                                                </Grid>
+                                                           />
+
+                                                                <Rectangle VerticalAlignment="Stretch" 
+                                                               HorizontalAlignment="Stretch"
+                                                               >
+                                                                    <Rectangle.Fill>
+                                                                        <SolidColorBrush Color="Green"/>
+                                                                    </Rectangle.Fill>
+                                                                    <Rectangle.OpacityMask>
+                                                                        <ImageBrush ImageSource="{Binding ElementName=RelatedImage, Path=Source}"/>
+                                                                    </Rectangle.OpacityMask>
+                                                                </Rectangle>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
+                                                </Border>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
