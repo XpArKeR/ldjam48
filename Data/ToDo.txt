@@ -1,10 +1,12 @@
 #### Bugs ####
-- Pause audio on FlyOff cases game to be stuck
+- GameOver screen on Web / Mobile device
+- UI Header size not equal on Planet and Far/approach
 
 #### Required ####
 
 #### WIP ####
 - Windowed mode
+- Starmap
 
 #### Nice to have ####
 - Tutorial
@@ -32,6 +34,7 @@
 - Opening pause menu (Pause Button)
 - Pause / Resume SFX on pause
 - SFX Volume Slider
+- Pause audio on FlyOff cases game to be stuck
 
 #### ColorCodes ####
 Yellow Text:
