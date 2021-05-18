@@ -24,9 +24,14 @@ namespace Balancer.Base
             return ResourceCache.GetResource(resourceName);
         }
 
-        public static IEnumerable<Resource> GetResources(String resourceName)
+        public static IEnumerable<Resource> GetResources(String resourcePath)
         {
-            return ResourceCache.GetResources(resourceName);
+            return ResourceCache.GetResources(resourcePath);
+        }
+        
+        public static IEnumerable<Resource> GetResourcesByName(String resourceName)
+        {
+            return ResourceCache.GetResourcesByName(resourceName);
         }
 
         public static async Task LoadAsync(String baseDirectory)

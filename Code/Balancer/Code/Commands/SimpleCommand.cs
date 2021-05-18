@@ -17,7 +17,7 @@ namespace Balancer.Commands
             this.ExecuteDelegate = action;
         }
 
-        public SimpleCommand(Action action, Func<Boolean> canExecuteAction = default) : this(action)
+        public SimpleCommand(Func<Boolean> canExecuteAction, Action action) : this(action)
         {
             this.CanExecuteDelegate = canExecuteAction;
         }

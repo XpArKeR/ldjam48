@@ -1,18 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 
 using Balancer.Commands;
+using Balancer.Extensions;
 using Balancer.Model;
 using Balancer.Model.Planets;
+using Balancer.Views.ResourceSelection;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Balancer.Views.Tabs
 {
-    public class PlanetTypesContext : TabContext<List<PlanetType>>
+    public class PlanetTypesContext : TabContext<ObservableCollection<PlanetType>>
     {
         private String planetTypesDefinitionPath;
         public String PlanetTypesDefinitionPath
@@ -52,35 +54,29 @@ namespace Balancer.Views.Tabs
             }
         }
 
-        private String selectedLandResource;
-        public String SelectedLandResource
+        private Int32 selectedLandResourceIndex = -1;
+        public Int32 SelectedLandResourceIndex
         {
             get
             {
-                return this.selectedLandResource;
+                return this.selectedLandResourceIndex;
             }
             set
             {
-                if (SetProperty(ref this.selectedLandResource, value))
-                {
-                    this.RemoveSelectedCloudSpriteCommand.OnCanExecuteChanged();
-                }
+                SetProperty(ref this.selectedLandResourceIndex, value);
             }
         }
 
-        private String selectedCloudResource;
-        public String SelectedCloudResource
+        private Int32 selectedCloudResourceIndex = -1;
+        public Int32 SelectedCloudResourceIndex
         {
             get
             {
-                return this.selectedCloudResource;
+                return this.selectedCloudResourceIndex;
             }
             set
             {
-                if (SetProperty(ref this.selectedCloudResource, value))
-                {
-                    CommandManager.InvalidateRequerySuggested();
-                }
+                SetProperty(ref this.selectedCloudResourceIndex, value);
             }
         }
 
@@ -94,6 +90,48 @@ namespace Balancer.Views.Tabs
             set
             {
                 SetProperty(ref this.selectedPlanetBaseColor, value);
+            }
+        }
+
+        private ICommand removeSelectedPlanetTypeCommand;
+        public ICommand RemoveSelectedPlanetTypeCommand
+        {
+            get
+            {
+                if (this.removeSelectedPlanetTypeCommand == default)
+                {
+                    this.removeSelectedPlanetTypeCommand = new SimpleCommand<PlanetType>(CanExecuteRemoveSelectedPlanetTypeCommand, ExecuteRemoveSelectedPlanetTypeCommand);
+                }
+
+                return this.removeSelectedPlanetTypeCommand;
+            }
+        }
+
+        private ICommand duplicateSelectedPlanetTypeCommand;
+        public ICommand DuplicateSelectedPlanetTypeCommand
+        {
+            get
+            {
+                if (this.duplicateSelectedPlanetTypeCommand == default)
+                {
+                    this.duplicateSelectedPlanetTypeCommand = new SimpleCommand<PlanetType>(CanExecuteDuplicateSelectedPlanetTypeCommand, ExecuteDuplicateSelectedPlanetTypeCommand);
+                }
+
+                return this.duplicateSelectedPlanetTypeCommand;
+            }
+        }
+
+        private ICommand addNewPlanetTypeCommand;
+        public ICommand AddNewPlanetTypeCommand
+        {
+            get
+            {
+                if (this.addNewPlanetTypeCommand == default)
+                {
+                    this.addNewPlanetTypeCommand = new SimpleCommand(ExecuteAddNewPlanetTypeCommand);
+                }
+
+                return this.addNewPlanetTypeCommand;
             }
         }
 
@@ -112,13 +150,13 @@ namespace Balancer.Views.Tabs
         }
 
         private ICommand removeSelectedLandSpriteCommand;
-        public SimpleCommand<String> RemoveSelectedLandSpriteCommand
+        public ICommand RemoveSelectedLandSpriteCommand
         {
             get
             {
                 if (this.removeSelectedLandSpriteCommand == default)
                 {
-                    this.removeSelectedLandSpriteCommand = new SimpleCommand<String>(CanExecuteRemoveSelectedLandResourceCommand, ExecuteRemoveSelectedLandResourceCommand);
+                    this.removeSelectedLandSpriteCommand = new SimpleCommand<Int32>(CanRemoveSelectedIndex, ExecuteRemoveSelectedLandResourceCommand);
                 }
 
                 return this.removeSelectedLandSpriteCommand;
@@ -126,16 +164,30 @@ namespace Balancer.Views.Tabs
         }
 
         private ICommand removeSelectedCloudSpriteCommand;
-        public SimpleCommand<String> RemoveSelectedCloudSpriteCommand
+        public ICommand RemoveSelectedCloudSpriteCommand
         {
             get
             {
                 if (this.removeSelectedCloudSpriteCommand == default)
                 {
-                    this.removeSelectedCloudSpriteCommand = new SimpleCommand<String>(CanExecuteRemoveSelectedCloudResourceCommand, ExecuteRemoveSelectedCloudResourceCommand);
+                    this.removeSelectedCloudSpriteCommand = new SimpleCommand<Int32>(CanRemoveSelectedIndex, ExecuteRemoveSelectedCloudResourceCommand);
                 }
 
                 return this.removeSelectedCloudSpriteCommand;
+            }
+        }
+
+        private ICommand addColorCommand;
+        public ICommand AddColorCommand
+        {
+            get
+            {
+                if (this.addColorCommand == default)
+                {
+                    this.addColorCommand = new SimpleCommand<ObservableCollection<CustomColor>>(ExecuteAddColorCommand);
+                }
+
+                return this.addColorCommand;
             }
         }
 
@@ -181,7 +233,21 @@ namespace Balancer.Views.Tabs
             }
         }
 
-        public override void SetContext(List<PlanetType> context)
+        private ICommand addSpriteCommand;
+        public ICommand AddSpriteCommand
+        {
+            get
+            {
+                if (this.addSpriteCommand == default)
+                {
+                    this.addSpriteCommand = new SimpleCommand<ObservableCollection<String>>(ExecuteAddSpriteCommand);
+                }
+
+                return this.addSpriteCommand;
+            }
+        }
+
+        public override void SetContext(ObservableCollection<PlanetType> context)
         {
             base.SetContext(context);
 
@@ -200,7 +266,7 @@ namespace Balancer.Views.Tabs
 
             if (File.Exists(planetTypesFileName))
             {
-                var planetTypes = JsonConvert.DeserializeObject<List<PlanetType>>(File.ReadAllText(planetTypesFileName));
+                var planetTypes = JsonConvert.DeserializeObject<ObservableCollection<PlanetType>>(File.ReadAllText(planetTypesFileName));
 
                 this.SetContext(planetTypes);
 
@@ -208,6 +274,76 @@ namespace Balancer.Views.Tabs
             }
 
             return isSuccessful;
+        }
+
+        private Boolean CanExecuteRemoveSelectedPlanetTypeCommand(PlanetType planetType)
+        {
+            return (planetType != default);
+        }
+
+        private void ExecuteRemoveSelectedPlanetTypeCommand(PlanetType planetType)
+        {
+            Value.Remove(planetType);
+        }
+
+        private Boolean CanExecuteDuplicateSelectedPlanetTypeCommand(PlanetType planetType)
+        {
+            return (planetType != default);
+        }
+
+        private void ExecuteDuplicateSelectedPlanetTypeCommand(PlanetType planetType)
+        {
+            var clone = new PlanetType()
+            {
+                Name = String.Format("{0} - Clone", planetType.Name),
+                BaseColors = planetType.BaseColors.Clone(),
+                LandColors = planetType.LandColors.Clone(),
+                CloudColors = planetType.CloudColors.Clone(),
+                LandSprites = planetType.LandSprites.Clone(),
+                CloudSprites = planetType.CloudSprites.Clone(),
+                Resources = new PlanetResources()
+                {
+                    Oxygen = new PlanetResource()
+                    {
+                        RangeMin = planetType.Resources.Oxygen.RangeMin,
+                        RangeMax = planetType.Resources.Oxygen.RangeMax,
+                        Dispersion = planetType.Resources.Oxygen.Dispersion,
+                    },
+                    Food = new PlanetResource()
+                    {
+                        RangeMin = planetType.Resources.Food.RangeMin,
+                        RangeMax = planetType.Resources.Food.RangeMax,
+                        Dispersion = planetType.Resources.Food.Dispersion,
+                    },
+                    Fuel = new PlanetResource()
+                    {
+                        RangeMin = planetType.Resources.Fuel.RangeMin,
+                        RangeMax = planetType.Resources.Fuel.RangeMax,
+                        Dispersion = planetType.Resources.Fuel.Dispersion,
+                    }
+                }
+            };
+
+            Value.Add(clone);
+        }
+
+        private void ExecuteAddNewPlanetTypeCommand()
+        {
+            Value.Add(new PlanetType()
+            {
+                Name = "New Planet",
+                BaseColors = new ObservableCollection<CustomColor>(),
+                LandColors = new ObservableCollection<CustomColor>(),
+                CloudColors = new ObservableCollection<CustomColor>(),
+                LandSprites = new ObservableCollection<String>(),
+                CloudSprites = new ObservableCollection<String>(),
+                Resources = new PlanetResources()
+                {
+                    Oxygen = new PlanetResource(),
+                    Food = new PlanetResource(),
+                    Fuel = new PlanetResource()
+                }
+            });
         }
 
         private void ExecuteWriteToFileCommand()
@@ -234,30 +370,24 @@ namespace Balancer.Views.Tabs
             }
         }
 
-        private Boolean CanExecuteRemoveSelectedLandResourceCommand(String resourceName)
+        private void ExecuteRemoveSelectedLandResourceCommand(Int32 selectedIndex)
         {
-            return (this.SelectedLandResource != default);
+            this.SelectedPlanetType.LandSprites.RemoveAt(selectedIndex);
         }
 
-        private void ExecuteRemoveSelectedLandResourceCommand(String resourceName)
+        private Boolean CanRemoveSelectedIndex(Int32 selectedIndex)
         {
-            if (!String.IsNullOrEmpty(resourceName))
-            {
-                this.SelectedPlanetType.LandSprites.Remove(resourceName);
-            }
+            return (selectedIndex >= 0);
         }
 
-        private Boolean CanExecuteRemoveSelectedCloudResourceCommand(String resourceName)
+        private void ExecuteRemoveSelectedCloudResourceCommand(Int32 selectedIndex)
         {
-            return (this.SelectedCloudResource != default);
+            this.SelectedPlanetType.CloudSprites.RemoveAt(selectedIndex);
         }
 
-        private void ExecuteRemoveSelectedCloudResourceCommand(String resourceName)
+        private void ExecuteAddColorCommand(ObservableCollection<CustomColor> target)
         {
-            if (!String.IsNullOrEmpty(resourceName))
-            {
-                this.SelectedPlanetType.CloudSprites.Remove(resourceName);
-            }
+            target?.Add(new CustomColor());
         }
 
         private void ExecuteRemoveBaseColorCommand(CustomColor customColor)
@@ -273,6 +403,22 @@ namespace Balancer.Views.Tabs
         private void ExecuteRemoveCloudColorCommand(CustomColor customColor)
         {
             this.SelectedPlanetType.CloudColors.Remove(customColor);
+        }
+
+        private void ExecuteAddSpriteCommand(ObservableCollection<String> targetCollection)
+        {
+            var selectSpriteWindow = new ResourceSelectionWindow()
+            {
+                FilterPath = Path.Combine("Planets", "Sprites")
+            };
+
+            if (selectSpriteWindow.ShowDialog() == true)
+            {
+                foreach (var resource in selectSpriteWindow.SelectedResources)
+                {
+                    targetCollection.Add(resource.Name);
+                }
+            }
         }
     }
 }

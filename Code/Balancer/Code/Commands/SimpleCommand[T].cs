@@ -29,15 +29,15 @@ namespace Balancer.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public virtual void OnCanExecuteChanged()
-        {
-            var canExecuteChanged = this.CanExecuteChanged;
+        //public virtual void OnCanExecuteChanged()
+        //{
+        //    var canExecuteChanged = this.CanExecuteChanged;
 
-            if (canExecuteChanged != default)
-            {
-                canExecuteChanged(this, EventArgs.Empty);
-            }
-        }
+        //    if (canExecuteChanged != default)
+        //    {
+        //        canExecuteChanged(this, EventArgs.Empty);
+        //    }
+        //}
 
         public virtual bool CanExecute(object parameter)
         {

@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Balancer"
         xmlns:tabs="clr-namespace:Balancer.Views.Tabs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="N.E.R.D.S - Balancer"
+        Height="1024" 
+        Width="1600"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:MainWindowContext />
     </Window.DataContext>

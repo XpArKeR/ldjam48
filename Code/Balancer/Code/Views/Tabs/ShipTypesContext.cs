@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 
@@ -11,7 +11,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Balancer.Views.Tabs
 {
-    public class ShipTypesContext : TabContext<List<ShipType>>
+    public class ShipTypesContext : TabContext<ObservableCollection<ShipType>>
     {
         public Boolean HasSelectedShipType
         {
@@ -51,6 +51,48 @@ namespace Balancer.Views.Tabs
             }
         }
 
+        private ICommand removeSelectedShipTypeCommand;
+        public ICommand RemoveSelectedShipTypeCommand
+        {
+            get
+            {
+                if (this.removeSelectedShipTypeCommand == default)
+                {
+                    this.removeSelectedShipTypeCommand = new SimpleCommand<ShipType>(CanExecuteRemoveSelectedShipTypeCommand, ExecuteRemoveSelectedShipTypeCommand);
+                }
+
+                return this.removeSelectedShipTypeCommand;
+            }
+        }
+
+        private ICommand duplicateSelectedShipTypeCommand;
+        public ICommand DuplicateSelectedShipTypeCommand
+        {
+            get
+            {
+                if (this.duplicateSelectedShipTypeCommand == default)
+                {
+                    this.duplicateSelectedShipTypeCommand = new SimpleCommand<ShipType>(CanDuplicateSelectedShipTypeCommand, ExecuteDuplicateSelectedShipTypeCommand);
+                }
+
+                return this.duplicateSelectedShipTypeCommand;
+            }
+        }
+
+        private ICommand addNewShipTypeCommand;
+        public ICommand AddNewShipTypeCommand
+        {
+            get
+            {
+                if (this.addNewShipTypeCommand == default)
+                {
+                    this.addNewShipTypeCommand = new SimpleCommand(ExecuteAddNewShipTypeCommand);
+                }
+
+                return this.addNewShipTypeCommand;
+            }
+        }
+
         private ICommand writeToFileCommand;
         public ICommand WriteToFileCommand
         {
@@ -65,7 +107,7 @@ namespace Balancer.Views.Tabs
             }
         }
 
-        public override void SetContext(List<ShipType> context)
+        public override void SetContext(ObservableCollection<ShipType> context)
         {
             base.SetContext(context);
 
@@ -84,7 +126,7 @@ namespace Balancer.Views.Tabs
 
             if (File.Exists(shipTypesFileName))
             {
-                var shipTypes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ShipType>>(File.ReadAllText(shipTypesFileName));
+                var shipTypes = JsonConvert.DeserializeObject<ObservableCollection<ShipType>>(File.ReadAllText(shipTypesFileName));
 
                 this.SetContext(shipTypes);
 
@@ -92,6 +134,48 @@ namespace Balancer.Views.Tabs
             }
 
             return isSuccessful;
+        }
+
+        private Boolean CanExecuteRemoveSelectedShipTypeCommand(ShipType shipType)
+        {
+            return (shipType != default);
+        }
+
+        private void ExecuteRemoveSelectedShipTypeCommand(ShipType shipType)
+        {
+            this.Value.Remove(shipType);
+        }
+
+        private Boolean CanDuplicateSelectedShipTypeCommand(ShipType shipType)
+        {
+            return (shipType != default);
+        }
+
+        private void ExecuteDuplicateSelectedShipTypeCommand(ShipType shipType)
+        {
+            var clone = new ShipType()
+            {
+                Name = String.Format("{0} - Clone", shipType.Name),
+                MaxOxygenLevel = shipType.MaxOxygenLevel,
+                OxygenLevel = shipType.OxygenLevel,
+                OxygenConsumption = shipType.OxygenConsumption,
+                MaxFoodLevel = shipType.MaxFoodLevel,
+                FoodLevel = shipType.FoodLevel,
+                FoodConsumption = shipType.FoodConsumption,
+                MaxFuelLevel = shipType.MaxFuelLevel,
+                FuelLevel = shipType.FuelLevel,
+                FuelConsumption = shipType.FuelConsumption,
+            };
+
+            this.Value.Add(clone);
+        }
+
+        private void ExecuteAddNewShipTypeCommand()
+        {
+            this.Value.Add(new ShipType()
+            {
+                Name = "New Shiptype"
+            });
         }
 
         private void ExecuteWriteToFileCommand()

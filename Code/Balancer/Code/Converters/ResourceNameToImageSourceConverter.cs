@@ -23,7 +23,7 @@ namespace Balancer.Converters
         {
             if (value is String stringValue)
             {
-                var resources = Resources.GetResources(stringValue);
+                var resources = Resources.GetResourcesByName(stringValue);
 
                 var resourceCount = resources.Count();
 

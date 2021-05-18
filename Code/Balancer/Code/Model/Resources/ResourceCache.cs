@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Balancer.Model.Resources
@@ -11,7 +12,7 @@ namespace Balancer.Model.Resources
         IDictionary<String, Resource> resourceByKeyCache = new Dictionary<String, Resource>();
         IDictionary<String, List<Resource>> resourceByNameCache = new Dictionary<String, List<Resource>>();
 
-        public IEnumerable<Resource> GetResources(String resourceName)
+        public IEnumerable<Resource> GetResourcesByName(String resourceName)
         {
             if (resourceByNameCache.TryGetValue(resourceName, out List<Resource> namedResources))
             {
@@ -19,6 +20,23 @@ namespace Balancer.Model.Resources
                 {
                     yield return resource;
                 }
+            }
+
+            yield break;
+        }
+
+        public IEnumerable<Resource> GetResources(String resourcePath)
+        {
+            IEnumerable<Resource> query = this.resourceByKeyCache.Values;
+
+            if (!String.IsNullOrEmpty(resourcePath))
+            {
+                query = query.Where(r => r.Key.StartsWith(resourcePath));
+            }
+
+            foreach (var resource in query)
+            {
+                yield return resource;
             }
 
             yield break;
