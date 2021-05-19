@@ -1,22 +1,110 @@
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 [Serializable]
-public class PlanetResource 
+public class PlanetResource
 {
+    [SerializeField]
+    private float value;
+    public float Value
+    {
+        get
+        {
+            return this.value;
+        }
+        set
+        {
+            if (this.value != value)
+            {
+                this.value = value;
+            }
+        }
+    }
 
-    public float Value;
+    [SerializeField]
+    private float rangeMin;
+    public float RangeMin
+    {
+        get
+        {
+            return this.rangeMin;
+        }
+        set
+        {
+            if (this.rangeMin != value)
+            {
+                this.rangeMin = value;
+            }
+        }
+    }
 
-    public float RangeMin;
+    [SerializeField]
+    private float rangeMax;
+    public float RangeMax
+    {
+        get
+        {
+            return this.rangeMax;
+        }
+        set
+        {
+            if (this.rangeMax != value)
+            {
+                this.rangeMax = value;
+            }
+        }
+    }
 
-    public float RangeMax;
+    [SerializeField]
+    private float dispersion;
+    public float Dispersion
+    {
+        get
+        {
+            return this.dispersion;
+        }
+        set
+        {
+            if (this.dispersion != value)
+            {
+                this.dispersion = value;
+            }
+        }
+    }
 
-    public float Dispersion;
+    [SerializeField]
+    private float dispersionRangeMin;
+    public float DispersionRangeMin
+    {
+        get
+        {
+            return this.dispersionRangeMin;
+        }
+        set
+        {
+            if (this.dispersionRangeMin != value)
+            {
+                this.dispersionRangeMin = value;
+            }
+        }
+    }
 
-    public float DispersionRangeMin;
-
-    public float DispersionRangeMax;
-
+    [SerializeField]
+    private float dispersionRangeMax;
+    public float DispersionRangeMax
+    {
+        get
+        {
+            return this.dispersionRangeMax;
+        }
+        set
+        {
+            if (this.dispersionRangeMax != value)
+            {
+                this.dispersionRangeMax = value;
+            }
+        }
+    }
 }
