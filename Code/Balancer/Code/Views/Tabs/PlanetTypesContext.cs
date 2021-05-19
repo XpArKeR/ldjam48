@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 using Balancer.Commands;
@@ -133,6 +135,20 @@ namespace Balancer.Views.Tabs
                 }
 
                 return this.addNewPlanetTypeCommand;
+            }
+        }
+
+        private ICommand testPlanetTypesCommand;
+        public ICommand TestPlanetTypesCommand
+        {
+            get
+            {
+                if (this.testPlanetTypesCommand == default)
+                {
+                    this.testPlanetTypesCommand = new SimpleCommand(ExecuteTestPlanetTypesCommand);
+                }
+
+                return this.testPlanetTypesCommand;
             }
         }
 
@@ -349,6 +365,17 @@ namespace Balancer.Views.Tabs
             });
         }
 
+        private void ExecuteTestPlanetTypesCommand()
+        {
+            var testingWindow = new TypeTesting.TypeTestingWindow(this.Value.ToList())
+            {
+                Owner = Application.Current.MainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            testingWindow.ShowDialog();
+        }
+
         private void ExecuteWriteToFileCommand()
         {
             var planetTypesFileName = Path.Combine(BasePath, PlanetTypesDefinitionPath);
@@ -412,7 +439,9 @@ namespace Balancer.Views.Tabs
         {
             var selectSpriteWindow = new ResourceSelectionWindow()
             {
-                FilterPath = Path.Combine("Planets", "Sprites")
+                FilterPath = Path.Combine("Planets", "Sprites"),
+                Owner = Application.Current.MainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
             if (selectSpriteWindow.ShowDialog() == true)

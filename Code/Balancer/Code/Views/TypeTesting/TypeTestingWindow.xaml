@@ -1,0 +1,54 @@
+﻿<Window x:Class="Balancer.Views.TypeTesting.TypeTestingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:behaviors="clr-namespace:Balancer.Behaviors"
+        xmlns:local="clr-namespace:Balancer.Views.TypeTesting"
+        mc:Ignorable="d"
+        Title="TypeTestingWindow" 
+        Height="450" 
+        Width="800"
+        behaviors:DialogCloser.DialogResult="{Binding DialogResult}">
+    <Window.DataContext>
+        <local:TypeTestingContext x:Name="ViewContext" />
+    </Window.DataContext>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="5">
+                <ListBox ItemsSource="{Binding GeneratorTurns}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            
+                            <Grid Height="64">
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="2" Margin="5">
+            
+        </Grid>
+    </Grid>
+</Window>

@@ -1026,10 +1026,16 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="5" />
-                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="80" />
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="2" 
+                            Content="Test types"
+                            Command="{Binding TestPlanetTypesCommand}"/>
+                    
+                    <Button Grid.Column="4" 
                             Content="Write to file"
                             Command="{Binding WriteToFileCommand}"/>
                 </Grid>
