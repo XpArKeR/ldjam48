@@ -7,7 +7,7 @@ using Balancer.Model;
 
 namespace Balancer.Converters
 {
-    public class CustomColorToSystemColorConverter : MarkupExtension, IValueConverter
+    public class UnityColorToSystemColorConverter : MarkupExtension, IValueConverter
     {
         public override Object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -16,7 +16,7 @@ namespace Balancer.Converters
 
         public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
-            if (value is CustomColor customColor)
+            if (value is UnityColor customColor)
             {
                 var alpha = (byte)Math.Floor(customColor.A >= 1.0 ? 255 : customColor.A * 256.0);
 
@@ -37,7 +37,7 @@ namespace Balancer.Converters
         {
             if (value is System.Windows.Media.Color mediaColor)
             {
-                return new CustomColor(mediaColor.ScA, mediaColor.ScR, mediaColor.ScG, mediaColor.ScB);
+                return new UnityColor(mediaColor.ScA, mediaColor.ScR, mediaColor.ScG, mediaColor.ScB);
             }
 
             return Binding.DoNothing;

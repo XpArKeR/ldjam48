@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Balancer.Commands;
@@ -80,8 +81,8 @@ namespace Balancer.Views.Tabs
             }
         }
 
-        private CustomColor selectedPlanetBaseColor;
-        public CustomColor SelectedPlanetBaseColor
+        private UnityColor selectedPlanetBaseColor;
+        public UnityColor SelectedPlanetBaseColor
         {
             get
             {
@@ -184,7 +185,7 @@ namespace Balancer.Views.Tabs
             {
                 if (this.addColorCommand == default)
                 {
-                    this.addColorCommand = new SimpleCommand<ObservableCollection<CustomColor>>(ExecuteAddColorCommand);
+                    this.addColorCommand = new SimpleCommand<ObservableCollection<UnityColor>>(ExecuteAddColorCommand);
                 }
 
                 return this.addColorCommand;
@@ -198,7 +199,7 @@ namespace Balancer.Views.Tabs
             {
                 if (this.removeBaseColorCommand == default)
                 {
-                    this.removeBaseColorCommand = new SimpleCommand<CustomColor>(ExecuteRemoveBaseColorCommand);
+                    this.removeBaseColorCommand = new SimpleCommand<UnityColor>(ExecuteRemoveBaseColorCommand);
                 }
 
                 return this.removeBaseColorCommand;
@@ -212,7 +213,7 @@ namespace Balancer.Views.Tabs
             {
                 if (this.removeLandColorCommand == default)
                 {
-                    this.removeLandColorCommand = new SimpleCommand<CustomColor>(ExecuteRemoveLandColorCommand);
+                    this.removeLandColorCommand = new SimpleCommand<UnityColor>(ExecuteRemoveLandColorCommand);
                 }
 
                 return this.removeLandColorCommand;
@@ -226,7 +227,7 @@ namespace Balancer.Views.Tabs
             {
                 if (this.removeCloudColorCommand == default)
                 {
-                    this.removeCloudColorCommand = new SimpleCommand<CustomColor>(ExecuteRemoveCloudColorCommand);
+                    this.removeCloudColorCommand = new SimpleCommand<UnityColor>(ExecuteRemoveCloudColorCommand);
                 }
 
                 return this.removeCloudColorCommand;
@@ -267,6 +268,8 @@ namespace Balancer.Views.Tabs
             if (File.Exists(planetTypesFileName))
             {
                 var planetTypes = JsonConvert.DeserializeObject<ObservableCollection<PlanetType>>(File.ReadAllText(planetTypesFileName));
+
+                this.NormalizeColors(planetTypes);
 
                 this.SetContext(planetTypes);
 
@@ -332,9 +335,9 @@ namespace Balancer.Views.Tabs
             Value.Add(new PlanetType()
             {
                 Name = "New Planet",
-                BaseColors = new ObservableCollection<CustomColor>(),
-                LandColors = new ObservableCollection<CustomColor>(),
-                CloudColors = new ObservableCollection<CustomColor>(),
+                BaseColors = new ObservableCollection<UnityColor>(),
+                LandColors = new ObservableCollection<UnityColor>(),
+                CloudColors = new ObservableCollection<UnityColor>(),
                 LandSprites = new ObservableCollection<String>(),
                 CloudSprites = new ObservableCollection<String>(),
                 Resources = new PlanetResources()
@@ -385,22 +388,22 @@ namespace Balancer.Views.Tabs
             this.SelectedPlanetType.CloudSprites.RemoveAt(selectedIndex);
         }
 
-        private void ExecuteAddColorCommand(ObservableCollection<CustomColor> target)
+        private void ExecuteAddColorCommand(ObservableCollection<UnityColor> target)
         {
-            target?.Add(new CustomColor());
+            target?.Add(new UnityColor());
         }
 
-        private void ExecuteRemoveBaseColorCommand(CustomColor customColor)
+        private void ExecuteRemoveBaseColorCommand(UnityColor customColor)
         {
             this.SelectedPlanetType.BaseColors.Remove(customColor);
         }
 
-        private void ExecuteRemoveLandColorCommand(CustomColor customColor)
+        private void ExecuteRemoveLandColorCommand(UnityColor customColor)
         {
             this.SelectedPlanetType.LandColors.Remove(customColor);
         }
 
-        private void ExecuteRemoveCloudColorCommand(CustomColor customColor)
+        private void ExecuteRemoveCloudColorCommand(UnityColor customColor)
         {
             this.SelectedPlanetType.CloudColors.Remove(customColor);
         }
@@ -418,6 +421,18 @@ namespace Balancer.Views.Tabs
                 {
                     targetCollection.Add(resource.Name);
                 }
+            }
+        }
+
+        private void NormalizeColors(ObservableCollection<PlanetType> planetTypes)
+        {
+            foreach (var planetType in planetTypes)
+            //Parallel.ForEach(planetTypes, (planetType) =>
+            {
+                planetType.BaseColors.Normalize();
+                planetType.LandColors.Normalize();
+                planetType.CloudColors.Normalize();
+                //});
             }
         }
     }

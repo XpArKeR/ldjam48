@@ -9,8 +9,8 @@ namespace Balancer.Model.Planets
         public PlanetResources Resources { get; set; }
         public ObservableCollection<String> LandSprites { get; set; }
         public ObservableCollection<String> CloudSprites { get; set; }
-        public ObservableCollection<CustomColor> BaseColors { get; set; }
-        public ObservableCollection<CustomColor> LandColors { get; set; }
-        public ObservableCollection<CustomColor> CloudColors { get; set; }
+        public ObservableCollection<UnityColor> BaseColors { get; set; }
+        public ObservableCollection<UnityColor> LandColors { get; set; }
+        public ObservableCollection<UnityColor> CloudColors { get; set; }
     }
 }

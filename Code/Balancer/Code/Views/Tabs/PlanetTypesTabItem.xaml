@@ -11,6 +11,11 @@
     <TabItem.DataContext>
         <local:PlanetTypesContext />
     </TabItem.DataContext>
+
+    <TabItem.Resources>
+        <converters:UnityToSystemColorIndexContexter x:Key="unityToSystemColorIndexContexter" />
+    </TabItem.Resources>
+
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*" />
@@ -28,6 +33,8 @@
                 <Grid Grid.Row="0" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="5" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="5" />
                         <ColumnDefinition Width="Auto" />
@@ -569,9 +576,9 @@
                                                                 <Border.Background>
                                                                     <MultiBinding Converter="{converters:MultiDecimalToSolidColorBrushConverter}">
                                                                         <Binding Path="A" />
-                                                                        <Binding Path="R" />
-                                                                        <Binding Path="G" />
-                                                                        <Binding Path="B" />
+                                                                        <Binding ElementName="RedColorField" Path="Text"/>
+                                                                        <Binding ElementName="GreenColorField" Path="Text"/>
+                                                                        <Binding ElementName="BlueColorField" Path="Text"/>
                                                                     </MultiBinding>
                                                                 </Border.Background>
                                                             </Border>
@@ -590,7 +597,10 @@
                                                                      ToolTip="Alpha value of color. Must be between 0 and 1."
                                                                      >
                                                                     <i:Interaction.Behaviors>
-                                                                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" MinValue="0" MaxValue="1" JustPositivDecimalInput="True" />
+                                                                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                        MinValue="0" 
+                                                                                                        MaxValue="1"
+                                                                                                        JustPositivDecimalInput="True" />
                                                                     </i:Interaction.Behaviors>
                                                                 </TextBox>
                                                             </Grid>
@@ -603,17 +613,18 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="R" />
-                                                                <TextBox Grid.Column="2" 
+                                                                <TextBox x:Name="RedColorField"
+                                                                         Grid.Column="2"                                                                          
                                                                          ToolTip="Red value of color. Must be within 0 and 255."
                                                                          VerticalContentAlignment="Center"
-                                                                         Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300}"
-                                                                         >
+                                                                         Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
+                                                                     >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
-                                                                                                        JustPositivDecimalInput="True" 
-                                                                                                        MinValue="0" 
-                                                                                                        MaxValue="255" 
-                                                                                                        />
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
                                                                     </i:Interaction.Behaviors>
                                                                 </TextBox>
                                                             </Grid>
@@ -626,10 +637,11 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="G" />
-                                                                <TextBox Grid.Column="2" 
+                                                                <TextBox x:Name="GreenColorField"
+                                                                         Grid.Column="2" 
                                                                          ToolTip="Green value of color. Must be within 0 and 255."
                                                                          VerticalContentAlignment="Center"
-                                                                         Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                         Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
                                                                          >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
@@ -649,10 +661,11 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="B" />
-                                                                <TextBox Grid.Column="2" 
+                                                                <TextBox x:Name="BlueColorField"
+                                                                         Grid.Column="2" 
                                                                          VerticalContentAlignment="Center"
                                                                          ToolTip="Blue value of color. Must be within 0 and 255."
-                                                                         Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                         Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
                                                                          >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
@@ -725,9 +738,9 @@
                                                                 <Border.Background>
                                                                     <MultiBinding Converter="{converters:MultiDecimalToSolidColorBrushConverter}">
                                                                         <Binding Path="A" />
-                                                                        <Binding Path="R" />
-                                                                        <Binding Path="G" />
-                                                                        <Binding Path="B" />
+                                                                        <Binding ElementName="RedColorField" Path="Text"/>
+                                                                        <Binding ElementName="GreenColorField" Path="Text"/>
+                                                                        <Binding ElementName="BlueColorField" Path="Text"/>
                                                                     </MultiBinding>
                                                                 </Border.Background>
                                                             </Border>
@@ -746,7 +759,10 @@
                                                                      ToolTip="Alpha value of color. Must be between 0 and 1."
                                                                      >
                                                                     <i:Interaction.Behaviors>
-                                                                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" MinValue="0" MaxValue="1" JustPositivDecimalInput="True" />
+                                                                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                        MinValue="0" 
+                                                                                                        MaxValue="1"
+                                                                                                        JustPositivDecimalInput="True" />
                                                                     </i:Interaction.Behaviors>
                                                                 </TextBox>
                                                             </Grid>
@@ -759,10 +775,11 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="R" />
-                                                                <TextBox Grid.Column="2" 
-                                                                     ToolTip="Red value of color. Must be within 0 and 255."
-                                                                     VerticalContentAlignment="Center"
-                                                                     Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                <TextBox x:Name="RedColorField"
+                                                                         Grid.Column="2"                                                                          
+                                                                         ToolTip="Red value of color. Must be within 0 and 255."
+                                                                         VerticalContentAlignment="Center"
+                                                                         Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
                                                                      >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
@@ -782,11 +799,12 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="G" />
-                                                                <TextBox Grid.Column="2" 
-                                                                     ToolTip="Green value of color. Must be within 0 and 255."
-                                                                     VerticalContentAlignment="Center"
-                                                                     Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300}"
-                                                                     >
+                                                                <TextBox x:Name="GreenColorField"
+                                                                         Grid.Column="2" 
+                                                                         ToolTip="Green value of color. Must be within 0 and 255."
+                                                                         VerticalContentAlignment="Center"
+                                                                         Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
+                                                                         >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
                                                                                                     JustPositivDecimalInput="True" 
@@ -805,11 +823,12 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="B" />
-                                                                <TextBox Grid.Column="2" 
-                                                                     VerticalContentAlignment="Center"
-                                                                     ToolTip="Blue value of color. Must be within 0 and 255."
-                                                                     Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300}"
-                                                                     >
+                                                                <TextBox x:Name="BlueColorField"
+                                                                         Grid.Column="2" 
+                                                                         VerticalContentAlignment="Center"
+                                                                         ToolTip="Blue value of color. Must be within 0 and 255."
+                                                                         Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
+                                                                         >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
                                                                                                     JustPositivDecimalInput="True" 
@@ -873,17 +892,17 @@
                                                             </Grid.ColumnDefinitions>
 
                                                             <Border Grid.Column="0" 
-                                                                    BorderBrush="Black"
-                                                                    BorderThickness="1"
-                                                                    Width="16"
-                                                                    Height="16"
-                                                                    >
+                                                                BorderBrush="Black"
+                                                                BorderThickness="1"
+                                                                Width="16"
+                                                                Height="16"
+                                                                >
                                                                 <Border.Background>
                                                                     <MultiBinding Converter="{converters:MultiDecimalToSolidColorBrushConverter}">
                                                                         <Binding Path="A" />
-                                                                        <Binding Path="R" />
-                                                                        <Binding Path="G" />
-                                                                        <Binding Path="B" />
+                                                                        <Binding ElementName="RedColorField" Path="Text"/>
+                                                                        <Binding ElementName="GreenColorField" Path="Text"/>
+                                                                        <Binding ElementName="BlueColorField" Path="Text"/>
                                                                     </MultiBinding>
                                                                 </Border.Background>
                                                             </Border>
@@ -897,12 +916,15 @@
 
                                                                 <TextBlock Grid.Column="0" Text="A" />
                                                                 <TextBox Grid.Column="2" 
-                                                                         VerticalContentAlignment="Center"
-                                                                         Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=300}"
-                                                                         ToolTip="Alpha value of color. Must be between 0 and 1."
-                                                                         >
+                                                                     VerticalContentAlignment="Center"
+                                                                     Text="{Binding A, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                     ToolTip="Alpha value of color. Must be between 0 and 1."
+                                                                     >
                                                                     <i:Interaction.Behaviors>
-                                                                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" MinValue="0" MaxValue="1" JustPositivDecimalInput="True" />
+                                                                        <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
+                                                                                                        MinValue="0" 
+                                                                                                        MaxValue="1"
+                                                                                                        JustPositivDecimalInput="True" />
                                                                     </i:Interaction.Behaviors>
                                                                 </TextBox>
                                                             </Grid>
@@ -915,11 +937,12 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="R" />
-                                                                <TextBox Grid.Column="2" 
+                                                                <TextBox x:Name="RedColorField"
+                                                                         Grid.Column="2"                                                                          
                                                                          ToolTip="Red value of color. Must be within 0 and 255."
                                                                          VerticalContentAlignment="Center"
-                                                                         Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300}"
-                                                                         >
+                                                                         Text="{Binding R, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
+                                                                     >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
                                                                                                     JustPositivDecimalInput="True" 
@@ -938,10 +961,11 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="G" />
-                                                                <TextBox Grid.Column="2" 
+                                                                <TextBox x:Name="GreenColorField"
+                                                                         Grid.Column="2" 
                                                                          ToolTip="Green value of color. Must be within 0 and 255."
                                                                          VerticalContentAlignment="Center"
-                                                                         Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                         Text="{Binding G, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
                                                                          >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
@@ -961,17 +985,18 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <TextBlock Grid.Column="0" Text="B" />
-                                                                <TextBox Grid.Column="2" 
+                                                                <TextBox x:Name="BlueColorField"
+                                                                         Grid.Column="2" 
                                                                          VerticalContentAlignment="Center"
                                                                          ToolTip="Blue value of color. Must be within 0 and 255."
-                                                                         Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300}"
+                                                                         Text="{Binding B, UpdateSourceTrigger=PropertyChanged, Delay=300, Converter={StaticResource unityToSystemColorIndexContexter}}"
                                                                          >
                                                                     <i:Interaction.Behaviors>
                                                                         <behaviors:TextBoxInputBehavior InputMode="DecimalInput" 
-                                                                                                        JustPositivDecimalInput="True" 
-                                                                                                        MinValue="0"            
-                                                                                                        MaxValue="255" 
-                                                                                                        />
+                                                                                                    JustPositivDecimalInput="True" 
+                                                                                                    MinValue="0" 
+                                                                                                    MaxValue="255" 
+                                                                                                    />
                                                                     </i:Interaction.Behaviors>
                                                                 </TextBox>
                                                             </Grid>

@@ -4,16 +4,24 @@ using System.Runtime.CompilerServices;
 
 namespace Balancer.Model
 {
-    public class CustomColor : INotifyPropertyChanged
+    public class UnityColor : INotifyPropertyChanged, ICloneable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public CustomColor()
+        public UnityColor()
         {
 
         }
 
-        public CustomColor(float a, float r, float g, float b)
+        private UnityColor(UnityColor source)
+        {
+            this.a = source.a;
+            this.r = source.r;
+            this.g = source.g;
+            this.b = source.b;
+        }
+
+        public UnityColor(float a, float r, float g, float b)
         {
             this.A = a;
             this.R = r;
@@ -89,6 +97,11 @@ namespace Balancer.Model
         protected void OnPropertyChanged(String propertyName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public Object Clone()
+        {
+            return new UnityColor(this);
         }
     }
 }
