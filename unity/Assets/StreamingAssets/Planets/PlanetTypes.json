@@ -1,341 +1,341 @@
 [
   {
-    "Name": "Water",
-    "Resources": {
-      "Oxygen": {
-        "RangeMin": "120",
-        "RangeMax": "180",
-        "Dispersion": "80"
+    "name": "Water",
+    "resources": {
+      "oxygen": {
+        "rangeMin": 120.0,
+        "rangeMax": 180.0,
+        "dispersion": 80.0
       },
-      "Food": {
-        "RangeMin": "80",
-        "RangeMax": "150",
-        "Dispersion": "70"
+      "food": {
+        "rangeMin": 80.0,
+        "rangeMax": 150.0,
+        "dispersion": 70.0
       },
-      "Fuel": {
-        "RangeMin": "15",
-        "RangeMax": "50",
-        "Dispersion": "20"
+      "fuel": {
+        "rangeMin": 15.0,
+        "rangeMax": 50.0,
+        "dispersion": 20.0
       }
     },
-    "LandSprites": [
+    "landSprites": [
       "planet_01_lm",
       "planet_02_lm",
       "planet_03_lm",
       "planet_04_lm",
       "planet_05_lm"
     ],
-    "CloudSprites": [
+    "cloudSprites": [
       "clouds_01_2",
       "clouds_02_2"
     ],
-    "BaseColors": [
+    "baseColors": [
       {
-        "r": 33.4,
-        "g": 68.2,
-        "b": 68.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.1309804,
+        "g": 0.26745096,
+        "b": 0.26745096
       },
       {
-        "r": 15.2,
-        "g": 44.4,
-        "b": 61.1,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.05960784,
+        "g": 0.17411765,
+        "b": 0.23960784
       },
       {
-        "r": 18.0,
-        "g": 31.4,
-        "b": 67.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.07058824,
+        "g": 0.12313725,
+        "b": 0.2635294
       },
       {
-        "r": 20.9,
-        "g": 52.0,
-        "b": 49.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.08196078,
+        "g": 0.20392157,
+        "b": 0.19294117
       }
     ],
-    "LandColors": [
+    "landColors": [
       {
-        "r": 13.0,
-        "g": 38.4,
-        "b": 9.5,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.050980393,
+        "g": 0.15058824,
+        "b": 0.037254903
       },
       {
-        "r": 29.3,
-        "g": 58.1,
-        "b": 25.3,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.11490196,
+        "g": 0.22784314,
+        "b": 0.09921569
       },
       {
-        "r": 31.1,
-        "g": 191.7,
-        "b": 45.1,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.12196079,
+        "g": 0.7517647,
+        "b": 0.17686275
       }
     ],
-    "CloudColors": [
+    "cloudColors": [
       {
+        "a": 1.0,
         "r": 1.0,
         "g": 0.0,
-        "b": 1.0,
-        "a": 1.0
+        "b": 1.0
       }
     ]
   },
   {
-    "Name": "Forest",
-    "Resources": {
-      "Oxygen": {
-        "RangeMin": "120",
-        "RangeMax": "240",
-        "Dispersion": "100"
+    "name": "Forest",
+    "resources": {
+      "oxygen": {
+        "rangeMin": 120.0,
+        "rangeMax": 240.0,
+        "dispersion": 100.0
       },
-      "Food": {
-        "RangeMin": "60",
-        "RangeMax": "120",
-        "Dispersion": "35"
+      "food": {
+        "rangeMin": 60.0,
+        "rangeMax": 120.0,
+        "dispersion": 35.0
       },
-      "Fuel": {
-        "RangeMin": "60",
-        "RangeMax": "90",
-        "Dispersion": "80"
+      "fuel": {
+        "rangeMin": 60.0,
+        "rangeMax": 90.0,
+        "dispersion": 80.0
       }
     },
-    "LandSprites": [
+    "landSprites": [
       "planet_01_lm",
       "planet_02_lm",
       "planet_03_lm",
       "planet_04_lm",
       "planet_05_lm"
     ],
-    "CloudSprites": [
+    "cloudSprites": [
       "clouds_01_2",
       "clouds_02_2"
     ],
-    "BaseColors": [
+    "baseColors": [
       {
-        "r": 13.0,
-        "g": 38.4,
-        "b": 9.5,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.050980393,
+        "g": 0.15058824,
+        "b": 0.037254903
       },
       {
-        "r": 29.3,
-        "g": 58.1,
-        "b": 25.3,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.11490196,
+        "g": 0.22784314,
+        "b": 0.09921569
       },
       {
-        "r": 31.1,
-        "g": 191.7,
-        "b": 45.1,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.12196079,
+        "g": 0.7517647,
+        "b": 0.17686275
       }
     ],
-    "LandColors": [
+    "landColors": [
       {
-        "r": 33.4,
-        "g": 68.2,
-        "b": 68.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.1309804,
+        "g": 0.26745096,
+        "b": 0.26745096
       },
       {
-        "r": 15.2,
-        "g": 44.4,
-        "b": 61.1,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.05960784,
+        "g": 0.17411765,
+        "b": 0.23960784
       },
       {
-        "r": 18.0,
-        "g": 31.4,
-        "b": 67.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.07058824,
+        "g": 0.12313725,
+        "b": 0.2635294
       },
       {
-        "r": 20.9,
-        "g": 52.0,
-        "b": 49.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.08196078,
+        "g": 0.20392157,
+        "b": 0.19294117
       }
     ],
-    "CloudColors": [
+    "cloudColors": [
       {
-        "r": 255.0,
-        "g": 255.0,
-        "b": 255.0,
-        "a": 1.0
+        "a": 1.0,
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       }
     ]
   },
   {
-    "Name": "Rock",
-    "Resources": {
-      "Oxygen": {
-        "RangeMin": "25",
-        "RangeMax": "40",
-        "Dispersion": "40"
+    "name": "Rock",
+    "resources": {
+      "oxygen": {
+        "rangeMin": 25.0,
+        "rangeMax": 40.0,
+        "dispersion": 40.0
       },
-      "Food": {
-        "RangeMin": "5",
-        "RangeMax": "25",
-        "Dispersion": "10"
+      "food": {
+        "rangeMin": 5.0,
+        "rangeMax": 25.0,
+        "dispersion": 10.0
       },
-      "Fuel": {
-        "RangeMin": "160",
-        "RangeMax": "270",
-        "Dispersion": "95"
+      "fuel": {
+        "rangeMin": 160.0,
+        "rangeMax": 270.0,
+        "dispersion": 95.0
       }
     },
-    "LandSprites": [
+    "landSprites": [
       "planet_01_lm",
       "planet_02_lm",
       "planet_03_lm",
       "planet_04_lm",
       "planet_05_lm"
     ],
-    "CloudSprites": [
+    "cloudSprites": [
       "clouds_01_2",
       "clouds_02_2"
     ],
-    "BaseColors": [
+    "baseColors": [
       {
-        "r": 189.7,
-        "g": 105.7,
-        "b": 68.4,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.7439216,
+        "g": 0.4145098,
+        "b": 0.2682353
       },
       {
-        "r": 180.4,
-        "g": 97.6,
-        "b": 37.3,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.707451,
+        "g": 0.3827451,
+        "b": 0.1462745
       },
       {
-        "r": 180.4,
-        "g": 131.8,
-        "b": 21.9,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.707451,
+        "g": 0.51686275,
+        "b": 0.08588235
       }
     ],
-    "LandColors": [
+    "landColors": [
       {
-        "r": 180.4,
-        "g": 172.6,
-        "b": 21.9,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.707451,
+        "g": 0.6768628,
+        "b": 0.08588235
       },
       {
-        "r": 180.4,
-        "g": 150.6,
-        "b": 77.3,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.707451,
+        "g": 0.5905883,
+        "b": 0.30313727
       },
       {
-        "r": 177.6,
-        "g": 178.0,
-        "b": 7.7,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.6964706,
+        "g": 0.69803923,
+        "b": 0.030196078
       },
       {
-        "r": 177.6,
-        "g": 131.8,
-        "b": 79.8,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.6964706,
+        "g": 0.51686275,
+        "b": 0.3129412
       }
     ],
-    "CloudColors": [
+    "cloudColors": [
       {
-        "r": 255.0,
-        "g": 255.0,
-        "b": 255.0,
-        "a": 1.0
+        "a": 1.0,
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       }
     ]
   },
   {
-    "Name": "Lava",
-    "Resources": {
-      "Oxygen": {
-        "RangeMin": "15",
-        "RangeMax": "25",
-        "Dispersion": "10"
+    "name": "Lava",
+    "resources": {
+      "oxygen": {
+        "rangeMin": 15.0,
+        "rangeMax": 25.0,
+        "dispersion": 10.0
       },
-      "Food": {
-        "RangeMin": "0",
-        "RangeMax": "0",
-        "Dispersion": "0"
+      "food": {
+        "rangeMin": 0.0,
+        "rangeMax": 0.0,
+        "dispersion": 0.0
       },
-      "Fuel": {
-        "RangeMin": "190",
-        "RangeMax": "300",
-        "Dispersion": "170"
+      "fuel": {
+        "rangeMin": 190.0,
+        "rangeMax": 300.0,
+        "dispersion": 170.0
       }
     },
-    "LandSprites": [
+    "landSprites": [
       "planet_01_lm",
       "planet_02_lm",
       "planet_03_lm",
       "planet_04_lm",
       "planet_05_lm"
     ],
-    "CloudSprites": [
+    "cloudSprites": [
       "clouds_01_2",
       "clouds_02_2"
     ],
-    "BaseColors": [
+    "baseColors": [
       {
-        "r": 225.4,
-        "g": 66.7,
-        "b": 14.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.88392156,
+        "g": 0.2615686,
+        "b": 0.055686273
       },
       {
-        "r": 225.4,
-        "g": 25.7,
-        "b": 23.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.88392156,
+        "g": 0.10078432,
+        "b": 0.090980396
       },
       {
-        "r": 225.4,
-        "g": 3.4,
-        "b": 5.2,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.88392156,
+        "g": 0.013333334,
+        "b": 0.020392155
       }
     ],
-    "LandColors": [
+    "landColors": [
       {
-        "r": 255.0,
-        "g": 201.9,
-        "b": 52.8,
-        "a": 1.0
+        "a": 1.0,
+        "r": 1.0,
+        "g": 0.7917647,
+        "b": 0.20705882
       },
       {
-        "r": 255.0,
-        "g": 130.1,
-        "b": 74.7,
-        "a": 1.0
+        "a": 1.0,
+        "r": 1.0,
+        "g": 0.5101961,
+        "b": 0.29294115
       },
       {
-        "r": 220.8,
-        "g": 171.1,
-        "b": 15.5,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.86588234,
+        "g": 0.6709804,
+        "b": 0.060784314
       },
       {
-        "r": 208.4,
-        "g": 213.9,
-        "b": 24.5,
-        "a": 1.0
+        "a": 1.0,
+        "r": 0.8172549,
+        "g": 0.8388235,
+        "b": 0.09607843
       }
     ],
-    "CloudColors": [
+    "cloudColors": [
       {
-        "r": 255.0,
-        "g": 255.0,
-        "b": 255.0,
-        "a": 1.0
+        "a": 1.0,
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
       }
     ]
   }
