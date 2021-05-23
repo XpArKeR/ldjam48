@@ -1,15 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
+using Balancer.Model;
 using Balancer.Model.Resources;
 
 namespace Balancer.Views.ResourceSelection
 {
-    public class ResourceSurrogate : INotifyPropertyChanged
+    public class ResourceSurrogate : NotifyingObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ResourceSurrogate()
         {
 
@@ -44,24 +41,6 @@ namespace Balancer.Views.ResourceSelection
             {
                 SetProperty(ref this.resource, value);
             }
-        }
-
-        protected Boolean SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = default)
-        {
-            if (!Equals(field, newValue))
-            {
-                field = newValue;
-                OnPropertyChanged(propertyName);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        protected void OnPropertyChanged(String propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

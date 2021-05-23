@@ -20,9 +20,9 @@ namespace Balancer.Converters
             {
                 var alpha = (byte)Math.Floor(customColor.A >= 1.0 ? 255 : customColor.A * 256.0);
 
-                var red = (Byte)Math.Round(customColor.R);
-                var green = (Byte)Math.Round(customColor.G);
-                var blue = (Byte)Math.Round(customColor.B);
+                var red = (Byte)Math.Round(customColor.R * 255);
+                var green = (Byte)Math.Round(customColor.G * 255);
+                var blue = (Byte)Math.Round(customColor.B * 255);
 
 
                 var systemColor = System.Windows.Media.Color.FromArgb(alpha, red, green, blue);
