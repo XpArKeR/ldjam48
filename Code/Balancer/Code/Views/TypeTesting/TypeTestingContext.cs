@@ -47,6 +47,19 @@ namespace Balancer.Views.TypeTesting
             }
         }
 
+        private Int32 planetsPerTurn = 4;
+        public Int32 PlanetsPerTurn
+        {
+            get
+            {
+                return this.planetsPerTurn;
+            }
+            set
+            {
+                SetProperty(ref planetsPerTurn, value);
+            }
+        }
+
         private ObservableCollection<Turn> generatedTurns = new ObservableCollection<Turn>();
         public ObservableCollection<Turn> GeneratedTurns
         {
@@ -69,34 +82,42 @@ namespace Balancer.Views.TypeTesting
                 return this.generateTurnsCommand;
             }
         }
-
+                
         private void ExecuteGenerateTurnsCommand()
         {
-            var planetGenerator = new PlanetGenerator(this.PlanetTypes);
-
-            for (int turnCounter = 0; turnCounter < this.AmountToGenerate + 1; turnCounter++)
-            {
-                var turn = new Turn()
-                {
-                    Number = turnCounter + 1
-                };
-
-                foreach (var planet in planetGenerator.Generate(4))
-                {
-                    turn.Planets.Add(planet);
-
-                    AddPlanetToStatisticsAsync(planet);
-                }
-
-                this.GeneratedTurns.Add(turn);
-            }
+            this.GenerateTurnsAsync();
         }
 
-        private async Task AddPlanetToStatisticsAsync(Planet planet)
+        private async Task GenerateTurnsAsync()
         {
             await Task.Run(() =>
-            {                
-                this.StatisticsContext.AddPlanet(planet);
+            {
+                var planetGenerator = new PlanetGenerator(this.PlanetTypes);
+
+                var planetCounter = 0;
+
+                var planetsPerTurn = this.PlanetsPerTurn;
+
+                for (int turnCounter = 0; turnCounter < this.AmountToGenerate; turnCounter++)
+                {
+                    var turn = new Turn()
+                    {
+                        Number = turnCounter + 1
+                    };
+
+                    foreach (var planet in planetGenerator.Generate(planetsPerTurn))
+                    {
+                        turn.Planets.Add(planet);
+
+                        planetCounter++;
+                        this.StatisticsContext.AddPlanet(planet);
+                    }
+
+                    System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                   {
+                       this.GeneratedTurns.Add(turn);
+                   });
+                }
             });
         }
     }
