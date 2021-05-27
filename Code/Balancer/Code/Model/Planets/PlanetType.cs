@@ -12,10 +12,5 @@ namespace Balancer.Model.Planets
         public ObservableCollection<UnityColor> BaseColors { get; set; }
         public ObservableCollection<UnityColor> LandColors { get; set; }
         public ObservableCollection<UnityColor> CloudColors { get; set; }
-
-        internal Boolean Any(Func<Object, Boolean> p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

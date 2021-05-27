@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 using Balancer.Views.TypeTesting.Statistics;
 
@@ -23,7 +13,15 @@ namespace Balancer.Views.TypeTesting.Details
         {
             InitializeComponent();
 
-            this.ViewContext.Chart = this.Chart;
+            this.ViewContext.OxygenChart = this.OxygenChart;
+            this.ViewContext.OxygenChartGrid = this.OxygenChartGrid;
+
+            this.ViewContext.FoodChart = this.FoodChart;
+            this.ViewContext.FoodChartGrid = this.FoodChartGrid;
+
+            this.ViewContext.FuelChart = this.FuelChart;
+            this.ViewContext.FuelChartGrid = this.FuelChartGrid;
+
             this.ViewContext.Statistic = planetTypeStatistic;
 
             this.ViewContext.Load();

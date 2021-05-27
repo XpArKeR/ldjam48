@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 using Balancer.Commands;
@@ -71,7 +72,9 @@ namespace Balancer.Views.TypeTesting
 
         private void ExecuteViewDetailsCommand(PlanetTypeStatistic typeStatistic)
         {
-            new TypeDetailWindow(typeStatistic).Show();
+            new TypeDetailWindow(typeStatistic)
+            {
+            }.Show();
         }
     }
 }
