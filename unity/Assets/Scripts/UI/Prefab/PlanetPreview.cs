@@ -30,6 +30,8 @@ public class PlanetPreview : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    public HeaderMenu headerMenu;
+
     public void Scan(Action onCompletedAction)
     {
         scannerField.Scan(() =>
@@ -42,11 +44,19 @@ public class PlanetPreview : MonoBehaviour
     public void ChangeCursor()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        if (planet.Scanned)
+        {
+            headerMenu.ShowPossibleChangeConsumption(Core.GameState.ConsumptionRates.Movement);
+        } else
+        {
+            headerMenu.ShowPossibleChangeConsumption(Core.GameState.ConsumptionRates.Scan);
+        }
     }
 
     public void RevertCursor()
     {
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        headerMenu.ClearPossibleChange();
     }
 
     public void RevealResources()

@@ -7,30 +7,29 @@ using UnityEngine.UI;
 public class HeaderMenu : MonoBehaviour
 {
     public Text PlanetsVisitedText;
-    public Text VersionText;
-    public Slider OxygenSlider;
-    public Slider FoodSlider;
-    public Slider FuelSlider;
     public PauseMenu pauseMenu;
 
-    // Start is called before the first frame update
+    public CustomResouceBar OxygenBar;
+    public CustomResouceBar FoodBar;
+    public CustomResouceBar FuelBar;
+
     void Start()
     {
         if (Core.GameState?.Ship != default)
         {
-            if (this.OxygenSlider != default)
+            if (this.OxygenBar != default)
             {
-                this.OxygenSlider.SetMinMax(0, Core.GameState.Ship.MaxOxygenLevel);
+                this.OxygenBar.SetMinMax(0, Core.GameState.Ship.MaxOxygenLevel);
             }
 
-            if (this.FoodSlider != default)
+            if (this.FoodBar != default)
             {
-                this.FoodSlider.SetMinMax(0, Core.GameState.Ship.MaxFoodLevel);
+                this.FoodBar.SetMinMax(0, Core.GameState.Ship.MaxFoodLevel);
             }
 
-            if (this.FuelSlider != default)
+            if (this.FuelBar != default)
             {
-                this.FuelSlider.SetMinMax(0, Core.GameState.Ship.MaxFuelLevel);
+                this.FuelBar.SetMinMax(0, Core.GameState.Ship.MaxFuelLevel);
             }
 
             var planetsVisitedText = Core.GameState.PlanetsVisited.ToString();
@@ -39,11 +38,6 @@ public class HeaderMenu : MonoBehaviour
             {
                 this.PlanetsVisitedText.text = planetsVisitedText;
             }
-        }
-
-        if (this.VersionText != default)
-        {
-            VersionText.text = Application.version;
         }
 
         UpdateValues();
@@ -64,19 +58,19 @@ public class HeaderMenu : MonoBehaviour
     {
         if (Core.GameState?.Ship != default)
         {
-            if (this.OxygenSlider.value != Core.GameState.Ship.OxygenLevel)
+            if (this.OxygenBar.GetCurrentValue() != Core.GameState.Ship.OxygenLevel)
             {
-                this.OxygenSlider.value = Core.GameState.Ship.OxygenLevel;
+                this.OxygenBar.SetCurrentValue(Core.GameState.Ship.OxygenLevel);
             }
 
-            if (this.FoodSlider.value != Core.GameState.Ship.FoodLevel)
+            if (this.FoodBar.GetCurrentValue() != Core.GameState.Ship.FoodLevel)
             {
-                this.FoodSlider.value = Core.GameState.Ship.FoodLevel;
+                this.FoodBar.SetCurrentValue(Core.GameState.Ship.FoodLevel);
             }
 
-            if (this.FuelSlider.value != Core.GameState.Ship.FuelLevel)
+            if (this.FuelBar.GetCurrentValue() != Core.GameState.Ship.FuelLevel)
             {
-                this.FuelSlider.value = Core.GameState.Ship.FuelLevel;
+                this.FuelBar.SetCurrentValue(Core.GameState.Ship.FuelLevel);
             }
 
             var planetsVisitedText = Core.GameState.PlanetsVisited.ToString();
@@ -86,5 +80,44 @@ public class HeaderMenu : MonoBehaviour
                 this.PlanetsVisitedText.text = planetsVisitedText;
             }
         }
+    }
+
+    public void ShowPossibleChangeConsumption(float consumptionFactor)
+    {
+        float[] consumptions = Core.GameState.Ship.GetConsumptions(consumptionFactor);
+        OxygenBar.SetPossibleChange(-consumptions[0]);
+        FoodBar.SetPossibleChange(-consumptions[1]);
+        FuelBar.SetPossibleChange(-consumptions[2]);
+    }
+
+    public void ShowPossibleChangeAddOxygen(float amount, float consumptionFactor)
+    {
+        float[] consumptions = Core.GameState.Ship.GetConsumptions(consumptionFactor);
+        OxygenBar.SetPossibleChange(amount-consumptions[0]);
+        FoodBar.SetPossibleChange(-consumptions[1]);
+        FuelBar.SetPossibleChange(-consumptions[2]);
+    }
+
+    public void ShowPossibleChangeAddFood(float amount, float consumptionFactor)
+    {
+        float[] consumptions = Core.GameState.Ship.GetConsumptions(consumptionFactor);
+        OxygenBar.SetPossibleChange(-consumptions[0]);
+        FoodBar.SetPossibleChange(amount - consumptions[1]);
+        FuelBar.SetPossibleChange(-consumptions[2]);
+    }
+
+    public void ShowPossibleChangeAddFuel(float amount, float consumptionFactor)
+    {
+        float[] consumptions = Core.GameState.Ship.GetConsumptions(consumptionFactor);
+        OxygenBar.SetPossibleChange(-consumptions[0]);
+        FoodBar.SetPossibleChange(-consumptions[1]);
+        FuelBar.SetPossibleChange(amount - consumptions[2]);
+    }
+
+    public void ClearPossibleChange()
+    {
+        OxygenBar.ClearPossibleChange();
+        FoodBar.ClearPossibleChange();
+        FuelBar.ClearPossibleChange();
     }
 }

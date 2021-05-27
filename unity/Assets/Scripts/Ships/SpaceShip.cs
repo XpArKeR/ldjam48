@@ -256,5 +256,15 @@ namespace Assets.Scripts.Ships
 
             return hasEnoughtResource;
         }
+
+        public float[] GetConsumptions(float consumptionFactor)
+        {
+            float oxygenConsumption = consumptionFactor * this.oxygenConsumption;
+            float foodConsumption = consumptionFactor * this.foodConsumption;
+            float fuelConsumption = consumptionFactor * this.fuelConsumption;
+
+            float[] consumptionArrays = {oxygenConsumption, foodConsumption, fuelConsumption};
+            return consumptionArrays;
+        }
     }
 }
