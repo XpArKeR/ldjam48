@@ -37,6 +37,7 @@
 - SFX Volume Slider
 - Pause audio on FlyOff cases game to be stuck
 - UI Header size not equal on Planet and Far/approach
+- Show ResourceChanges of actions in Bars
 
 #### ColorCodes ####
 Yellow Text:
