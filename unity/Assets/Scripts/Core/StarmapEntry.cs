@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Core
+namespace Assets.Scripts
 {
     public class StarmapEntry
     {

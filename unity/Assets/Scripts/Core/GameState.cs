@@ -13,6 +13,7 @@ namespace Assets.Scripts
         public GameState()
         {
             id = Guid.NewGuid();
+            starmap = new Starmap();
         }
 
         [SerializeField]
@@ -120,8 +121,8 @@ namespace Assets.Scripts
             }
         }
 
-        private Starmap starmap;
-        public Starmap Starmap
+        private  Assets.Scripts.Starmap starmap;
+        public Assets.Scripts.Starmap Starmap
         {
             get
             {
