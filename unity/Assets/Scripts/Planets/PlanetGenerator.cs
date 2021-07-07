@@ -26,23 +26,21 @@ public static class PlanetGenerator
     {
         if (Core.IsFileAccessPossible)
         {
-           planetTypes = JsonUtility.ListFromJson<PlanetType>(Path.Combine(Application.streamingAssetsPath, "Planets", "PlanetTypes.json"));
+            planetTypes = JsonUtility.ListFromJson<PlanetType>(Path.Combine(Application.streamingAssetsPath, "Planets", "PlanetTypes.json"));
         }
         else
         {
             planetTypes = Assets.Scripts.Constants.Defaults.GetPlanetTypes();
         }
+
         if (planetTypes?.Count < 1)
-        {            
+        {
             throw new MissingComponentException(nameof(planetTypes));
         }
 
-        NormalizeColors();
         GetMinMaxResourceValues();
         Debug.Log("PlanetTypes loaded: " + planetTypes.Count);
     }
-
-   
 
     private static void GetMinMaxResourceValues()
     {
@@ -52,6 +50,7 @@ public static class PlanetGenerator
         FoodMin = 0;
         FuelMax = 0;
         FuelMin = 0;
+
         foreach (PlanetType planetType in planetTypes)
         {
             OxygenMax = GetMaxValue(OxygenMax, planetType.Resources.Oxygen);
@@ -61,7 +60,6 @@ public static class PlanetGenerator
             FuelMax = GetMaxValue(FuelMax, planetType.Resources.Fuel);
             FuelMin = GetMinValue(FuelMin, planetType.Resources.Fuel);
         }
-
 
         OxygenMin = Math.Max(OxygenMin, 0);
         FoodMin = Math.Max(FoodMin, 0);
@@ -80,33 +78,6 @@ public static class PlanetGenerator
     private static float GetMinValue(float currentValue, PlanetResource resource)
     {
         return Math.Min(currentValue, resource.RangeMin - resource.Dispersion);
-    }
-
-    private static void NormalizeColors()
-    {
-        foreach (PlanetType planetType in planetTypes)
-        {
-            planetType.BaseColors = NormColors(planetType.BaseColors);
-            planetType.LandColors = NormColors(planetType.LandColors);
-            planetType.CloudColors = NormColors(planetType.CloudColors);
-        }
-    }
-
-    private static List<Color> NormColors(List<Color> colors)
-    {
-        List<Color> normedColors = new List<Color>();
-        foreach (Color color in colors)
-        {
-            Color newColor = new Color()
-            {
-                r = color.r / 255,
-                g = color.g / 255,
-                b = color.b / 255,
-                a = 1
-            };
-            normedColors.Add(newColor);
-        }
-        return normedColors;
     }
 
     public static List<Planet> GeneratePlanets(int amount)

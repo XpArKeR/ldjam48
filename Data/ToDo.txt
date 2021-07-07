@@ -1,5 +1,5 @@
 #### Bugs ####
-- UI Header size not equal on Planet and Far/approach
+- GameOver screen on Web / Mobile device
 
 #### Required ####
 
@@ -24,6 +24,8 @@
 - Chance based planets
 - Weighted planet types
 - Planet names
+- Hardmode: Consumption over time
+- small changes resource values depending on color?
 
 #### Done ####
 - Credits Page
@@ -34,6 +36,8 @@
 - Pause / Resume SFX on pause
 - SFX Volume Slider
 - Pause audio on FlyOff cases game to be stuck
+- UI Header size not equal on Planet and Far/approach
+- Show ResourceChanges of actions in Bars
 
 #### ColorCodes ####
 Yellow Text:

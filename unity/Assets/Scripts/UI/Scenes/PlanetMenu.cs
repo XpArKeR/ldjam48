@@ -23,6 +23,8 @@ public class PlanetMenu : MonoBehaviour
     public Text planetFuel;
     public Image currentBackground;
 
+    public HeaderMenu headerMenu;
+
     public void FlyAway()
     {
         Core.GameState.PlanetsVisited++;
@@ -154,6 +156,35 @@ public class PlanetMenu : MonoBehaviour
             AudioSource.Play();
         }
     }
+
+
+    public void ShowOxygenAddition()
+    {
+        headerMenu.ShowPossibleChangeAddOxygen(Core.GameState.CurrentTarget.Resources.Oxygen.Value, Core.GameState.ConsumptionRates.GatherOxygen);
+    }
+
+    public void ShowFoodAddition()
+    {
+        headerMenu.ShowPossibleChangeAddFood(Core.GameState.CurrentTarget.Resources.Food.Value, Core.GameState.ConsumptionRates.GatherFood);
+    }
+
+    public void ShowFuelAddition()
+    {
+        headerMenu.ShowPossibleChangeAddFuel(Core.GameState.CurrentTarget.Resources.Fuel.Value, Core.GameState.ConsumptionRates.GatherFuel);
+    }
+
+    public void ShowFlyAwayConsumption()
+    {
+        headerMenu.ShowPossibleChangeConsumption(Core.GameState.ConsumptionRates.Movement);
+    }
+
+
+    public void ClearPossibleChanges()
+    {
+        headerMenu.ClearPossibleChange();
+    }
+
+
 
     private void Start()
     {
